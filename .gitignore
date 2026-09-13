@@ -4,3 +4,4 @@ __pycache__/
 # 大文件走 Releases，不进 git
 *.zip
 *.pdf
+book/images/_raw/
