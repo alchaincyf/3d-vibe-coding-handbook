@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>星月夜 · 可展开的立体油画</title>
+<style>
+  :root{
+    --bg:#0a0d16; --ink:#e8ecf5; --dim:#8892a6; --dim2:#5b6478;
+    --gold:#e8c46a; --line:rgba(232,196,106,.28);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+    font-family:"Songti SC","Noto Serif SC",Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  canvas{display:block;position:fixed;inset:0}
+
+  header{position:fixed;top:26px;left:32px;right:32px;display:flex;justify-content:space-between;
+    align-items:flex-start;pointer-events:none;z-index:5}
+  h1{margin:0;font-size:30px;font-weight:400;letter-spacing:.14em}
+  .en{margin-top:5px;font-size:11px;letter-spacing:.34em;color:var(--dim2);text-transform:uppercase;
+    font-family:-apple-system,"SF Sans",system-ui,sans-serif}
+  .meta{text-align:right;font-size:12px;letter-spacing:.2em;color:var(--dim2);
+    font-family:-apple-system,"SF Sans",system-ui,sans-serif;line-height:2}
+
+  /* 层标签 */
+  #labels{position:fixed;inset:0;pointer-events:none;z-index:4}
+  .lb{position:absolute;transform:translateY(-50%);white-space:nowrap;font-size:12.5px;
+    letter-spacing:.16em;color:var(--dim);cursor:pointer;pointer-events:auto;
+    transition:color .25s;display:flex;align-items:center;gap:9px}
+  .lb::before{content:"";width:20px;height:1px;background:currentColor;opacity:.5}
+  .lb:hover,.lb.on{color:var(--gold)}
+  .lb .tag{font-size:9.5px;letter-spacing:.1em;padding:2px 6px;border-radius:3px;
+    font-family:-apple-system,system-ui,sans-serif}
+  .lb .tag.d3{color:#0a0d16;background:var(--gold)}
+  .lb .tag.f{color:var(--dim2);border:1px solid rgba(136,146,166,.4)}
+
+  /* 左下：说明 */
+  #info{position:fixed;left:32px;bottom:118px;max-width:330px;z-index:5;
+    opacity:0;transform:translateY(6px);transition:.4s;pointer-events:none}
+  #info.show{opacity:1;transform:none}
+  #info .n{font-size:17px;letter-spacing:.1em;margin-bottom:8px}
+  #info .w{font-size:13px;line-height:1.95;color:var(--dim);letter-spacing:.04em}
+
+  /* 底部控制条 */
+  #bar{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);z-index:6;
+    display:flex;align-items:center;gap:0;padding:7px;border-radius:999px;
+    background:rgba(18,22,34,.88);border:1px solid rgba(255,255,255,.07);
+    backdrop-filter:blur(14px);font-family:-apple-system,"SF Sans",system-ui,sans-serif}
+  #bar button{all:unset;cursor:pointer;font-size:12.5px;letter-spacing:.1em;padding:9px 20px;
+    border-radius:999px;color:var(--dim);transition:.22s}
+  #bar button.act{color:#0a0d16;background:var(--gold)}
+  #bar .seg{display:flex;gap:4px}
+  #bar .sp{width:1px;height:22px;background:rgba(255,255,255,.09);margin:0 9px}
+  #bar label{font-size:11px;color:var(--dim2);letter-spacing:.08em;padding-right:9px}
+  #bar input[type=range]{-webkit-appearance:none;width:104px;height:2px;background:rgba(255,255,255,.16);
+    border-radius:2px;outline:none}
+  #bar input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;
+    border-radius:50%;background:var(--gold);cursor:pointer}
+  #reset{all:unset;cursor:pointer;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+    color:var(--dim);font-size:14px;transition:.22s}
+  #reset:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+
+  .hint{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);font-size:10.5px;
+    letter-spacing:.22em;color:#39404f;z-index:5;font-family:-apple-system,system-ui,sans-serif}
+  .credit{position:fixed;right:32px;bottom:118px;text-align:right;font-size:10.5px;line-height:2;
+    letter-spacing:.06em;color:#39404f;z-index:5;font-family:-apple-system,system-ui,sans-serif}
+
+  #load{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:20;
+    transition:opacity .7s;font-size:12px;letter-spacing:.3em;color:var(--dim2)}
+  #load.gone{opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<header>
+  <div>
+    <h1>星月夜</h1>
+    <div class="en">The Starry Night</div>
+  </div>
+  <div class="meta">文森特 · 梵高<br>1889</div>
+</header>
+
+<div id="labels"></div>
+
+<div id="info"><div class="n"></div><div class="w"></div></div>
+
+<div class="credit">
+  分层构想参考 @HoodyLiu<br>
+  立体资产 · Tripo 生成
+</div>
+
+<div id="bar">
+  <div class="seg">
+    <button id="bClose">合拢</button>
+    <button id="bOpen">展开</button>
+  </div>
+  <span class="sp"></span>
+  <label>层间距离</label>
+  <input id="dist" type="range" min="0" max="100" value="0">
+  <span class="sp"></span>
+  <div class="seg">
+    <button id="bFlat">全平面</button>
+    <button id="bReal">真立体</button>
+  </div>
+  <button id="reset" title="复位">↺</button>
+</div>
+
+<div class="hint">拖动旋转 · 滚轮缩放</div>
+<div id="load">L O A D I N G</div>
+
+<script type="importmap">
+{"imports":{
+  "three":"./lib/three.module.js",
+  "three/addons/":"./lib/jsm/"
+}}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+
+/* ── 画的尺寸 ───────────────────────────────────── */
+const IW = 3840, IH = 3041;
+const PW = 4.0, PH = PW * IH / IW;      // 3.168
+
+/* ── 五层 ─────────────────────────────────────── */
+const LAYERS = [
+  { id:'sky', name:'夜空', en:'The Sky', z:0.00, tex:'assets/layer-夜空.png',
+    flat:true,
+    why:'最远的一层。它只需要颜色，不需要形状。' },
+
+  { id:'stars', name:'星月与旋涡', en:'Stars & Swirls', z:0.11, tex:'assets/layer-星月与旋涡.png',
+    flat:true,
+    why:'它们是光，本来就没有实体——平面在这里反而是对的。' },
+
+  { id:'hills', name:'远山', en:'The Alpilles', z:0.23, tex:'assets/layer-远山.png',
+    flat:true,
+    why:'远到空气已经把细节吃掉了。给它体积，反而会把它拉近。' },
+
+  { id:'village', name:'村庄与教堂', en:'The Village', z:0.44,
+    model:'assets/models/village.glb', flatTex:'assets/flat-村庄与教堂.png',
+    box:[0.4375, 0.6906, 0.2708, 0.3094],
+    why:'它有正立面、有前后、有轮廓——一张纸装不下。' },
+
+  { id:'cypress', name:'柏树', en:'The Cypress', z:0.74,
+    model:'assets/models/cypress.glb', flatTex:'assets/flat-柏树.png',
+    box:[0.10, 0.0, 0.29, 1.0],
+    why:'它离观众最近，而且它挡着后面的东西。' },
+];
+
+const ANCHOR_Y = { sky:1.12, stars:0.52, hills:-0.30, village:-0.86, cypress:0.34 };
+
+/* ── 场景 ─────────────────────────────────────── */
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0d16);
+scene.fog = new THREE.Fog(0x0a0d16, 11, 26);
+
+const camera = new THREE.PerspectiveCamera(38, innerWidth/innerHeight, 0.1, 120);
+// 合拢时正对画面；展开时侧过身，层与层的间隔才看得出来
+const CAM_CLOSED = { az: 0,     el: 0.02, d: 8.4  };
+const CAM_OPEN   = { az: 0.46,  el: 0.19, d: 9.9  };
+let camTween = null;
+function flyCam(to, dur = 1150){
+  const from = { az:0, el:0, d: camera.position.length() };
+  // 反推当前方位角，用户手动转过也能平滑接上
+  from.az = Math.atan2(camera.position.x, camera.position.z);
+  from.el = Math.asin(THREE.MathUtils.clamp(camera.position.y / camera.position.length(), -1, 1));
+  camTween = { t0: performance.now(), dur, from, to };
+}
+function applyCam(az, el, d){
+  camera.position.set(
+    Math.sin(az)*Math.cos(el)*d,
+    Math.sin(el)*d,
+    Math.cos(az)*Math.cos(el)*d
+  );
+  camera.lookAt(controls.target);
+}
+
+const controls = new OrbitControls(camera, canvas);
+controls.target.set(0, 0, 0.15);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance = 3.4;
+controls.maxDistance = 17;
+controls.enablePan = false;
+applyCam(CAM_CLOSED.az, CAM_CLOSED.el, CAM_CLOSED.d);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+const l1 = new THREE.DirectionalLight(0xfff2dc, 2.1); l1.position.set(3.5, 5, 6); scene.add(l1);
+const l2 = new THREE.DirectionalLight(0xa8c4ff, 1.15); l2.position.set(-5, 1.5, 3.5); scene.add(l2);
+const l3 = new THREE.DirectionalLight(0xffffff, 0.5); l3.position.set(0, -3, -4); scene.add(l3);
+
+/* ── 建层 ─────────────────────────────────────── */
+const texLoader = new THREE.TextureLoader();
+const gltfLoader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const groups = {}, planes = {}, models = {};
+
+function makePlane(url, opacity=1){
+  const tex = texLoader.load(url);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  const mat = new THREE.MeshBasicMaterial({
+    map: tex, transparent:true, opacity, depthWrite:false,
+    side: THREE.DoubleSide, toneMapped:false
+  });
+  return new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), mat);
+}
+
+let ready = false;
+const t0 = performance.now();
+// 轮询判定就绪（比数 load 事件可靠：缓存命中时不会再触发 load），12 秒兜底放行
+function checkReady(){
+  if (ready) return;
+  const texOK = Object.values(planes).every(p => p.material.map && p.material.map.image);
+  const modOK = LAYERS.every(L => !L.model || models[L.id]);
+  if ((texOK && modOK) || performance.now() - t0 > 12000){
+    ready = true;
+    document.getElementById('load').classList.add('gone');
+  }
+}
+
+LAYERS.forEach((L, i) => {
+  const g = new THREE.Group();
+  g.userData = L;
+  scene.add(g);
+  groups[L.id] = g;
+
+  if (L.tex){
+    const p = makePlane(L.tex); p.renderOrder = i; g.add(p); planes[L.id] = p;
+  }
+
+  if (L.model){
+    const flat = makePlane(L.flatTex); flat.renderOrder = i; g.add(flat); planes[L.id] = flat;
+
+    gltfLoader.load(L.model, gltf => {
+      const obj = gltf.scene;
+      const bb = new THREE.Box3().setFromObject(obj);
+      const size = new THREE.Vector3(); bb.getSize(size);
+      const tw = L.box[2]*PW, th = L.box[3]*PH;
+      const s = Math.max(tw/size.x, th/size.y);   // 盖住画上挖掉的洞，宁可稍稍溢出
+      obj.scale.setScalar(s);
+
+      const bb2 = new THREE.Box3().setFromObject(obj);
+      const c2 = new THREE.Vector3(); bb2.getCenter(c2);
+      obj.position.set(
+        (L.box[0] + L.box[2]/2 - 0.5)*PW - c2.x,
+        (0.5 - L.box[1] - L.box[3]/2)*PH - c2.y,
+        0
+      );
+      obj.traverse(o => {
+        if (!o.isMesh) return;
+        const m = o.material;
+        if (!m) return;
+        // Tripo 的 PBR 材质带金属度：没有环境贴图时会渲染成一片死黑，归零并调粗糙度
+        m.metalness = 0; m.roughness = 0.92;
+        if (m.metalnessMap) m.metalnessMap = null;
+        m.toneMapped = false;
+        if (m.map) m.map.colorSpace = THREE.SRGBColorSpace;
+        m.envMapIntensity = 0;
+      });
+      obj.renderOrder = i;
+      models[L.id] = obj;
+      g.add(obj);
+      applyMode();
+    }, undefined, e => console.warn('model fail', L.id, e));
+  }
+});
+
+/* ── 展开 / 平面·立体 ─────────────────────────── */
+let expandTarget = 0, expandNow = 0;
+let realMode = true;
+
+function applyMode(){
+  LAYERS.forEach(L => {
+    if (!L.model) return;
+    if (models[L.id]) models[L.id].visible = realMode;
+    if (planes[L.id]) planes[L.id].visible = !realMode;
+  });
+}
+function setExpand(v, fly = true){
+  expandTarget = v;
+  document.getElementById('dist').value = Math.round(v*100);
+  document.getElementById('bOpen').classList.toggle('act', v > 0.5);
+  document.getElementById('bClose').classList.toggle('act', v <= 0.5);
+  if (fly) flyCam(v > 0.5 ? CAM_OPEN : CAM_CLOSED);
+}
+document.getElementById('bOpen').onclick  = () => setExpand(1);
+document.getElementById('bClose').onclick = () => setExpand(0);
+document.getElementById('dist').oninput = e => setExpand(+e.target.value/100, false);
+
+document.getElementById('bReal').onclick = () => {
+  realMode = true;
+  document.getElementById('bReal').classList.add('act');
+  document.getElementById('bFlat').classList.remove('act');
+  applyMode();
+};
+document.getElementById('bFlat').onclick = () => {
+  realMode = false;
+  document.getElementById('bFlat').classList.add('act');
+  document.getElementById('bReal').classList.remove('act');
+  applyMode();
+};
+document.getElementById('bReal').classList.add('act');
+
+document.getElementById('reset').onclick = () => {
+  controls.target.set(0, 0, 0.15);
+  flyCam(expandTarget > 0.5 ? CAM_OPEN : CAM_CLOSED, 700);
+};
+setExpand(0);
+
+/* ── 标签 ─────────────────────────────────────── */
+const labelBox = document.getElementById('labels');
+LAYERS.forEach((L, i) => {
+  const el = document.createElement('div');
+  el.className = 'lb';
+  el.innerHTML = `<span>${L.name}</span><span class="tag ${L.flat?'f':'d3'}">${L.flat?'平面':'立体'}</span>`;
+  el.onmouseenter = () => showInfo(L);
+  el.onmouseleave = hideInfo;
+  labelBox.appendChild(el);
+  L._el = el;
+});
+const anchor = new THREE.Vector3();
+const info = document.getElementById('info');
+function showInfo(L){
+  info.querySelector('.n').textContent = L.name + '　' + L.en;
+  info.querySelector('.w').textContent = L.why;
+  info.classList.add('show');
+  LAYERS.forEach(x => x._el.classList.toggle('on', x === L));
+}
+function hideInfo(){ info.classList.remove('show'); LAYERS.forEach(x => x._el.classList.remove('on')); }
+
+/* ── 循环 ─────────────────────────────────────── */
+const v = new THREE.Vector3();
+function frame(){
+
+  expandNow += (expandTarget - expandNow) * 0.075;
+  LAYERS.forEach((L, i) => {
+    groups[L.id].position.z = i*0.0022 + L.z * expandNow * 2.05;
+  });
+
+  checkReady();
+
+  if (camTween){
+    const p = Math.min(1, (performance.now() - camTween.t0) / camTween.dur);
+    const e = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;   // easeInOutQuad
+    const A = camTween.from, B = camTween.to;
+    applyCam(
+      THREE.MathUtils.lerp(A.az, B.az, e),
+      THREE.MathUtils.lerp(A.el, B.el, e),
+      THREE.MathUtils.lerp(A.d,  B.d,  e)
+    );
+    if (p >= 1) camTween = null;
+  }
+
+  controls.update();
+  renderer.render(scene, camera);
+
+  LAYERS.forEach(L => {
+    const g = groups[L.id];
+    anchor.set(PW/2 + 0.16, ANCHOR_Y[L.id], 0).add(g.position);
+    v.copy(anchor).project(camera);
+    const on = v.z < 1;
+    L._el.style.display = on ? 'flex' : 'none';
+    if (on){
+      L._el.style.left = ((v.x*0.5+0.5)*innerWidth + 6) + 'px';
+      L._el.style.top  = ((-v.y*0.5+0.5)*innerHeight) + 'px';
+      const p = ((-v.z));
+      L._el.style.opacity = String(Math.max(0.18, Math.min(1, 1.6 - p*0.9)));
+    }
+  });
+}
+// 前后台都要跑：rAF 在后台标签页会被暂停，setInterval 至少还能每秒推一帧
+function loop(){ frame(); requestAnimationFrame(loop); }
+loop();
+setInterval(frame, 350);
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* ── 诊断钩子（自校验用，交付前可删） ────────────── */
+window.__err = null;
+addEventListener('error', e => { window.__err = String(e.message || e); });
+let frames = 0;
+const _r = renderer.render.bind(renderer);
+renderer.render = (s,c) => { frames++; return _r(s,c); };
+window.__dbg = () => ({
+  err: window.__err, frames, ready,
+  canvas: [renderer.domElement.width, renderer.domElement.height],
+  cam: camera.position.toArray().map(n=>+n.toFixed(2)),
+  ctxLost: renderer.getContext().isContextLost(),
+  layers: LAYERS.map(L => ({
+    id: L.id,
+    z: +groups[L.id].position.z.toFixed(3),
+    plane: planes[L.id] ? (planes[L.id].material.map ? (planes[L.id].material.map.image ? 'IMG✓' : 'NOIMG') : 'NOMAP') : '—',
+    vis: planes[L.id] ? planes[L.id].visible : null,
+    model: models[L.id] ? '✓' : (L.model ? '×' : '—')
+  }))
+});
+</script>
+</body>
+</html>

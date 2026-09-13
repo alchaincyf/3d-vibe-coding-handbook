@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>四冲程发动机 · 能拆能转</title>
+<style>
+  :root{
+    --bg:#fdfcf7; --ink:#1c1a17; --dim:#7d7669; --dim2:#a8a196;
+    --amber:#c0392b; --line:rgba(192,57,43,.28); --rule:#d8d2c4;
+    --intake:#2f6f9e; --compress:#b8860b; --power:#c0392b; --exhaust:#7d7669;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+    font-family:"SF Mono",Menlo,"Sarasa Mono SC","PingFang SC",monospace;-webkit-font-smoothing:antialiased}
+  /* 纸感：细网格 + 四角裁切线，像一张工程说明书 */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:linear-gradient(rgba(28,26,23,.045) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(28,26,23,.045) 1px,transparent 1px);
+    background-size:26px 26px}
+  body::after{content:"";position:fixed;inset:18px;pointer-events:none;z-index:2;
+    border:1px solid var(--rule);
+    clip-path:polygon(0 0,72px 0,72px 1px,calc(100% - 72px) 1px,calc(100% - 72px) 0,100% 0,100% 100%,calc(100% - 72px) 100%,calc(100% - 72px) calc(100% - 1px),72px calc(100% - 1px),72px 100%,0 100%)}
+  canvas{display:block;position:fixed;inset:0}
+
+  header{position:fixed;top:24px;left:30px;z-index:5;pointer-events:none}
+  h1{margin:0;font-size:19px;font-weight:600;letter-spacing:.18em}
+  .sub{margin-top:7px;font-size:10px;letter-spacing:.26em;color:var(--dim)}
+  header::after{content:"";display:block;width:52px;height:2px;background:var(--amber);margin-top:12px}
+
+  /* 当前冲程 */
+  #stroke{position:fixed;top:26px;left:50%;transform:translateX(-50%);z-index:6;text-align:center;
+    pointer-events:none}
+  #stroke .nm{font-size:26px;font-weight:600;letter-spacing:.16em;transition:color .3s}
+  #stroke .ds{margin-top:6px;font-size:11.5px;color:var(--dim);letter-spacing:.06em}
+  #cycle{display:flex;gap:3px;margin-top:12px;justify-content:center}
+  #cycle i{width:44px;height:3px;border-radius:0;background:rgba(28,26,23,.14);transition:.3s}
+
+  /* 右侧零件 */
+  #parts{position:fixed;right:26px;top:78px;z-index:5;width:186px}
+  #parts h3{margin:0 0 10px;font-size:10px;letter-spacing:.24em;color:var(--dim);font-weight:600;
+    padding-bottom:8px;border-bottom:1px solid var(--rule)}
+  .pt{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:7px;cursor:pointer;
+    font-size:12.5px;color:var(--dim);transition:.2s;letter-spacing:.03em}
+  .pt:hover{background:rgba(28,26,23,.05);color:var(--ink)}
+  .pt .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 1px rgba(28,26,23,.22) inset}
+  .pt .src{margin-left:auto;font-size:9px;letter-spacing:.06em;color:var(--dim2);opacity:.85}
+  .pt.tripo .src{color:var(--amber)}
+  .pt.off{opacity:.32}
+
+  /* 左下数据 */
+  #readout{position:fixed;left:30px;bottom:112px;z-index:5;font-size:12px;color:var(--dim);
+    line-height:2.1;letter-spacing:.04em;}
+  #readout b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+  /* 底部控制条 */
+  #bar{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:6;
+    display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;
+    background:rgba(253,252,247,.94);border:1px solid var(--rule);backdrop-filter:blur(16px);
+    box-shadow:0 6px 26px rgba(28,26,23,.10);
+    }
+  #bar button{all:unset;cursor:pointer;font-size:12.5px;letter-spacing:.06em;padding:9px 15px;border-radius:999px;
+    color:var(--dim);transition:.2s;white-space:nowrap}
+  #bar button:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+  #bar button.act{color:#12141b;background:var(--amber)}
+  #bar .sp{width:1px;height:22px;background:rgba(255,255,255,.09);margin:0 5px}
+  #bar input[type=range]{-webkit-appearance:none;height:3px;border-radius:3px;outline:none;
+    background:#ddd7c9}
+  #angle{width:210px}
+  #speed{width:88px}
+  #bar input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;
+    background:var(--amber);cursor:pointer}
+  #bar label{font-size:10.5px;color:var(--dim2);letter-spacing:.1em}
+
+  .hint{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;
+    color:#39404f;z-index:5;}
+  /* ── 装配挑战 ── */
+  #asm{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:7;width:min(680px,92vw);
+    background:rgba(253,252,247,.97);border:1px solid var(--rule);padding:14px 16px 12px;
+    box-shadow:0 8px 30px rgba(28,26,23,.13);display:none}
+  #asm.on{display:block}
+  #asm .ah{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px}
+  #asm .ah b{font-size:11px;letter-spacing:.2em;font-weight:600}
+  #asm .ah span{font-size:10.5px;color:var(--dim)}
+  #asmList{display:flex;gap:6px;flex-wrap:wrap}
+  #asmList button{font:inherit;font-size:12px;padding:7px 12px;border:1px solid var(--rule);
+    background:#fff;color:var(--ink);cursor:pointer;letter-spacing:.03em;transition:.15s;position:relative}
+  #asmList button:hover:not(:disabled){border-color:var(--amber);color:var(--amber)}
+  #asmList button.done{background:#eef4ef;border-color:#bcd6c3;color:#2d7a4f;cursor:default}
+  #asmList button.done::before{content:"✓ ";font-weight:600}
+  #asmList button.bad{animation:shake .32s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}
+    50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+  #asmMsg{margin-top:11px;font-size:12px;line-height:1.65;min-height:34px;color:var(--dim)}
+  #asmMsg.err{color:var(--amber)}
+  #asmMsg.ok{color:#2d7a4f}
+  #asmMsg b{color:var(--ink)}
+  #asmMsg .why{display:block;font-size:11px;color:var(--dim);margin-top:3px}
+  #asmBar{height:2px;background:#e8e2d4;margin:10px 0 0;position:relative}
+  #asmBar i{position:absolute;left:0;top:0;bottom:0;background:var(--amber);transition:width .35s}
+  #load{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:20;
+    transition:opacity .6s;font-size:11px;letter-spacing:.3em;color:var(--dim2)}
+  #load.gone{opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<header>
+  <h1>单缸四冲程发动机</h1>
+  <div class="sub">HOW A FOUR-STROKE ENGINE WORKS</div>
+</header>
+
+<div id="stroke">
+  <div class="nm" id="sName">进气</div>
+  <div class="ds" id="sDesc">活塞下行，进气门开，混合气被吸进气缸</div>
+  <div id="cycle"><i></i><i></i><i></i><i></i></div>
+</div>
+
+<div id="parts">
+  <h3>零件</h3>
+</div>
+
+<div id="readout">
+  曲轴转角 <b id="rAng">0°</b>　·　第 <b id="rTurn">1</b> 圈<br>
+  活塞位置 <b id="rPos">上止点</b><br>
+  进气门 <b id="rIn">关</b>　排气门 <b id="rEx">关</b>
+</div>
+
+<div id="bar">
+  <button id="play" class="act">▶ 运转</button>
+  <span class="sp"></span>
+  <label>曲轴转角</label>
+  <input id="angle" type="range" min="0" max="720" value="0" step="1">
+  <span class="sp"></span>
+  <label>转速</label>
+  <input id="speed" type="range" min="8" max="260" value="70" step="1">
+  <span class="sp"></span>
+  <button id="bCut" class="act">剖开缸体</button>
+  <button id="bExp">拆开</button>
+  <button id="bAsm">装配挑战</button>
+  <button id="bReset">复位</button>
+</div>
+
+<div class="hint">拖动旋转 · 滚轮缩放 · 直接拖曲轴也能转</div>
+<div id="asm">
+  <div class="ah"><b>装 配 挑 战</b><span id="asmStep">按正确顺序把它装回去 · 0 / 6</span></div>
+  <div id="asmList"></div>
+  <div id="asmMsg">发动机拆成了六大件。<b>装配顺序不能乱</b>——装错了，后面那件就进不去了。</div>
+  <div id="asmBar"><i style="width:0%"></i></div>
+</div>
+<div id="load">L O A D I N G</div>
+
+<script type="importmap">
+{"imports":{"three":"./lib/three.module.js","three/addons/":"./lib/jsm/"}}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+
+/* ══════════ 尺寸（真值，机构按这个算） ══════════ */
+const R      = 0.34;    // 曲柄半径 → 行程 = 2R
+const L      = 1.06;    // 连杆长（大头中心→小头中心）
+const BORE   = 0.64;    // 缸径
+const DECK   = R + L;   // 上止点时活塞销高度
+const STROKE = 2*R;
+const CROWN  = 0.29;    // 活塞半高（Tripo 活塞原始比例偏扁，渲染时纵向拉伸到真实比例）
+const CYL_TOP = DECK + CROWN + 0.06;    // 缸盖底面
+const CYL_BOT = L - R - CROWN - 0.12;   // 缸筒下沿
+
+/* ══════════ 运动学 ══════════ */
+function pinPos(th){                    // 活塞销
+  return new THREE.Vector3(0, R*Math.cos(th) + Math.sqrt(L*L - R*R*Math.sin(th)*Math.sin(th)), 0);
+}
+function crankPinPos(th){               // 曲柄销
+  return new THREE.Vector3(R*Math.sin(th), R*Math.cos(th), 0);
+}
+// 四冲程：0=进气 1=压缩 2=做功 3=排气
+function strokeIndex(th){
+  const t = ((th % (4*Math.PI)) + 4*Math.PI) % (4*Math.PI);
+  return Math.floor(t / Math.PI);
+}
+function valveLift(th){                 // 气门升程，开启窗口内正弦抬升
+  const t = ((th % (4*Math.PI)) + 4*Math.PI) % (4*Math.PI);
+  const inWin  = t < Math.PI*0.94;                                  // 进气：0→180°
+  const exWin  = t > Math.PI*3.06;                                  // 排气：540°→720°
+  const f = (a,b)=> Math.sin(Math.PI*(t-a)/(b-a));
+  return {
+    intake:  inWin ? Math.max(0,f(0, Math.PI*0.94)) : 0,
+    exhaust: exWin ? Math.max(0,f(Math.PI*3.06, 4*Math.PI)) : 0
+  };
+}
+const STROKES = [
+  {n:'进气', c:'#4aa3f0', d:'活塞下行，进气门开，混合气被吸进气缸'},
+  {n:'压缩', c:'#c9a227', d:'两门全关，活塞上行把混合气压小'},
+  {n:'做功', c:'#e5544a', d:'火花塞点火，燃气爆燃把活塞压下去'},
+  {n:'排气', c:'#7c8ba1', d:'排气门开，活塞上行把废气推出去'},
+];
+
+/* ══════════ 场景 ══════════ */
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xfdfcf7);
+/* 程序化环境贴图：白底场景里 PBR 金属没有 envMap 会渲成死黑，
+   这里用 canvas 渐变现造一张，不依赖任何外部 HDR 文件 */
+function makeStudioEnv(rd){
+  const c = document.createElement('canvas'); c.width = 128; c.height = 128;
+  const g = c.getContext('2d');
+  const grd = g.createLinearGradient(0, 0, 0, 128);
+  grd.addColorStop(0.00, '#ffffff');   // 顶光
+  grd.addColorStop(0.34, '#e6e2d8');
+  grd.addColorStop(0.52, '#8e897e');   // 地平线
+  grd.addColorStop(0.72, '#5c574e');   // 暗部：金属靠它拉出明暗对比，但别压死
+  grd.addColorStop(1.00, '#403c35');
+  g.fillStyle = grd; g.fillRect(0, 0, 128, 128);
+  g.fillStyle = 'rgba(255,255,255,.9)'; g.beginPath();
+  g.ellipse(40, 24, 26, 13, 0, 0, Math.PI*2); g.fill();   // 主光源亮斑
+  const tex = new THREE.CanvasTexture(c);
+  tex.mapping = THREE.EquirectangularReflectionMapping;
+  const pm = new THREE.PMREMGenerator(rd);
+  const env = pm.fromEquirectangular(tex).texture;
+  pm.dispose(); tex.dispose();
+  return env;
+}
+scene.fog = new THREE.Fog(0xfdfcf7, 11, 26);
+
+const camera = new THREE.PerspectiveCamera(36, innerWidth/innerHeight, 0.05, 80);
+const CAM0 = {az:0.34, el:0.14, d:6.9};
+const TGT = new THREE.Vector3(0, 0.74, 0);
+let camTween=null;
+function applyCam(az,el,d){
+  const t = controls.target;
+  camera.position.set(t.x + Math.sin(az)*Math.cos(el)*d, t.y + Math.sin(el)*d, t.z + Math.cos(az)*Math.cos(el)*d);
+  camera.lookAt(t);
+}
+const controls = new OrbitControls(camera, canvas);
+controls.target.copy(TGT);
+controls.enableDamping = true; controls.dampingFactor = 0.07;
+controls.minDistance = 2.6; controls.maxDistance = 14; controls.enablePan = false;
+applyCam(CAM0.az, CAM0.el, CAM0.d);
+
+scene.environment = makeStudioEnv(renderer);
+renderer.toneMappingExposure = 1.0;
+scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+const key = new THREE.DirectionalLight(0xfff6e8, 1.9); key.position.set(4,7,5); scene.add(key);
+const fill= new THREE.DirectionalLight(0xd8e4f2, 0.85); fill.position.set(-5,2,3); scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffffff, 0.7); rim.position.set(0,-3,-5); scene.add(rim);
+const pm = new THREE.PointLight(0xffd27a, 0, 3); pm.position.set(0, CYL_TOP-0.16, 0); scene.add(pm);
+
+/* ══════════ 材质 ══════════ */
+const matSteel = new THREE.MeshStandardMaterial({color:0x585e66, metalness:.82, roughness:.24, envMapIntensity:1.35});
+const matDark  = new THREE.MeshStandardMaterial({color:0x2e3238, metalness:.78, roughness:.38, envMapIntensity:1.2});
+const matGlass = new THREE.MeshPhysicalMaterial({color:0x6f8ba6, metalness:0, roughness:.08,
+  transparent:true, opacity:.17, transmission:.85, thickness:.5, side:THREE.DoubleSide, depthWrite:false});
+const matHead  = new THREE.MeshStandardMaterial({color:0x4d545c, metalness:.7, roughness:.36,
+  transparent:true, opacity:.26, side:THREE.DoubleSide, depthWrite:false});
+const matGlow  = new THREE.MeshBasicMaterial({color:0xffd27a, transparent:true, opacity:.9});
+
+/* ══════════ 曲轴（程序化：曲柄销位置必须精确，所以不用生成件） ══════════ */
+const crank = new THREE.Group(); scene.add(crank);
+{
+  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.115,0.115,1.42,32), matSteel);
+  shaft.rotation.x = Math.PI/2; crank.add(shaft);                    // 主轴沿 Z
+  for (const z of [-0.20, 0.20]){                                    // 曲柄臂 + 配重
+    const web = new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.42,0.105,40), matDark);
+    web.rotation.x = Math.PI/2; web.position.set(0, R-0.34, z); crank.add(web);
+  }
+  const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.155,0.155,0.78,28), matSteel);
+  pin.rotation.x = Math.PI/2; pin.position.set(0, R, 0); crank.add(pin);
+}
+
+/* ══════════ 连杆 / 活塞（先程序化，Tripo 模型到位后替换） ══════════ */
+const rodGrp = new THREE.Group(); scene.add(rodGrp);
+const pisGrp = new THREE.Group(); scene.add(pisGrp);
+
+// 程序化替身：大头在原点，小头在 (0,L,0)
+const rodFallback = new THREE.Group();
+{
+  const big = new THREE.Mesh(new THREE.TorusGeometry(0.155,0.055,14,30), matSteel);
+  big.rotation.y = Math.PI/2; rodFallback.add(big);
+  const sm  = new THREE.Mesh(new THREE.TorusGeometry(0.088,0.042,12,24), matSteel);
+  sm.rotation.y = Math.PI/2; sm.position.y = L; rodFallback.add(sm);
+  const beam= new THREE.Mesh(new THREE.CylinderGeometry(0.052,0.082,L,18), matSteel);
+  beam.position.y = L/2; rodFallback.add(beam);
+}
+const pisFallback = new THREE.Group();
+{
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(BORE/2, BORE/2, CROWN*2, 40), matDark);
+  pisFallback.add(body);
+  for (const y of [CROWN*0.42, CROWN*0.60, CROWN*0.78]){
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(BORE/2+0.004, 0.016, 8, 40), matSteel);
+    ring.rotation.x = Math.PI/2; ring.position.y = y; pisFallback.add(ring);
+  }
+  const skirt = new THREE.Mesh(new THREE.CylinderGeometry(BORE/2-0.02, BORE/2-0.02, CROWN*0.9, 32), matDark);
+  skirt.position.y = -CROWN*0.5; pisFallback.add(skirt);
+}
+let rodModel = rodFallback, pisModel = pisFallback;
+rodGrp.add(rodFallback); pisGrp.add(pisFallback);
+
+/* ══════════ 缸筒 / 缸盖 / 气门 / 火花塞 ══════════ */
+const wallH = CYL_TOP - CYL_BOT;
+const cyl = new THREE.Mesh(new THREE.CylinderGeometry(BORE/2+0.055, BORE/2+0.055, wallH, 48, 1, true), matGlass);
+cyl.position.y = (CYL_TOP + CYL_BOT)/2; scene.add(cyl);
+// 缸筒内壁的一道细环，让"缸"看得出来
+const cylRings = [];
+for (const y of [CYL_TOP-0.02, CYL_BOT+0.02]){
+  const r = new THREE.Mesh(new THREE.TorusGeometry(BORE/2+0.012, 0.012, 8, 48), matSteel);
+  r.rotation.x = Math.PI/2; r.position.y=y; scene.add(r); cylRings.push(r);
+}
+// 缸盖
+const head = new THREE.Mesh(new THREE.CylinderGeometry(BORE/2+0.13, BORE/2+0.15, 0.30, 40), matHead);
+head.position.y = CYL_TOP + 0.15; scene.add(head);
+
+// 气门：锥面 + 杆
+function makeValve(){
+  const g = new THREE.Group();
+  const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.108,0.086,0.052,28), matSteel);
+  disc.position.y = -0.026; g.add(disc);
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.024,0.024,0.26,16), matSteel);
+  stem.position.y = 0.13; g.add(stem);
+  return g;
+}
+const valveIn = makeValve(); valveIn.position.set(-0.155, CYL_TOP, 0); scene.add(valveIn);
+const valveEx = makeValve(); valveEx.position.set( 0.155, CYL_TOP, 0); scene.add(valveEx);
+const LIFT = 0.14;
+
+// 火花塞
+const plug = new THREE.Group();
+{
+  const s = new THREE.Mesh(new THREE.CylinderGeometry(0.048,0.048,0.34,20), matSteel);
+  s.position.y = 0.17; plug.add(s);
+  const t = new THREE.Mesh(new THREE.CylinderGeometry(0.028,0.028,0.16,14), matSteel); t.position.y=0.40; plug.add(t);
+  const spark = new THREE.Mesh(new THREE.SphereGeometry(0.075,20,16), matGlow);
+  spark.position.set(0, -0.055, 0); spark.material = matGlow.clone(); spark.material.opacity=0; plug.add(spark);
+  plug.userData.spark = spark;
+}
+plug.position.set(0, CYL_TOP+0.02, 0.24); scene.add(plug);
+
+/* ══════════ 外部件（飞轮 / 正时齿轮，让曲轴看得出在转） ══════════ */
+const flywheel = new THREE.Mesh(new THREE.CylinderGeometry(0.34,0.34,0.055,44), matSteel);
+flywheel.rotation.x = Math.PI/2; flywheel.position.z = 0.84; crank.add(flywheel);
+for (let i=0;i<16;i++){                                   // 轮辐刻线，转起来才看得出
+  const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.020,0.30,0.020), matDark);
+  const a = i/16*Math.PI*2;
+  spoke.position.set(Math.cos(a)*0.17, Math.sin(a)*0.17, 0.828);
+  spoke.rotation.z = a - Math.PI/2; crank.add(spoke);
+}
+
+/* ══════════ 装配（每帧调用） ══════════ */
+let theta = 0, exploded = 0, expandT = 0;
+function assemble(){
+  const P = crankPinPos(theta), Q = pinPos(theta);
+  crank.rotation.z = -theta;
+  pisGrp.position.copy(Q);
+  rodGrp.position.copy(P);
+  const dx = Q.x - P.x, dy = Q.y - P.y;
+  rodGrp.rotation.z = Math.atan2(-dx, dy);
+  if (expandT > 0.001){
+    const t = expandT;
+    crank.position.z    = -t*1.5;
+    rodGrp.position.z   =  t*1.1;
+    pisGrp.position.z   =  t*2.3;
+    rodGrp.position.y  += t*0.55;                 // 拆开时连杆略微抬起，别和曲轴穿模
+  } else { crank.position.z = 0; rodGrp.position.z = 0; pisGrp.position.z = 0; }
+
+}
+
+/* ══════════ 交互 ══════════ */
+const $ = id => document.getElementById(id);
+let playing = true, speed = 70;
+$('play').onclick = () => { playing = !playing;
+  $('play').textContent = playing ? '▶ 运转' : '❚❚ 暂停';
+  $('play').classList.toggle('act', playing); };
+$('angle').oninput = e => { theta = +e.target.value * Math.PI/180; playing = false;
+  $('play').textContent='▶ 运转'; $('play').classList.remove('act'); };
+$('speed').oninput = e => speed = +e.target.value;
+$('bExp').onclick = () => { exploded = exploded ? 0 : 1;
+  $('bExp').classList.toggle('act', !!exploded); };
+
+/* ══════════ 装配挑战 ══════════
+   拆解是「看」，装配才是「玩」。每一条错误提示都是真实的机械约束——
+   不是随便编的惩罚，是这台机器本来就只能按这个顺序装。 */
+const ASM = [
+  /* off = 待装位相对原位的偏移，淡影就停在这里，所以必须落在默认机位的画面里：
+     1 世界单位≈190px，可见范围 x ±2.4、y −0.4（底部面板上沿）…2.6（顶部标题下沿）。
+     六件绕着中央空位摆成一圈：左下曲轴、左上连杆、右下活塞、右上缸筒、顶部缸盖与火花塞。
+     原来的 2.6–5.0 是给「从画面外飞入」用的，淡影一显形就全在画面外了。 */
+  {id:'crk', nm:'曲轴',        obj:()=>[crank],          off:[-1.6,0.2,0],
+   ok:'曲轴先落进曲轴箱。<b>它是整台机器的基准</b>——所有运动都从它这一圈开始。'},
+  {id:'rod', nm:'连杆',        obj:()=>[rodGrp],         off:[-1.7,1.1,0],
+   ok:'连杆大头抱上曲柄销。<b>大头在下、小头在上</b>，工字截面是为了又轻又抗弯。'},
+  {id:'pis', nm:'活塞',        obj:()=>[pisGrp],         off:[1.6,-1.35,0],
+   ok:'活塞销把活塞和连杆小头连起来。<b>现在它们是一个整体了</b>，这一组要一起装进缸筒。'},
+  {id:'cyl', nm:'缸筒',        obj:()=>[cyl, ...cylRings], off:[1.7,0.35,0],
+   ok:'缸筒从上面套下来罩住活塞。<b>活塞环刮着缸壁</b>，密封靠的就是这一圈。'},
+  {id:'hed', nm:'缸盖（含气门）', obj:()=>[head,valveIn,valveEx], off:[-0.9,0.4,0],
+   ok:'缸盖压在缸筒上，两个气门坐进气门座。<b>燃烧室就是缸盖底面和活塞顶之间那点空间。</b>'},
+  {id:'plg', nm:'火花塞',      obj:()=>[plug],           off:[0.95,0.18,0],
+   ok:'火花塞拧进缸盖。<b>整台机器齐了。</b>'},
+];
+/* 装错时的解释：key = 你点的那件，值 = 为什么现在装不了 */
+const ASM_WHY = {
+  rod:'曲轴还没进去。<span class="why">连杆大头得抱在曲柄销上——销子都还没有，它抱谁？</span>',
+  pis:'连杆还没装。<span class="why">活塞得靠活塞销挂在连杆小头上，不然它在缸筒里没东西带动，纯粹是块铁。</span>',
+  cyl:'活塞连杆组还没装好。<span class="why">缸筒一罩下来，活塞就没法从上面压进去了——真实装配里这一步装反了就得全拆。</span>',
+  hed:'缸筒还没就位。<span class="why">缸盖是压在缸筒上端面的，下面悬空压什么？</span>',
+  plg:'缸盖还没装。<span class="why">火花塞是拧在缸盖上的螺纹孔里的。</span>',
+  crk:'曲轴已经在里面了。',
+};
+let asmMode = false, asmDone = 0;
+const asmState = {};   // id -> {t: 0待装位 1已装好}
+ASM.forEach(p => asmState[p.id] = {t:1});
+
+/* 待装的件不是消失，而是变成淡影留在待装位——否则装配模式一进来画布全空，像页面坏了。
+   淡影用一份共享的半透明材质；装上那一刻换回各自原来的材质。 */
+/* 用不受光的材质：这个场景四盏灯加环境贴图很强，受光材质的中灰会被打成近白，在白底上等于隐形。 */
+const matGhost = new THREE.MeshBasicMaterial({color:0x2a2622, transparent:true, opacity:.22, depthWrite:false});
+function setGhost(part, on){
+  part.obj().forEach(o => o.traverse(m => {
+    if (!m.isMesh) return;
+    if (m === plug.userData.spark) return;   // 火花是每帧改 opacity 的特效件，换成共享淡影会把整份淡影材质抹成全透明（踩过）
+    if (on){ if (!m.userData._mat) m.userData._mat = m.material; m.material = matGhost; }
+    else if (m.userData._mat){ m.material = m.userData._mat; m.userData._mat = null; }
+  }));
+}
+
+function renderAsm(){
+  $('asmList').innerHTML = ASM.map((p,i)=>
+    `<button data-a="${p.id}" ${i<asmDone?'class="done" disabled':''}>${p.nm}</button>`).join('');
+  $('asmStep').textContent = `按正确顺序把它装回去 · ${asmDone} / ${ASM.length}`;
+  $('asmBar').firstElementChild.style.width = (asmDone/ASM.length*100)+'%';
+}
+function enterAsm(){
+  asmMode = true; asmDone = 0;
+  playing = false; $('play').textContent='▶ 运转'; $('play').classList.remove('act');
+  exploded = 0; $('bExp').classList.remove('act');
+  theta = 0; $('angle').value = 0;
+  controls.target.copy(TGT); flyTo(CAM0);          // 淡影的摆位是按默认机位排的，进来先归位
+  ASM.forEach(p => { asmState[p.id].t = 0; setGhost(p, true); });
+  $('asm').classList.add('on'); $('bAsm').classList.add('act');
+  $('asmMsg').className = '';
+  $('asmMsg').innerHTML = '发动机拆成了六大件，淡影是还没装的。<b>装配顺序不能乱</b>——装错了，后面那件就进不去了。';
+  renderAsm();
+}
+function exitAsm(){
+  asmMode = false;
+  ASM.forEach(p => { asmState[p.id].t = 1; setGhost(p, false); });
+  $('asm').classList.remove('on'); $('bAsm').classList.remove('act');
+}
+$('bAsm').onclick = () => asmMode ? exitAsm() : enterAsm();
+
+/* 偏移只在「渲染那一刻」生效，渲染完立刻还原。
+   这样静态件（缸筒/缸盖/火花塞）不会每帧累积着飞走，
+   动态件（曲轴/连杆/活塞/气门）也不会被它们自己的每帧赋值覆盖掉。 */
+const _asmSaved = [];
+function asmApply(){
+  if (!asmMode) return;
+  ASM.forEach(p => {
+    const st = asmState[p.id];
+    if (st.t > 0 && st.t < 1) st.t = Math.min(1, st.t + 0.055);
+    const k = 1 - st.t;
+    if (k <= 0.0005) return;
+    p.obj().forEach(o => {
+      _asmSaved.push([o, o.position.clone()]);
+      o.position.x += p.off[0]*k; o.position.y += p.off[1]*k; o.position.z += p.off[2]*k;
+    });
+  });
+}
+function asmRestore(){
+  for (let i=_asmSaved.length-1; i>=0; i--) _asmSaved[i][0].position.copy(_asmSaved[i][1]);
+  _asmSaved.length = 0;
+}
+$('asmList').addEventListener('click', e => {
+  const b = e.target.closest('button[data-a]'); if(!b || !asmMode) return;
+  const id = b.dataset.a, want = ASM[asmDone];
+  if (id === want.id){
+    asmState[id].t = 0.001;                       // 从待装位飞入
+    setGhost(want, false);                        // 淡影变回实体
+    asmDone++;
+    $('asmMsg').className = 'ok';
+    $('asmMsg').innerHTML = want.ok;
+    renderAsm();
+    if (asmDone === ASM.length){
+      $('asmStep').textContent = '装好了 · 6 / 6';
+      $('asmMsg').className = 'ok';
+      $('asmMsg').innerHTML = '<b>六件齐了，让它转一圈看看。</b><span class="why">'
+        + '这个顺序不是规定，是几何决定的——每一件都挡着后一件的路。</span>';
+      setTimeout(()=>{ playing = true; $('play').textContent='❚❚ 暂停';
+        $('play').classList.add('act'); }, 900);
+    }
+  } else {
+    b.classList.add('bad'); setTimeout(()=>b.classList.remove('bad'), 340);
+    $('asmMsg').className = 'err';
+    $('asmMsg').innerHTML = '装不上去 —— ' + (ASM_WHY[id] || '顺序不对。');
+  }
+});
+$('bReset').onclick = () => { controls.target.copy(TGT); flyTo(CAM0); };
+
+let cutaway = 1;
+$('bCut').onclick = () => {
+  cutaway = cutaway ? 0 : 1;
+  $('bCut').classList.toggle('act', !!cutaway);
+  const cm = cyl.userData._mat || cyl.material, hm = head.userData._mat || head.material;  // 装配模式下别改到淡影材质
+  cm.opacity = cutaway ? .17 : .85;
+  cm.transmission = cutaway ? .85 : 0;
+  hm.opacity = cutaway ? .34 : 1;
+};
+
+function flyTo(t, dur=800){
+  const T = controls.target;
+  const dx = camera.position.x-T.x, dy = camera.position.y-T.y, dz = camera.position.z-T.z;
+  const d = Math.hypot(dx,dy,dz);
+  camTween = { t0:performance.now(), dur,
+    from:{az:Math.atan2(dx,dz), el:Math.asin(THREE.MathUtils.clamp(dy/d,-1,1)), d}, to:t };
+}
+
+/* 直接拖曲轴 */
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+let dragging = false;
+canvas.addEventListener('pointerdown', e => {
+  ndc.set((e.clientX/innerWidth)*2-1, -(e.clientY/innerHeight)*2+1);
+  ray.setFromCamera(ndc, camera);
+  const hits = ray.intersectObjects([crank], true);
+  if (hits.length){ dragging = true; controls.enabled = false; }
+});
+addEventListener('pointerup', () => { dragging = false; controls.enabled = true; });
+addEventListener('pointermove', e => {
+  if (!dragging) return;
+  ndc.set((e.clientX/innerWidth)*2-1, -(e.clientY/innerHeight)*2+1);
+  ray.setFromCamera(ndc, camera);
+  const hit = ray.intersectObjects([crank], true)[0];
+  if (hit){
+    theta = Math.atan2(hit.point.x, hit.point.y);   // 让曲柄销转到鼠标处
+    playing = false; $('play').textContent='▶ 运转'; $('play').classList.remove('act');
+  }
+});
+
+/* ══════════ 零件面板 ══════════ */
+const PARTS = [
+  {id:'pis', n:'活塞',   src:'Tripo'},
+  {id:'rod', n:'连杆',   src:'Tripo'},
+  {id:'crk', n:'曲轴',   src:'代码'},
+  {id:'cyl', n:'缸筒',   src:'代码'},
+  {id:'vlv', n:'气门 ×2', src:'代码'},
+  {id:'plg', n:'火花塞', src:'代码'},
+];
+const pbox = document.getElementById('parts');
+const partEls = {};
+PARTS.forEach(p => {
+  const el = document.createElement('div');
+  el.className = 'pt' + (p.src==='Tripo' ? ' tripo':'');
+  el.innerHTML = `<span class="dot"></span><span>${p.n}</span><span class="src">${p.src}</span>`;
+  el.onclick = () => togglePart(p.id, el);
+  pbox.appendChild(el); partEls[p.id] = el;
+});
+function togglePart(id, el){
+  const t = {pis:pisGrp, rod:rodGrp, crk:crank, cyl:cyl, vlv:null, plg:plug}[id];
+  const on = el.classList.contains('off');
+  el.classList.toggle('off', !on);
+  if (t) t.visible = on;
+  if (id==='vlv'){ valveIn.visible = on; valveEx.visible = on; }
+  if (id==='cyl'){ cyl.visible = on; head.visible = on; }
+}
+
+/* ══════════ 载入 Tripo 零件 ══════════ */
+const gltf = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+function prep(o){
+  o.traverse(n => { if(n.isMesh && n.material){
+    const m = n.material;
+    /* 白底 + 无环境贴图：金属度高会直接渲成死黑，压成漫反射为主才看得出形体 */
+    m.metalness = Math.min(m.metalness ?? 1, 0.8);
+    m.roughness = Math.min(Math.max(m.roughness ?? 1, 0.34), 0.6);
+    if (m.metalnessMap) m.metalnessMap = null;
+    if (m.map) m.map.colorSpace = THREE.SRGBColorSpace;
+    m.envMapIntensity = 1.6;
+    if (m.color) m.color.multiplyScalar(1.35);
+  }});
+}
+// 连杆：归一到 大头中心在原点、小头在 (0,L,0)
+gltf.load('assets/models/rod.glb', g => {
+  const o = g.scene; prep(o);
+  const wrap = new THREE.Group(); wrap.add(o);
+  // 1) 销轴方向 = 包容盒最短的那根轴，把它转到 Z
+  const b0 = new THREE.Box3().setFromObject(o), s0 = new THREE.Vector3(); b0.getSize(s0);
+  if (s0.x <= s0.y && s0.x <= s0.z)      wrap.rotation.y = Math.PI/2;
+  else if (s0.y <= s0.x && s0.y <= s0.z) wrap.rotation.x = Math.PI/2;
+  wrap.updateMatrixWorld(true);
+  // 2) 取点（在旋转后的坐标系里）
+  const pts = [], v = new THREE.Vector3();
+  wrap.traverse(n => { if(n.isMesh){ const p = n.geometry.attributes.position;
+    for(let i=0;i<p.count;i+=2){ v.fromBufferAttribute(p,i).applyMatrix4(n.matrixWorld); pts.push(v.clone()); } }});
+  if (pts.length < 32) return;
+  let ymin=1e9, ymax=-1e9, cx=0;
+  pts.forEach(p=>{ ymin=Math.min(ymin,p.y); ymax=Math.max(ymax,p.y); cx+=p.x; });
+  cx /= pts.length;
+  const H = ymax - ymin;
+  const rTop = pts.filter(p=>p.y > ymax - H*0.22).reduce((a,p)=>Math.max(a, Math.abs(p.x-cx)), 0);
+  const rBot = pts.filter(p=>p.y < ymin + H*0.22).reduce((a,p)=>Math.max(a, Math.abs(p.x-cx)), 0);
+  const yBig = ymin + rBot, ySm = ymax - rTop;       // 大头孔心 / 小头孔心（估计）
+  const s = L / Math.max(1e-6, ySm - yBig);
+  const inner = new THREE.Group();
+  const off = new THREE.Group(); off.add(wrap); off.position.y = -yBig; inner.add(off);
+  inner.scale.setScalar(s);
+  rodGrp.remove(rodModel); rodModel = inner; rodGrp.add(inner);
+  partEls.rod.querySelector('.src').textContent = 'Tripo';
+  window.__rodFit = {size:[+s0.x.toFixed(3),+s0.y.toFixed(3),+s0.z.toFixed(3)],
+                     pins:+((ySm-yBig)*s).toFixed(3), scale:+s.toFixed(3)};
+}, undefined, ()=>console.warn('rod.glb 未就绪，用替身'));
+
+// 活塞：按缸径缩放，销孔居中
+gltf.load('assets/models/piston.glb', g => {
+  const o = g.scene; prep(o);
+  const b = new THREE.Box3().setFromObject(o);
+  const sz = new THREE.Vector3(); b.getSize(sz);
+  const c = new THREE.Vector3(); b.getCenter(c);
+  const s = BORE / Math.max(sz.x, sz.z);
+  const inner = new THREE.Group();
+  o.position.sub(c); inner.add(o);
+  inner.scale.set(s, s*1.75, s);      // 纵向拉回真实活塞比例（裁图下半截缺失导致原模型偏扁）
+  pisGrp.remove(pisModel); pisModel = inner; pisGrp.add(inner);
+}, undefined, ()=>console.warn('piston.glb 未就绪，用替身'));
+
+/* ══════════ 主循环 ══════════ */
+let ready=false, frames=0;
+const _r = renderer.render.bind(renderer); renderer.render = (s,c)=>{frames++; return _r(s,c);};
+function frame(){
+  if (playing) theta += speed/1000 * 0.55;
+  expandT += (exploded - expandT) * 0.08;
+  assemble();
+
+  const deg = ((theta*180/Math.PI) % 720 + 720) % 720;
+  if (!$('angle').matches(':active')) $('angle').value = Math.round(deg);
+
+  const si = strokeIndex(theta);
+  const st = STROKES[si];
+  $('sName').textContent = st.n; $('sName').style.color = st.c;
+  $('sDesc').textContent = st.d;
+  [...document.querySelectorAll('#cycle i')].forEach((el,i)=>{
+    el.style.background = i===si ? st.c : 'rgba(255,255,255,.12)';
+    el.style.opacity = i===si ? 1 : .5;
+  });
+
+  const vl = valveLift(theta);
+  const down = 0.30;                                   // 拆开时气门跟着抬
+  valveIn.position.y = CYL_TOP - vl.intake*LIFT + expandT*down;
+  valveEx.position.y = CYL_TOP - vl.exhaust*LIFT + expandT*down;
+  plug.userData.spark.material.opacity = (si===2 && deg>360 && deg<405) ? (1-(deg-360)/45)*1.0 : 0;
+  pm.intensity = (si===2 && deg>360 && deg<420) ? (1-(deg-360)/60)*5 : 0;
+
+  $('rAng').textContent = Math.round(deg)+'°';
+  $('rTurn').textContent = deg<360 ? '1' : '2';
+  const q = pinPos(theta), frac = (q.y - (L-R)) / STROKE;
+  $('rPos').textContent = frac>0.985 ? '上止点' : frac<0.015 ? '下止点'
+      : (frac>0.5 ? '下行 ' : '上行 ') + Math.round(frac*100)+'%';
+  $('rIn').textContent = vl.intake>0.02 ? '开' : '关';
+  $('rIn').style.color = vl.intake>0.02 ? '#4aa3f0' : '';
+  $('rEx').textContent = vl.exhaust>0.02 ? '开' : '关';
+  $('rEx').style.color = vl.exhaust>0.02 ? '#7c8ba1' : '';
+
+  if (camTween){
+    const p = Math.min(1,(performance.now()-camTween.t0)/camTween.dur);
+    const e = p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2, A=camTween.from, B=camTween.to;
+    applyCam(THREE.MathUtils.lerp(A.az,B.az,e), THREE.MathUtils.lerp(A.el,B.el,e), THREE.MathUtils.lerp(A.d,B.d,e));
+    if (p>=1) camTween=null;
+  }
+  controls.update();
+  asmApply();
+  renderer.render(scene, camera);
+  asmRestore();
+
+  if (!ready && frames>6){ ready=true; document.getElementById('load').classList.add('gone'); }
+}
+frame(); requestAnimationFrame(function loop(){ frame(); requestAnimationFrame(loop); });
+setInterval(frame, 340);   // 后台标签页 rAF 会停，兜底
+
+addEventListener('resize', ()=>{
+  camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* 诊断 */
+window.__dbg = () => {
+  const bb = o => { const b = new THREE.Box3().setFromObject(o), sz=new THREE.Vector3(), c=new THREE.Vector3();
+    b.getSize(sz); b.getCenter(c);
+    return {size:[+sz.x.toFixed(2),+sz.y.toFixed(2),+sz.z.toFixed(2)],
+            ctr:[+c.x.toFixed(2),+c.y.toFixed(2),+c.z.toFixed(2)]}; };
+  return {frames, err:window.__err||null, rod:rodModel!==rodFallback, pis:pisModel!==pisFallback,
+    theta:+((theta*180/Math.PI)%720).toFixed(1), pinY:+pinPos(theta).y.toFixed(3),
+    pisBB:bb(pisModel), rodBB:bb(rodModel)};
+};
+window.__err=null; addEventListener('error', e=>window.__err=String(e.message||e));
+window.__eng = { ASM, asmState, matGhost, scene, camera, renderer };   // 自检探针：无头浏览器里量淡影有没有挂上
+</script>
+</body>
+</html>

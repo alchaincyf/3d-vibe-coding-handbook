@@ -1,0 +1,9 @@
+巴黎来信 / Paris, à fond.
+
+3D模型：本项目已生成的Tripo资产。
+程序化城市、河道、桥梁及部分地标：花叔的「巴黎3D地图-202608」项目，由本项目适配。
+地图资料源自OpenStreetMap贡献者。本应用为艺术化改编，不是导航地图。
+OpenStreetMap: https://www.openstreetmap.org/copyright
+
+Three.js: Copyright 2010-2023 Three.js Authors, MIT License.
+完整许可证见 vendor/LICENSE。

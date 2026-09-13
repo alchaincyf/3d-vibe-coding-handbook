@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.pyc
+# 大文件走 Releases，不进 git
+*.zip
+*.pdf

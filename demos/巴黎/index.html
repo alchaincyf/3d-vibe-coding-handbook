@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#243d34">
+<meta name="description" content="驾驶一台老爷车穿过黄昏巴黎。街头竞速、幽灵计时、自由漫游，收集属于你的四张巴黎明信片。">
+<title>巴黎来信 · Paris, à fond.</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='14' width='64' height='64' fill='%23243d34'/%3E%3Ctext x='32' y='48' text-anchor='middle' fill='%23eedcb5' font-family='Georgia' font-size='50'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body data-screen="loading">
+<canvas id="game" aria-label="巴黎3D驾驶场景"></canvas>
+<div class="vignette" aria-hidden="true"></div><div class="speed-wash" aria-hidden="true"></div>
+<div id="loading" class="loading"><div class="monogram">P.</div><p class="eyebrow">UNE PETITE ESCAPADE</p><h1>巴黎，正在醒来。</h1><p id="loadText">准备你的老爷车…</p><div class="load-track"><i id="loadBar"></i></div><small>把第一站，留给日落。</small><button id="retry" hidden>重新加载</button></div>
+<header class="topbar"><a class="brand" href="./" aria-label="巴黎来信首页"><span class="brand-seal">P.</span><span>巴黎来信<small>PARIS, À FOND.</small></span></a><div class="edition">一台老爷车。一座属于你的巴黎。</div><div class="tools" id="tools" hidden><button id="mapOpen" title="全城地图（Tab）">地图</button><button id="sound" title="声音（M）" aria-label="开启声音">声</button><button id="camera" title="切换机位（C）">机位</button><button id="photo" title="拍明信片（P）">拍照</button><button id="pause" title="暂停（Esc）" aria-label="暂停游戏">Ⅱ</button></div></header>
+<main id="menu" hidden>
+  <div class="menu-story"><p class="eyebrow"><span></span> THE CITY IS YOURS</p><h1>Paris,<br><em>à fond.</em></h1><p class="tagline">把巴黎，开进黄昏。</p><p class="menu-copy">穿过街角咖啡馆，沿着塞纳河转弯。<br>和三位车手追逐日落，或把风景寄给自己。</p></div>
+  <section class="journey" aria-label="选择旅程"><p class="eyebrow">今天，怎样遇见巴黎？</p>
+    <div class="mode-list" role="group" aria-label="游戏模式">
+      <button class="mode active" data-mode="race" aria-pressed="true"><span class="mode-number">01</span><span><strong>黄昏大奖赛</strong><small>两圈竞速 · 3位对手 · 漂移冲刺</small></span><span class="mode-arrow">↗</span></button>
+      <button class="mode" data-mode="time" aria-pressed="false"><span class="mode-number">02</span><span><strong>和自己赛跑</strong><small>单圈计时 · 挑战自己的幽灵车</small></span><span class="mode-arrow">↗</span></button>
+      <button class="mode" data-mode="tour" aria-pressed="false"><span class="mode-number">03</span><span><strong>没有截止时间</strong><small>自由漫游 · 跨河过桥 · 探索8处地标</small></span><span class="mode-arrow">↗</span></button>
+    </div>
+    <button class="primary" id="start">出发，追一场日落 <span>→</span></button>
+    <div class="menu-meta"><span id="personalBest">第一次巴黎之旅</span><button id="albumOpen" class="text-button">我的明信片 <span id="albumCount">0/8</span></button></div>
+    <p class="quick-guide"><span class="desktop-guide">WASD/方向键驾驶 · Shift漂移 · 空格冲刺</span><span class="mobile-guide">双手拇指操控 · 也可以开启自动油门</span></p>
+  </section>
+  <footer><span>Tripo模型＋程序化城市 · 花叔制作</span><div><button id="menuMap" class="text-button">全城地图 ↗</button><label for="quality">画质</label><select id="quality"><option value="high">精致</option><option value="low">流畅</option></select><label class="auto-option"><input id="autoGas" type="checkbox">自动油门</label></div></footer>
+</main>
+<section id="hud" hidden aria-label="驾驶仪表">
+  <div class="race-strip"><div><small id="modeLabel">黄昏大奖赛</small><b id="lap">1<span>/2圈</span></b></div><div class="position"><small>当前名次</small><b id="place">4<span>/4</span></b></div><div><small id="timeLabel">本局用时</small><b id="time">00:00.00</b></div></div>
+  <div class="navigation"><span id="turnIcon">↑</span><div><strong id="routeHint">沿街道直行</strong><small id="routeDistance">下一检查点</small></div></div>
+  <div class="objective"><span class="objective-dot"></span><div><small id="objectiveLabel">先感受一下方向盘</small><strong id="objective">按W或↑，把车开起来</strong></div></div>
+  <div class="minimap-panel"><div class="map-caption"><span>PARIS / 街区地图</span><small id="district">圣日耳曼</small></div><canvas id="minimap" width="320" height="240" aria-label="赛道地图，显示玩家、对手和下一个检查点"></canvas><div class="map-footer"><span id="stamps">地标 0/8</span><span id="coins">旅途金币 0/24</span></div></div>
+  <div class="speedometer"><div class="speed-value"><span id="speed">0</span><small>KM/H</small></div><div class="nitro-title"><span id="boostLabel">冲刺储备</span><b id="nitroPercent">38%</b></div><div class="nitro-track"><i id="nitro"></i></div><p id="driftHint">漂移或金币补充能量</p></div>
+  <div class="keyboard-hint"><kbd>WASD</kbd>驾驶 <kbd>Shift</kbd>漂移 <kbd>空格</kbd>冲刺 <kbd>R</kbd>回到道路</div>
+  <div class="score-bubble" id="scoreBubble" hidden></div>
+</section>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="countdown" class="countdown" hidden>3</div>
+<div id="touch" class="touch" hidden aria-label="触屏驾驶控制"><div class="touch-left"><button data-input="left" aria-label="左转">◀</button><button data-input="right" aria-label="右转">▶</button><button data-input="drift" class="drift-button">漂移</button></div><div class="touch-right"><button data-input="boost" class="boost-button">冲刺</button><button data-input="down">刹车<br><small>倒车</small></button><button data-input="up" class="gas-button">油门<br><small>前进</small></button></div></div>
+<div id="pausePanel" class="modal-wrap" hidden><section class="paper-panel" role="dialog" aria-modal="true" aria-labelledby="pauseTitle"><p class="eyebrow">TAKE YOUR TIME</p><h2 id="pauseTitle">巴黎会等你。</h2><p>歇一会儿，日落还在。</p><button class="primary" id="resume">继续旅程 →</button><button class="secondary" id="rescue">回到道路，再继续</button><button class="secondary" id="restart">重新开始这一程</button><button class="text-button" id="toMenu">返回首页</button><p class="panel-help">WASD/方向键驾驶 · Shift漂移 · 空格冲刺<br>R回到道路（竞速加时3秒） · C机位 · P拍照</p></section></div>
+<div id="result" class="modal-wrap" hidden><section class="paper-panel result-panel" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><p class="eyebrow" id="resultEyebrow">PARIS GRAND PRIX</p><div class="medal" id="medal">1</div><h2 id="resultTitle">把日落甩在身后。</h2><p id="resultSubtitle"></p><div class="result-stats"><div><small>完赛用时</small><strong id="resultTime"></strong></div><div><small>风格积分</small><strong id="resultScore"></strong></div><div><small>漂移时长</small><strong id="resultDrift"></strong></div></div><p class="result-note" id="resultNote"></p><button class="primary" id="again">再跑一次 →</button><button class="secondary" id="explore">开车去看风景</button><button class="text-button" id="resultMenu">返回首页</button></section></div>
+<div id="photoPanel" class="photo-panel" hidden><div class="photo-heading"><p class="eyebrow" id="photoFrench">CARTE POSTALE</p><h2 id="photoTitle">来自巴黎的明信片。</h2></div><div class="photo-actions"><p>拖拽环顾 · 滚轮调整远近</p><button class="primary" id="savePhoto">保存明信片 ↓</button><button class="secondary" id="closePhoto">返回驾驶</button></div></div>
+<div id="album" class="modal-wrap" hidden><section class="paper-panel album-panel" role="dialog" aria-modal="true" aria-labelledby="albumTitle"><p class="eyebrow">LES SOUVENIRS</p><h2 id="albumTitle">你的巴黎来信。</h2><p>驶近地标，收下这一站的纪念。</p><div id="albumItems" class="album-items"></div><button class="primary" id="albumClose">继续我的旅程 →</button></section></div>
+<div id="cityMapPanel" class="modal-wrap city-map-wrap" hidden><section class="city-map-layout" role="dialog" aria-modal="true" aria-label="巴黎全城地图"><div class="city-map-main"><div class="city-map-title"><p class="eyebrow">PARIS / EXPLORER</p><h2>这一回，是一座城。</h2><p>河流、桥梁、街巷，各有去处。</p></div><canvas id="cityMap" width="1200" height="1000" aria-label="巴黎街道、塞纳河与24座桥梁"></canvas><p class="map-attribution">地图数据源自OpenStreetMap · 城市为艺术化改编 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">©OpenStreetMap贡献者</a></p></div><aside><p class="eyebrow">选一站，去看看</p><div id="destinations"></div><button id="mapClose" class="primary">返回旅程 →</button></aside></section></div>
+<script type="module" src="./app.mjs"></script>
+</body>
+</html>
