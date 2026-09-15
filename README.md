@@ -5,7 +5,9 @@
 一个不会写代码的人，怎么用 AI 生成 3D 资产，再把它们真正接进一个能跑的项目。
 386 页、25.6 万字、260 张图，六个可玩 demo，所有数字都可核，翻车也没删。
 
-**作者**：花叔（AI Native Coder）· 本书是接 Tripo 商单做视频时的实测记录
+当前版本 **v260914c**（2026-09-14）。
+
+**作者**：花叔（AI Native Coder）· 本书是做那座能开车逛的巴黎时的实测记录
 
 ---
 
@@ -68,4 +70,11 @@ manifest/    逐件资产清单、分发包索引
 
 ## 授权
 
-待定。
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <img alt="CC BY-NC-SA 4.0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+</a>
+
+本作品采用 [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/) 许可：署名、非商业使用、相同方式共享。
+
+书里的 3D 资产同样按此许可提供，可自由用于学习、练手、非商业项目。
+第三方部分（Three.js MIT、OpenStreetMap ODbL）按其自身许可，见上一节。

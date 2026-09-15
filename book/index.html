@@ -834,8 +834,8 @@ pre {
   <p class="cover-en">3D Vibe Coding — From a Sentence to a Scene That Runs</p>
   <div class="cover-meta">
     <strong>信息来源：</strong>Tripo Studio与开发者文档一手截图·2026年9月本机实测（六个可玩demo、一套管线实验）·官方定价页对账<br>
-    <strong>文档版本：</strong>v260913<br>
-    <strong>发布时间：</strong>2026-09-13 (build #1)<br>
+    <strong>文档版本：</strong>v260914c<br>
+    <strong>发布时间：</strong>2026-09-14 (build #4)<br>
     <strong>涵盖内容：</strong>Tripo Studio全功能实操·提示词与设计图·Three.js / Blender / Unity协同·巴黎来信全流程·三个教学演示案例·随书资源包·附录B踩坑索引（卡住了按症状查）
   </div>
   <div class="cover-exclusive">
@@ -847,7 +847,7 @@ pre {
     AI Native Coder
   </div>
   <div class="cover-disclaimer">
-    这本书是我接Tripo商单做视频时的实测记录，判断和翻车都没删，但这层关系你该先知道。所有截图与数字来自作者本人2026年9月的真实操作，未使用任何品牌方内部素材；产品界面与价格随时会变，以官方页面为准。本文档在Claude Code辅助下整理编写。
+    这本书是我做视频时的实测记录，判断和翻车都没删。所有截图与数字来自作者本人2026年9月的真实操作；产品界面与价格随时会变，以官方页面为准。本文档在Claude Code辅助下整理编写。
   </div>
 </div>
 
@@ -862,7 +862,7 @@ pre {
 <a class="toc-item" href="#part02"><span><span class="num">§02</span><span class="title">参考图怎么准备</span><span class="en">Preparing the Reference Image</span></span><span class="page">33</span></a>
 <a class="toc-item" href="#part03"><span><span class="num">§03</span><span class="title">生成之后</span><span class="en">After the Generate Button</span></span><span class="page">37</span></a>
 <a class="toc-item" href="#part04"><span><span class="num">§04</span><span class="title">减面与重拓扑</span><span class="en">Decimation and Retopology</span></span><span class="page">49</span></a>
-<a class="toc-item" href="#part05"><span><span class="num">§05</span><span class="title">部件拆分与纹理生成</span><span class="en">Part Segmentation and Texture Generation</span></span><span class="page">69</span></a>
+<a class="toc-item" href="#part05"><span><span class="num">§05</span><span class="title">智能拆分与贴图生成</span><span class="en">Part Segmentation and Texture Generation</span></span><span class="page">69</span></a>
 <a class="toc-item" href="#part06"><span><span class="num">§06</span><span class="title">绑骨与动画</span><span class="en">Auto-Rigging and Animation</span></span><span class="page">84</span></a>
 <a class="toc-item" href="#part07"><span><span class="num">§07</span><span class="title">怎么把积分花在刀刃上</span><span class="en">Spending Credits Where They Count</span></span><span class="page">100</span></a>
 <div class="toc-group">第二部分 · 提示词与设计图</div>
@@ -955,15 +955,15 @@ pre {
 <table>
 <thead><tr><th>问题</th><th>答案</th></tr></thead>
 <tbody>
-<tr><td>去哪注册</td><td><code>studio.tripo3d.ai</code>，注册完直接进工作台，§01那张首页图就是它</td></tr>
+<tr><td>去哪注册</td><td><code>studio.tripo3d.com</code>，注册完直接进工作台，§01那张首页图就是它</td></tr>
 <tr><td>免费档给多少</td><td>200积分。官网自己折算的是「约13个模型」——那是按几何底价15算的；按界面默认那一档50算，是4个</td></tr>
 <tr><td>200积分够走完§01吗</td><td>够，而且不止一次。§01从头到尾只用「生成一个模型」这一个动作，工作台默认档一次50积分（首页那个快捷入口是55，差价在§01里讲了）</td></tr>
 <tr><td>什么时候才需要订阅</td><td>三件事从Pro起才有：模型私有、可商用、DCC Bridge（浏览器一键推进Blender／Unity／Unreal）。Free那一档<code>Private Models</code>和<code>Commercial Use</code>官方对照表里都是✗，<code>Exports</code>写的是<code>15 (H2.5 only)</code></td></tr>
-<tr><td>价目在哪看</td><td><code>tripo3d.ai/pricing</code>，拉到底FAQ第一条展开就是官方积分表。逐行读数和截图在§07与附录C</td></tr>
+<tr><td>价目在哪看</td><td><code>tripo3d.com/pricing</code>，拉到底FAQ第一条展开就是官方积分表。逐行读数和截图在§07与附录C</td></tr>
 </tbody>
 </table>
 
-<p>截至2026-09官方标价与界面实测，以官网为准；最新价看<code>tripo3d.ai/pricing</code>。</p>
+<p>截至2026-09官方标价与界面实测，以官网为准；最新价看<code>tripo3d.com/pricing</code>。</p>
 
 <p>一句话的判断法：<strong>免费档帮你决定要不要付钱，帮不了你做出一件能交付的东西。</strong>先用它把生成质量看准，再决定订不订。</p>
 
@@ -1017,7 +1017,7 @@ pre {
 
 <h3>随书资源包有什么</h3>
 
-<p>先说盘点口径，免得你以为拿到的是个几百件的素材库。商单项目里一共140个GLB文件，按模型内部的任务ID去重之后，<strong>只有62次真正独立的Tripo生成</strong>，其余都是同一件的减面版、降贴图版和引擎工程里的拷贝。从这62次里挑出可以再分发、且设计图和提示词都在本地的，最后进包<strong>56件、81.1 MiB</strong>，覆盖建筑、载具、人物、道具、植被、机械六类。</p>
+<p>先说盘点口径，免得你以为拿到的是个几百件的素材库。这轮项目里一共140个GLB文件，按模型内部的任务ID去重之后，<strong>只有62次真正独立的Tripo生成</strong>，其余都是同一件的减面版、降贴图版和引擎工程里的拷贝。从这62次里挑出可以再分发、且设计图和提示词都在本地的，最后进包<strong>56件、81.1 MiB</strong>，覆盖建筑、载具、人物、道具、植被、机械六类。</p>
 
 <p><strong>先把单位说死，免得你对不上数。全书只有一条规矩：按1024进位量出来的读数写MiB／GiB／KiB，自己按十进制算出来的写MB／GB</strong>（这条规矩在§12立的，那儿还解释了为什么显存那笔账按十进制算）。所以这一节里的文件体积一律写MiB（1 MiB等于1,048,576字节），和附录A那张逐件表用的是同一把尺子；macOS的访达按1000进位显示，同一批文件它会写成85.1 MB，<strong>不是拷贝出了问题</strong>，Windows资源管理器的读数则和这里一致。<strong>判据是「量的还是算的」，不是「文件体积还是贴图显存」</strong>——同一批文件也会以十进制出现：§12和§17那张38件的对照表写的是534.6 MB降到52.4 MB，对应的1024进位读数是509.9 MiB降到50.0 MiB（附录A那一组），同一批文件、同一个9.8%，只是两种进位。两种进位差多少是固定的（MB和MiB之间约4.9%，GB和GiB之间约7.4%），<strong>所以同一笔账的倍数在哪一边都成立</strong>，别拿两边的数直接相减。<strong>资源包的体积一律看MiB，那是文件本身的数。</strong></p>
 
@@ -1102,7 +1102,7 @@ pre {
 
 <figure><img src="images/p00-rig-walk.jpg" alt="自写的绑骨 GLB 验证页，左侧列出面数、骨骼数、动画片段，右侧人物模型在走路"><figcaption>自己写的绑骨验证页（2026-09-10绑骨实测时截）。把导出的.glb拖进虚线框，左栏直接报面数19,830、骨骼41、动画片段1条 <code>preset:biped:walk</code> 2.38秒，右边小人立刻走起来。这类一次性小工具让agent写比找现成的快。</figcaption></figure>
 
-<div class="step"><div class="step-num">3</div><div class="step-content"><h4>传回Tripo Studio（想继续加工时）</h4><p>Studio右侧资产栏顶部有个「Upload 3D Model」，接受OBJ / FBX / STL / GLB，单文件150 MB以内。传上去不只是看，拆件、绑骨、换贴图这些工具都能直接在它上面接着跑。</p></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><h4>传回Tripo Studio（想继续加工时）</h4><p>Studio右侧资产栏顶部有个「上传3D模型」，接受OBJ / FBX / STL / GLB，单文件150 MB以内。传上去不只是看，拆件、绑骨、换贴图这些工具都能直接在它上面接着跑。</p></div></div>
 
 <p>导出弹层长什么样、Format和Texture Resolution怎么选，§03有那张图和完整说明；左边黄色的「Send To」是直推Blender的出口，走§11。</p>
 
@@ -1115,7 +1115,7 @@ pre {
 <p>上面提到的那批09-12的P2.0资产，将来真要补进包也是同一把尺子量：全部是我自己的设计图生的，没有一张输入图来自照片或扫描件；那批里的公交车、警车、游船、共享单车，提示词最后一句全部写死了「车身上不写任何文字、编号与徽章标识」，所以模型上没有品牌字样可以被烘进贴图。下面警告①对它们同样成立。</p>
 
 <div class="warning"><strong>两件用之前请先知道的事：</strong><br>
-①<strong>包里这56件，请按「学习与二次创作参考」用。</strong>拆开看结构、改着玩、摆进自己的练习场景、拿它对着书里那些数复核一遍，都是我做这个包的本意；<strong>请别把整包原样再转发出去</strong>，它跟着书走，谁想要都能从同一条路领一份。<strong>要拿它们做商用，别以我这段话为准，以Tripo官方条款和你自己账号那一档为准</strong>：商用权限跟的是订阅档位，官网对照表里Pro及以上的<code>Commercial Use</code>是✓、模型也是Private，Free那一档这两项都是✗。查询入口是<code>tripo3d.ai/pricing</code>拉到底展开FAQ，截图和逐行读数在附录C。<strong>「这个包能不能再分发」和「你自己生成的模型能不能商用」是两件事，别混在一起看</strong>——后一件跟这个包没有任何关系，只看你的档位。<br>
+①<strong>包里这56件，请按「学习与二次创作参考」用。</strong>拆开看结构、改着玩、摆进自己的练习场景、拿它对着书里那些数复核一遍，都是我做这个包的本意；<strong>请别把整包原样再转发出去</strong>，它跟着书走，谁想要都能从同一条路领一份。<strong>要拿它们做商用，别以我这段话为准，以Tripo官方条款和你自己账号那一档为准</strong>：商用权限跟的是订阅档位，官网对照表里Pro及以上的<code>Commercial Use</code>是✓、模型也是Private，Free那一档这两项都是✗。查询入口是<code>tripo3d.com/pricing</code>拉到底展开FAQ，截图和逐行读数在附录C。<strong>「这个包能不能再分发」和「你自己生成的模型能不能商用」是两件事，别混在一起看</strong>——后一件跟这个包没有任何关系，只看你的档位。<br>
 ②<strong>小王子那一组不随包发模型。</strong>原著在多数司法辖区已进入公有领域，但角色形象在多国仍有活跃的商标与形象权登记，「过了版权期」这一句挡不住。所以那一组只收22张设计图和5个<code>jobs*.jsonl</code>提示词，当一套完整的图生3D流水线示例来读，教学价值本来也在流水线上不在题材上。</div>
 
 <p>最后一句关于口径。书里每个数字都有出处：积分数来自Tripo官网定价页和界面上的实际扣费，面数和贴图尺寸来自直接读GLB文件头（不是听工具汇报的），耗时来自脚本自己打的时间戳。没实测过的能力我会写明「未实测」。<strong>你照着做如果结果对不上，大概率是版本变了，不是我编的。</strong></p>
@@ -1135,7 +1135,7 @@ pre {
 
 <figure>
   <img src="images/studio-01-home.png" alt="Tripo Studio 首页，顶栏显示积分余额 25220，中间是拖图生成框">
-  <figcaption>Tripo Studio首页（studio.tripo3d.ai），2026-09-11。顶栏右侧「⚡25220」是账号的积分余额，中间的框可以直接把图拖进去，框下面「Best Quality / Clean Topology」是两种生成模式的快捷开关。下方Gallery是官方精选作品区。</figcaption>
+  <figcaption>Tripo Studio首页（studio.tripo3d.com），2026-09-11。顶栏右侧「⚡25220」是账号的积分余额，中间的框可以直接把图拖进去，框下面「Best Quality / Clean Topology」是两种生成模式的快捷开关。下方Gallery是官方精选作品区。</figcaption>
 </figure>
 
 <p>我的余额是两万多，<strong>你别照着这个数估成本</strong>。专业版订阅每月给3000积分，我这两万多是另外买的积分包。按官方标价，专业版¥140一个月3000积分，折下来一个积分不到五分钱；免费档给200积分，官方自己标的是「约13个模型」。</p>
@@ -1154,23 +1154,23 @@ pre {
   <figcaption>同一张图，切到「Clean Topology」。按钮上的100被划掉、后面跟一个0，这是P2.0预览期的一次性免费试用。2026-09-11。</figcaption>
 </figure>
 
-<p>首页这个框够快，但开关只有两个。真正干活的地方在工作台（左上角「3D Workspace」进去）。左边竖排一列工具：Image、Model、Segment、Fill Parts、Retopo、Texture、Edit、Upscale、PBR、Animate。这一节只用Model那一个，剩下的后面各有一节。</p>
+<p>首页这个框够快，但开关只有两个。真正干活的地方在工作台（顶栏左边「3D工作台」进去）。左边竖排一列工具：模型、智能拆分、重拓扑、贴图生成、动画，其中智能拆分和贴图生成下面还各有折叠起来的子工具。这一节只用「模型」那一个，剩下的后面各有一节。</p>
 
 <figure>
-  <img src="images/studio-05-workspace-menu.png" alt="Tripo Studio 工作台 Generate Model 面板，HD Model 模式，生成按钮 50 积分">
-  <figcaption>工作台的Generate Model面板，HD Model模式，什么都还没传。左侧竖栏是工具列（Segment、Texture下面还有折叠项），面板里依次是输入区、General Settings、Members Only（Generate in Parts / 8K Texture / Privacy）、AI Model，底部「Generate ⚡50」。2026-09-11。</figcaption>
+  <img src="images/studio-05-workspace-menu.png" alt="Tripo 国区工作台「生成模型」面板，高精度模型模式，底部按钮生成模型 50 积分">
+  <figcaption>工作台的「生成模型」面板，高精度模型模式，什么都还没传。左侧竖栏是工具列（模型／智能拆分／重拓扑／贴图生成／动画，智能拆分和贴图生成下面还有折叠项），面板里依次是输入区、通用设置（几何与贴图）、订阅专享（分部件生成／8K贴图／模型私密性「公开」）、AI模型（v3.1 – 最高质量，副标「预计等待更久」），底部「生成模型⚡50」。顶栏余额「⚡300」。国区站studio.tripo3d.com，2026-09-14。</figcaption>
 </figure>
 
-<h3>两种模式：HD Model和Smart Mesh</h3>
+<h3>两种模式：高精度模型和智能网格</h3>
 
 <p>面板最上面那一排就是分岔口。这两个模式出来的是两种完全不同的网格，不分高下，各有各的去处。</p>
 
 <table>
-<thead><tr><th></th><th>HD Model</th><th>Smart Mesh ⚡</th></tr></thead>
+<thead><tr><th></th><th>高精度模型</th><th>智能网格⚡</th></tr></thead>
 <tbody>
 <tr><td>模型版本</td><td>v3.1 – Best Quality（界面自己标着「Expect longer wait times」）</td><td>P2.0 - Preview（试用一次）／P1.0 - Fast</td></tr>
-<tr><td>默认拓扑</td><td>Triangle（三角面）</td><td>Quad（四边面）</td></tr>
-<tr><td>默认面数</td><td>20000，滑块最高到100万</td><td>5000，滑块上限25000</td></tr>
+<tr><td>默认拓扑</td><td>三角面</td><td>四边面</td></tr>
+<tr><td>面数范围</td><td>500–2000000</td><td>四边面500–25000；三角面500–50000</td></tr>
 <tr><td>贴图</td><td>直出就带</td><td>先出灰模，贴图另付30</td></tr>
 <tr><td>价格</td><td>界面默认50（这是带8K贴图的价，只要几何是15）</td><td>界面实扣65（原价100，划线打折）；贴图另付30，一件带色的完整价是95。P2.0预览期首次免费</td></tr>
 </tbody>
@@ -1194,9 +1194,9 @@ pre {
   <figcaption>中文界面的工作台，智能网格模式，AI模型选P2.0 - Preview，出租车参考图已经传进去。底部按钮「生成⚡ <s>100</s> 65」——原价100被划掉，实扣65。顶栏余额20205。这一屏抽自2026-09-12的操作录屏，也是这本书里所有智能网格件的单价来源。</figcaption>
 </figure>
 
-<p>把这一件从头做完要花多少，拆开是这样的：<strong>网格65，想要颜色再点一次纹理生成30，合计95。</strong>如果只要几何不要颜色，高精度模式那边关掉纹理是15，智能网格这边是65——这两个数是纯几何的真实对比，不要拿默认的50去比，那50里有35分是8K贴图。</p>
+<p>把这一件从头做完要花多少，拆开是这样的：<strong>网格65，想要颜色再点一次贴图生成30，合计95。</strong>如果只要几何不要颜色，高精度模式那边关掉纹理是15，智能网格这边是65——这两个数是纯几何的真实对比，不要拿默认的50去比，那50里有35分是8K贴图。</p>
 
-<p>十四件乘65是910，这是我2026-09-12那天在网格上的全部开销。加上十三件纹理生成的390和一次自动绑骨的20，那一天一共1320积分。</p>
+<p>十四件乘65是910，这是我2026-09-12那天在网格上的全部开销。加上十三件贴图生成的390和一次自动绑骨的20，那一天一共1320积分。</p>
 
 <h3>面数那个框：两种模式数的不是同一种东西</h3>
 
@@ -1222,13 +1222,13 @@ pre {
 
 <div class="tip">你在网上看到别人说「我用XX面数做出来的」，先问一句他的面数数的是三角面还是四边面。<strong>跨模式比面数之前先换算，不然结论会反。</strong>真正要控的预算是进引擎那一刻的三角面数，不是表单里填的那个数。</div>
 
-<h3>Geometry &amp; Texture：那个弹层里每一个开关</h3>
+<h3>几何与贴图：那个弹层里每一个开关</h3>
 
-<p>HD Model模式下点开「General Settings → Geometry &amp; Texture」，会弹出一个七八项的面板。这是整个Studio里信息密度最高的一屏，也是最容易被人一路默认点过去的一屏。</p>
+<p>高精度模型模式下点开「通用设置 → 几何与贴图」，会弹出一个七八项的面板。这是整个Studio里信息密度最高的一屏，也是最容易被人一路默认点过去的一屏。</p>
 
 <figure>
-  <img src="images/studio-07-hd-geometry-texture-settings.png" alt="HD Model 的 Geometry & Texture 弹层，展开全部开关">
-  <figcaption>HD Model的「Geometry &amp; Texture」弹层全貌：Ultra Mesh Quality（关）、AI Complete（关）、Texture（开）、Texture Quality 2K/4K/8K（选中8K）、Remove Lighting（关）、PBR（开）、Topology Quad/Triangle（选中Triangle）、Polycount滑块500–1000000（默认20000）。左侧Members Only区：Generate in Parts（Trial x1，关）、8K Texture（开）、Privacy「Sharing Only」。2026-09-11。</figcaption>
+  <img src="images/studio-07-hd-geometry-texture-settings.png" alt="Tripo 国区高精度模型的「几何与贴图」弹层，展开全部开关">
+  <figcaption>高精度模型的「几何与贴图」弹层全貌：超清几何精度（开）、AI补全&amp;3D增强（开）、贴图生成（开）、贴图质量2K/4K/8K（选中4K）、PBR（关）、拓扑四边面/三角面（选中三角面）、面数控制滑块500–2000000（这一屏拉在上限2000000）。左侧订阅专享区：分部件生成（关）、8K贴图（关）、模型私密性「公开」。两件事先说在这儿：这一屏是国区一个免费档账号打开时的落位，不是我做这本书时的设法（我的设法见下表）；国区这个弹层上也没有单独对应「去除光照」的那一项。国区站studio.tripo3d.com，2026-09-14。</figcaption>
 </figure>
 
 <p>逐项说我是怎么设的：</p>
@@ -1242,7 +1242,7 @@ pre {
 <tr><td>Texture Quality</td><td>我全程留着默认的8K，现在回头看该选2K</td><td>这一档是直接进价的：同一张图，8K比2K贵20积分（实测见下一节）。做网页和游戏，2K够用。</td></tr>
 <tr><td>Remove Lighting</td><td>关</td><td>把参考图上的光影从贴图里剥掉。参考图本来就是柔和均匀布光的话，剥不剥差别不大。</td></tr>
 <tr><td>PBR</td><td>开</td><td>加项，5积分。出来的模型带金属度和粗糙度，进引擎才有金属感。代价见下面那条警告。</td></tr>
-<tr><td>Topology</td><td>默认Triangle</td><td>Quad是加项，5积分。要注意Tripo的部件拆分不吃四边面模型。</td></tr>
+<tr><td>Topology</td><td>默认Triangle</td><td>Quad是加项，5积分。要注意Tripo的智能拆分不吃四边面模型。</td></tr>
 <tr><td>Polycount</td><td>高精度这批我留了默认20000；后面走智能网格那批是一件一件设的</td><td>这是唯一能定面数的地方。你在参考图或者提示词里写「low poly」它不听，面数只认这个滑块。怎么分档见下面「一次批量」。</td></tr>
 <tr><td>Generate in Parts</td><td>关（我有一次Trial没用）</td><td>加项标价30，生成时就按部件分开。</td></tr>
 <tr><td>8K Texture</td><td>默认开</td><td>Members Only那一栏里的，跟上面的Texture Quality是同一件事的两个入口。</td></tr>
@@ -1255,13 +1255,13 @@ pre {
 <div class="callout"><strong>PBR：</strong>Physically Based Rendering，基于物理的渲染。简单说就是模型除了颜色，还带着「这块是金属、那块是磨砂」这类信息，光打上去才有正确的反应。开了它有个后果：金属度高的模型放进没有环境贴图的Three.js场景里会渲染成死黑。这条在§12有完整的修法，现在你只要记住，模型进网页之后黑成一块，多半不是模型坏了。</div>
 
 <figure>
-  <img src="images/studio-08-smartmesh-topology-settings.png" alt="Smart Mesh 的 Topology 弹层，Quad 选中，Polycount 默认 5000">
-  <figcaption>Smart Mesh模式下的设置弹层要简单得多，只有Topology一组：Quad（标New，默认选中）/ Triangle，加一个500–25000的Polycount滑块，默认5000。2026-09-11。</figcaption>
+  <img src="images/studio-08-smartmesh-topology-settings.png" alt="Tripo 国区智能网格的「拓扑」弹层，四边面选中，面数控制默认 5000">
+  <figcaption>智能网格模式下的设置弹层要简单得多，只有「拓扑」一组：四边面（标New，默认选中）/三角面，加一个500–25000的「面数控制」滑块，默认5000。左栏的AI模型是「P2.0 – 抢先体验Trial x2」，底部按钮「生成模型⚡<s>100</s> 0」。国区站studio.tripo3d.com，2026-09-14。</figcaption>
 </figure>
 
 <h3>「Generate 50」这个数字是怎么来的</h3>
 
-<p>我一开始以为50就是生成一个模型的价钱。后来干脆坐在表单前面做了件很笨的事：把Geometry &amp; Texture弹层里的开关一个一个动，每动一下看按钮上那个数跳成多少。全程只看不按，没花积分。</p>
+<p>我一开始以为50就是生成一个模型的价钱。后来干脆坐在表单前面做了件很笨的事：把几何与贴图弹层里的开关一个一个动，每动一下看按钮上那个数跳成多少。全程只看不按，没花积分。</p>
 
 <figure>
   <img src="images/studio-37-price-before-50.png" alt="HD Model 表单默认状态，Geometry & Texture 弹层展开，按钮显示 Generate 50">
@@ -1278,7 +1278,7 @@ pre {
 <p>再把Texture开回来，逐档试分辨率，得到的是一串很规整的数：</p>
 
 <table>
-<thead><tr><th>Geometry &amp; Texture里的状态</th><th>按钮上的数</th><th>贴图这一包占多少</th></tr></thead>
+<thead><tr><th>几何与贴图里的状态</th><th>按钮上的数</th><th>贴图这一包占多少</th></tr></thead>
 <tbody>
 <tr><td>Texture关（只要几何，出灰模）</td><td><strong>15</strong></td><td>0</td></tr>
 <tr><td>Texture开，Texture Quality 2K</td><td>30</td><td>+15</td></tr>
@@ -1294,13 +1294,13 @@ pre {
 
 <p>还有一件事我是被它坑了才知道的。当天早上我截到过一张按钮写65的表单，还以为是另一种模式。其实是我前一次生成把Ultra Mesh Quality开着，弹层顶上那句「We'll automatically save your settings for next time」替我记住了。<strong>这个记忆是跨会话的：你为了一件特写资产开的档，会一直跟着后面每一件。</strong></p>
 
-<p>首页那个快捷框又是另一套默认值，同一张图选Best Quality时按钮写55，比工作台的50多5分。首页那个框没有可展开的设置，所以这5分落在哪个开关上，我在界面上核不到，也就不去猜。<strong>能用的规矩只有一条：以你按下去之前按钮上当场显示的那个数为准，两个入口的默认开关不一样。</strong>同一张图想要同一个价，就都从工作台进，那边每个开关都看得见。</p>
+<p>首页那个快捷框又是另一套默认值，同一张图选高精度模型时按钮写55，比工作台的50多5分。首页那个框没有可展开的设置，所以这5分落在哪个开关上，我在界面上核不到，也就不去猜。<strong>能用的规矩只有一条：以你按下去之前按钮上当场显示的那个数为准，两个入口的默认开关不一样。</strong>同一张图想要同一个价，就都从工作台进，那边每个开关都看得见。</p>
 
 <div class="tip">要批量做几十件资产，开工前先花五分钟把这个弹层设一遍：Texture Quality拨到2K，Ultra确认是关的。一件30和一件65，乘以40件差1400积分，接近半个月的订阅额度。</div>
 
-<h3>走一遍Smart Mesh：从灰模到上色</h3>
+<h3>走一遍智能网格：从灰模到上色</h3>
 
-<p>下面是我2026-09-11那天用同一张出租车设计图跑的一次完整流程，用的是Smart Mesh的P2.0预览版（免费那一次）。</p>
+<p>下面是我2026-09-11那天用同一张出租车设计图跑的一次完整流程，用的是智能网格的P2.0预览版（免费那一次）。</p>
 
 <div class="step">
   <div class="step-num">1</div>
@@ -1314,7 +1314,7 @@ pre {
   <div class="step-num">2</div>
   <div class="step-content">
     <h4>选模式和拓扑</h4>
-    <p>Smart Mesh → AI Model选P2.0 - Preview → Topology保持Quad，Polycount保持5000。按钮显示「100划掉，0」，这是预览期那一次免费试用；用掉之后同样这一屏是「100划掉，65」。</p>
+    <p>智能网格 → AI Model选P2.0 - Preview → 拓扑保持四边面，Polycount保持5000。按钮显示「100划掉，0」，这是预览期那一次免费试用；用掉之后同样这一屏是「100划掉，65」。</p>
   </div>
 </div>
 
@@ -1336,13 +1336,13 @@ pre {
   <div class="step-num">4</div>
   <div class="step-content">
     <h4>付30做贴图</h4>
-    <p>Smart Mesh出的是灰模，要颜色得点底栏那个「Texture ⚡30」。点完中间开始跑进度条，标着还剩多少秒。</p>
+    <p>智能网格出的是灰模，要颜色得点底栏那个「Texture ⚡30」。点完中间开始跑进度条，标着还剩多少秒。</p>
   </div>
 </div>
 
 <figure>
   <img src="images/studio-10-p2-texture-step.png" alt="Texture 生成中，中央显示 Generating Texture，右侧任务卡片显示 135s">
-  <figcaption>点了Texture之后的中间状态：模型变成白模，下面「Generating Texture...」进度条，右侧资产卡片上写着135s。<strong>卡片上这个135s是界面自己的倒计时，含排队，不是算子耗时</strong>——2026-09-12那批里我从接口核过一件纹理生成，算子本身是109秒。顶栏余额这时已经从25220变成25190。2026-09-11。</figcaption>
+  <figcaption>点了Texture之后的中间状态：模型变成白模，下面「Generating Texture...」进度条，右侧资产卡片上写着135s。<strong>卡片上这个135s是界面自己的倒计时，含排队，不是算子耗时</strong>——2026-09-12那批里我从接口核过一件贴图生成，算子本身是109秒。顶栏余额这时已经从25220变成25190。2026-09-11。</figcaption>
 </figure>
 
 <div class="step">
@@ -1362,7 +1362,7 @@ pre {
 
 <div class="tip"><strong>18497这个数是界面读数，附录A那张逐件表上同一件写的是18,509面／12,770点，不是印错了。</strong>两个数来自两条通道：18497／12522是Studio右上角报的，18,509／12,770是把落盘的<code>car-01-taxi.glb</code>拿过来直接数索引数组数出来的，和本节后面那批P2.0资产标的是同一种数法。两条通道在这一件上差12个面、248个顶点。<strong>要拿附录A当验收单逐件核，以文件读数为准</strong>；界面上那个数用来当场判断「要不要减面」够用了。</div>
 
-<div class="warning">四边面有一条现在就得知道的连带后果：Tripo的部件拆分（Segment）不吃四边面模型，也不吃已经绑过骨的模型，界面上直接写着「Unavailable for: Quad models, Rigged models」。所以你要是打算把这个模型拆成车身和轮子分别转，那就别在这一步选Quad，得用三角面的那一版去拆。这条在§05展开。</div>
+<div class="warning">四边面有一条现在就得知道的连带后果：Tripo的智能拆分（Segment）不吃四边面模型，也不吃已经绑过骨的模型，界面上直接写着「Unavailable for: Quad models, Rigged models」。所以你要是打算把这个模型拆成车身和轮子分别转，那就别在这一步选四边面，得用三角面的那一版去拆。这条在§05展开。</div>
 
 <h3>耗时到底该怎么念</h3>
 
@@ -1429,11 +1429,11 @@ pre {
 <div class="compare">
   <div class="compare-good">
     <strong>照这个来</strong><br>
-    ·先在Geometry &amp; Texture里把用不上的加项关掉，设一次管后面所有次<br>
+    ·先在几何与贴图里把用不上的加项关掉，设一次管后面所有次<br>
     ·面数在Polycount滑块上定，别在提示词里求<br>
     ·面数按用途分档：建筑15000、人车8000、街具6000<br>
     ·做网页和游戏，生成时Texture Quality选2K，导出那一步选1k<br>
-    ·打算拆件的，Topology留Triangle<br>
+    ·打算拆件的，拓扑留三角面<br>
     ·按生成按钮之前先看一眼上面那个数字
   </div>
   <div class="compare-bad">
@@ -1441,7 +1441,7 @@ pre {
     ·一路默认点过去，五十分五十分地花，其中三十五分买的是你导出时又要降掉的8K贴图<br>
     ·拿我这个两万多的余额去估自己的成本<br>
     · 8K贴图原样丢进网页，然后怀疑是Three.js的问题<br>
-    ·用四边面模型去做部件拆分，卡在那儿找不到原因<br>
+    ·用四边面模型去做智能拆分，卡在那儿找不到原因<br>
     ·拿两种模式的面数直接比大小<br>
     ·以为智能网格那65里包含贴图（贴图另付30）
   </div>
@@ -1546,9 +1546,9 @@ pre {
 
 <p>巴黎那批资产的面数，我有一份完整统计可以当参考：31个GLB、29个独立资产，面数从16711到46196，<strong>中位数18509，一个超过10万面的都没有</strong>。</p>
 
-<p>这份统计里有一件得单独拎出来说，不然它会骗你：<strong>46196那个最大值，是奥斯曼建筑重拓扑之后的面数，它直出时是92.7万面。</strong>那是镂空阳台栏杆那种结构，复杂度由对象本身带来——同一批里结构简单的埃菲尔铁塔，直出只有1.9万面。这一件也是29件里唯一走过重拓扑的，<strong>其余28件全是直出，一次重拓扑都没用上</strong>，默认就落在1.5到2万面这个游戏可用的区间里。那92.7万面怎么压到2万多的Quad拓扑、代价是什么，在§04；同一件在减面实验里的逐行读数在§17。</p>
+<p>这份统计里有一件得单独拎出来说，不然它会骗你：<strong>46196那个最大值，是奥斯曼建筑重拓扑之后的面数，它直出时是92.7万面。</strong>那是镂空阳台栏杆那种结构，复杂度由对象本身带来——同一批里结构简单的埃菲尔铁塔，直出只有1.9万面。这一件也是29件里唯一走过重拓扑的，<strong>其余28件全是直出，一次重拓扑都没用上</strong>，默认就落在1.5到2万面这个游戏可用的区间里。那92.7万面怎么压到2万多的四边面拓扑、代价是什么，在§04；同一件在减面实验里的逐行读数在§17。</p>
 
-<p>想让面数从一开始就落在你要的量级，办法在按下Generate之前：HD Model的「Geometry &amp; Texture」弹层最底下有个Polycount滑块，在那儿先把数定死就行（§04）。我做奥斯曼建筑那一件的时候还没翻到这一栏——§04开头那句被我自己推翻的错话，就是这么来的；后面几批一律先设面数，再没出现过这个量级。</p>
+<p>想让面数从一开始就落在你要的量级，办法在按下生成之前：高精度模型的「几何与贴图」弹层最底下有个Polycount滑块，在那儿先把数定死就行（§04）。我做奥斯曼建筑那一件的时候还没翻到这一栏——§04开头那句被我自己推翻的错话，就是这么来的；后面几批一律先设面数，再没出现过这个量级。</p>
 
 <div class="callout"><strong>面数预算：</strong>一个场景总共能承受多少个面。这个说法本身带一个陷阱：<strong>它诱导你先定一个绝对数再往里塞资产</strong>——我原先就给过「30万三角面以内」这么一个数，后来把书里真跑过的读数排到一起，发现它站不住，而且错的方向是让你砍过头，把本来塞得下的东西砍掉。正确的次序是先量GPU耗时和绘制调用，量不出问题就别去动面数（§04）。</div>
 
@@ -1612,7 +1612,7 @@ pre {
   <figcaption>Format下拉展开：USD / FBX / OBJ / STL / GLB / 3MF，高亮那一项GLB是默认值。STL和3MF后面各带一个问号，那两个是3D打印用的。模型是Smart Mesh P2.0那辆出租车，右上角还挂着Quad / 5615 / 5381。2026-09-11。</figcaption>
 </figure>
 
-<p>我这次全程只导GLB，网页和引擎都吃它，一个文件里把网格和贴图全打包了。其余五种我没有逐个导出验过，所以只说界面给了什么，不说它们各自好不好用。上传那一侧接受的是OBJ、FBX、STL、GLB四种（工作台右侧「Upload 3D Model」那个框上写着，150 MB以内），比导出少一个USD和一个3MF。</p>
+<p>我这次全程只导GLB，网页和引擎都吃它，一个文件里把网格和贴图全打包了。其余五种我没有逐个导出验过，所以只说界面给了什么，不说它们各自好不好用。上传那一侧接受的是OBJ、FBX、STL、GLB四种（工作台右侧「上传3D模型」那个框上写着，150 MB以内），比导出少一个USD和一个3MF。</p>
 
 <p><strong>Texture Resolution</strong>：这里选1k。这是§01那条警告的落点。Tripo默认导8192×8192，一张底图摊进显存是358 MB，十几件资产就能吃掉5.0 GiB显存。在这个下拉里选1k，同样的场景降到0.22 GiB，游戏距离上肉眼看不出区别（这两个GiB是显卡工具那侧按1024进位的读数，换成本书算显存的十进制口径是5.38 GB和0.24 GB，口径见§12）。</p>
 
@@ -1644,9 +1644,9 @@ pre {
 
 <h4>路子一：官方开放API（正式集成走这条）</h4>
 
-<p>要把取文件这件事写进脚本、接进自己的工具、交给agent自动跑，正经入口是官方开放API：基址<code>https://openapi.tripo3d.ai/v3</code>，API Key在<strong>platform.tripo3d.ai</strong>创建，认证走<code>Authorization: Bearer &lt;token&gt;</code>，任务轮到<code>status: "success"</code>之后从<code>output.model_url</code>取GLB。这条路是公开文档写明的，字段有版本号兜着，不会因为网页改版而失效。</p>
+<p>要把取文件这件事写进脚本、接进自己的工具、交给agent自动跑，正经入口是官方开放API：基址<code>https://openapi.tripo3d.com/v3</code>，API Key在<strong>platform.tripo3d.com</strong>创建，认证走<code>Authorization: Bearer &lt;token&gt;</code>，任务轮到<code>status: "success"</code>之后从<code>output.model_url</code>取GLB。这条路是公开文档写明的，字段有版本号兜着，不会因为网页改版而失效。</p>
 
-<p>有一个前提得先知道：<strong>API的额度和Studio的订阅是两套账，要分别购买</strong>。所以走这条路之前先去<code>platform.tripo3d.ai/billing</code>把API钱包充上，别拿Studio的余额去推算它。完整的接法、CLI和插件怎么用，在§11。</p>
+<p>有一个前提得先知道：<strong>API的额度和Studio的订阅是两套账，要分别购买</strong>。所以走这条路之前先去<code>platform.tripo3d.com/billing</code>把API钱包充上，别拿Studio的余额去推算它。完整的接法、CLI和插件怎么用，在§11。</p>
 
 <h4>路子二：应急——只有几件、又暂时没配API Key时</h4>
 
@@ -1731,7 +1731,7 @@ python3 pull_glb.py --url-file /tmp/u.txt --out 产出/rose.glb</code></pre>
     ·结果出来先读Topology／Faces／Vertices，再读自动命名<br>
     ·验收在Tripo预览页做，别在自己没打好光的场景里判死刑<br>
     ·十件以上就改成本地渲固定机位，顺手把朝向定下来<br>
-    ·导出时贴图选1k；要批量别点导出按钮，正式集成走官方<code>openapi.tripo3d.ai/v3</code><br>
+    ·导出时贴图选1k；要批量别点导出按钮，正式集成走官方<code>openapi.tripo3d.com/v3</code><br>
     ·批量下载的脚本写成能重复跑的，断了只补缺的那几件
   </div>
   <div class="compare-bad">
@@ -1761,9 +1761,9 @@ python3 pull_glb.py --url-file /tmp/u.txt --out 产出/rose.glb</code></pre>
 
 <p>真实数字是这样：<strong>29个独立资产，面数落在16711到46196之间，中位数18509，没有一个超过10万面。</strong>（31个文件里pedestrian-01有静态、绑骨、动画三个版本，是同一个网格，去重后是29个。）这个量级本来就是游戏能直接用的，整个巴黎项目一次重拓扑都没用上。</p>
 
-<p>那句错话是从哪来的？它来自更早一次实测，那批资产里镂空精细的奥斯曼建筑天生927K面，也就是92.7万，得走重拓扑压到2万多面的Quad拓扑才进得了引擎。我当时在README里把它写成了「927万面」，同一节的下一行写的却是「927K面」，同一个927，一处万一处千，差十倍。<strong>自己项目的文档也是待核实来源，不是事实。</strong></p>
+<p>那句错话是从哪来的？它来自更早一次实测，那批资产里镂空精细的奥斯曼建筑天生927K面，也就是92.7万，得走重拓扑压到2万多面的四边面拓扑才进得了引擎。我当时在README里把它写成了「927万面」，同一节的下一行写的却是「927K面」，同一个927，一处万一处千，差十倍。<strong>自己项目的文档也是待核实来源，不是事实。</strong></p>
 
-<div class="callout"><strong>所以这一节的第一个动作不是打开Retopo页，是去数面数。</strong>Tripo Studio工作台右上角常驻三行读数：Topology（Quad还是Triangle）、Faces、Vertices。先看这三个数，再决定要不要花那10积分。</div>
+<div class="callout"><strong>所以这一节的第一个动作不是打开重拓扑页，是去数面数。</strong>Tripo Studio工作台右上角常驻三行读数：Topology（Quad还是Triangle）、Faces、Vertices。先看这三个数，再决定要不要花那10积分。</div>
 
 <h3>三个词先说清楚</h3>
 
@@ -1856,7 +1856,7 @@ B 的 input.png    1,141,563 字节  c2c01442…f102b6ab
 
 <p>前两条<strong>逐位相同</strong>：四边形、三角形、N边形三个桶的计数一个不差，连「接近」这种说法都用不上。第三条独立确认了A。这样这张表上的数就不是某一个脚本的自说自话了。</p>
 
-<div class="warning"><strong>有一格我没测到，如实说。</strong>B那件的平台读数这次没取到：那件带着8K贴图，在后台标签页里模型加载不出来，预览区是空的。所以B这一列只有两条本地通道，没有平台侧的第三方确认。另外<strong>B的生成耗时我也不敢用</strong>——详情接口只返回项目当前最新的那个算子，B后来跑过纹理生成，现在读回来的时间戳是纹理那一轮的，网格阶段的已经取不回来了。宁可这一格空着，也不去抄一个来源不明的数。</div>
+<div class="warning"><strong>有一格我没测到，如实说。</strong>B那件的平台读数这次没取到：那件带着8K贴图，在后台标签页里模型加载不出来，预览区是空的。所以B这一列只有两条本地通道，没有平台侧的第三方确认。另外<strong>B的生成耗时我也不敢用</strong>——详情接口只返回项目当前最新的那个算子，B后来跑过贴图生成，现在读回来的时间戳是纹理那一轮的，网格阶段的已经取不回来了。宁可这一格空着，也不去抄一个来源不明的数。</div>
 
 <h4>第四步：线框图上一眼可见</h4>
 
@@ -1868,7 +1868,7 @@ B 的 input.png    1,141,563 字节  c2c01442…f102b6ab
 
 <h4>结论：同一个8000，几何预算差2.09倍</h4>
 
-<p>主片脚本里原本有一句「同一张图，两种模式出来的东西外观差不多，但后面能改的程度完全不一样」。跑完这一轮，前半句得改。</p>
+<p>我视频脚本里原本有一句「同一张图，两种模式出来的东西外观差不多，但后面能改的程度完全不一样」。跑完这一轮，前半句得改。</p>
 
 <p>两件的包围盒比例几乎一样（1.000×0.533×0.567对1.000×0.511×0.538），整体形体确实是同一辆车。但细节层级差得很明显：B有保险杠的栅条、大灯的圈、车门把手、雨刷、车内的方向盘，A在同样的位置是几块糊过去的三角面。</p>
 
@@ -1915,21 +1915,19 @@ B 的 input.png    1,141,563 字节  c2c01442…f102b6ab
 
 <h3>面数在生成表单里就能定，不用等生成完再补救</h3>
 
-<p>这是我自己走了弯路才明白的一条。HD Model那一侧，展开「General Settings → Geometry &amp; Texture」，弹层最底下就是Topology和Polycount。</p>
+<p>这是我自己走了弯路才明白的一条。高精度模型那一侧，展开「General Settings → Geometry &amp; Texture」，弹层最底下就是Topology和Polycount。</p>
 
-<p>那个弹层的全貌在§01。这里只取两个读数：<strong>Topology默认Triangle，Polycount滑块量程500到1000000、默认值20000。</strong></p>
+<p>那个弹层的全貌在§01。这里只取两个读数：<strong>Topology默认Triangle，面数控制滑块量程500到2000000。</strong>还有一个数不在那张图上——§01那一屏的滑块被人拉到了上限，不是默认落位——<strong>这个滑块的默认值是20000</strong>，见§01那张逐项开关对照表。</p>
 
 <p>默认20000这个数，正好解释了为什么我那批资产普遍落在1.5到2万面：<strong>它不是随机的，它就是表单里那个默认值。</strong>弹层顶上还有一句「We'll automatically save your settings for next time」，意思是你改一次，后面都跟着走。</p>
 
-<p>Smart Mesh那一侧是另一套默认值。同一个入口叫「Topology」，Quad是默认选中的，Polycount量程500到25000，默认5000。</p>
+<p>智能网格那一侧是另一套默认值（弹层见§01）：<strong>四边面默认选中，Polycount量程500–25000、默认5000。</strong></p>
 
-<p>智能网格那一侧是另一套默认值（弹层见§01）：<strong>Quad默认选中，Polycount量程500–25000、默认5000。</strong></p>
+<p>两边的默认值差了四倍，这件事在你按下生成之前就已经决定了一半。想要低模，改这个滑块，别在提示词里写「low poly」——提示词管的是形状和风格，管不了这个数字。</p>
 
-<p>两边的默认值差了四倍，这件事在你按下Generate之前就已经决定了一半。想要低模，改这个滑块，别在提示词里写「low poly」——提示词管的是形状和风格，管不了这个数字。</p>
+<h3>重拓扑这一页，每个开关是什么</h3>
 
-<h3>Retopo这一页，每个开关是什么</h3>
-
-<p>左侧工具栏第五个是Retopo。选中Assets里的模型，或者直接上传一个（OBJ / FBX / STL / GLB，150 MB以内），左边面板就三样东西。</p>
+<p>左侧工具栏第五个是重拓扑。选中Assets里的模型，或者直接上传一个（OBJ / FBX / STL / GLB，150 MB以内），左边面板就三样东西。</p>
 
 <figure><img src="images/studio-17-retopo-page.png" alt="Tripo Studio的Retopology面板，显示Quad/Triangle、Smart Low Poly v2开关和Polygon Count"><figcaption>Retopology面板：Topology二选一（Quad被选中）、Smart Low Poly带v2角标的开关（默认关）、Polygon Count滑块量程500–50000、数字框默认10000，底部黄色按钮「Retopology 10」。载入的是我做的小王子角色，右上读数Triangle / Faces 19842 / Vertices 13269。2026-09-11。</figcaption></figure>
 
@@ -1948,7 +1946,7 @@ B 的 input.png    1,141,563 字节  c2c01442…f102b6ab
 
 <h3>10积分和50积分，什么时候按哪个</h3>
 
-<p>拿它去比的那一头是重新生成：再跑一次HD Model，界面默认标50，其中35分是8K贴图，把档位拨到2K是30（这笔账在§07）。</p>
+<p>拿它去比的那一头是重新生成：再跑一次高精度模型，界面默认标50，其中35分是8K贴图，把档位拨到2K是30（这笔账在§07）。</p>
 
 <p>判断标准其实很简单，看你不满意的是什么：</p>
 
@@ -1959,13 +1957,13 @@ B 的 input.png    1,141,563 字节  c2c01442…f102b6ab
 
 <p>重拓扑有它的代价，这条我实测撞过：那栋奥斯曼建筑压到2万面档位之后，精细的镂空阳台栏杆糊成了一团，细节只能靠贴图补回来。纯建模层面，2万面撑不住那种装饰性结构。面数预算的物理限制就摆在这儿：2万面撑不住那种装饰性结构，想留住它，得靠贴图而不是几何。</p>
 
-<h3>Quad面数怎么换算成三角面：系数是1.75到1.8</h3>
+<h3>四边面的面数怎么换算成三角面：系数是1.75到1.8</h3>
 
 <p>这条坑得挺隐蔽。那栋建筑重拓扑之后，Tripo界面上读数是2.4万面，我在README里也是这么记的；后来跑E1实验解析同一个GLB文件，数出来是41106个三角面。</p>
 
-<p>两个数都没错，<strong>因为界面在Topology为Quad时数的是四边面，而导进引擎时四边面会被拆成三角形，一个变两个。</strong>做面数预算要按三角面算，别按界面读数算。</p>
+<p>两个数都没错，<strong>因为界面在拓扑选四边面时数的是四边面，而导进引擎时四边面会被拆成三角形，一个变两个。</strong>做面数预算要按三角面算，别按界面读数算。</p>
 
-<p>但这里有个我自己写错过、必须改回来的地方。我一度把这条换算写成「大致乘以二」，<strong>那是高估。</strong>因为所谓的Quad模型从来不是纯四边形，里面总混着一部分三角形，而<strong>三角形拆成三角形是一比一，不翻倍</strong>。真实系数是这么来的：</p>
+<p>但这里有个我自己写错过、必须改回来的地方。我一度把这条换算写成「大致乘以二」，<strong>那是高估。</strong>因为所谓的四边面模型从来不是纯四边形，里面总混着一部分三角形，而<strong>三角形拆成三角形是一比一，不翻倍</strong>。真实系数是这么来的：</p>
 
 <pre><code>三角化后面数 ÷ 原生面数 = 1 + 四边形占比</code></pre>
 
@@ -1979,7 +1977,7 @@ B 的 input.png    1,141,563 字节  c2c01442…f102b6ab
 </tbody>
 </table>
 
-<div class="callout"><strong>记这条：Quad面数进引擎大致要乘以1.75到1.8，只有纯四边形网格才趋近2。</strong>按2去排预算，会让你的面数预算系统性高估约10%——本来能塞下的东西被你砍掉了。真要精确，就去解一次文件把四边形占比数出来，套上面那个公式。</div>
+<div class="callout"><strong>记这条：四边面的面数进引擎大致要乘以1.75到1.8，只有纯四边形网格才趋近2。</strong>按2去排预算，会让你的面数预算系统性高估约10%——本来能塞下的东西被你砍掉了。真要精确，就去解一次文件把四边形占比数出来，套上面那个公式。</div>
 
 <p>同一张出租车设计图走智能网格出的结果见§01：Topology Quad / Faces 5615 / Vertices 5381，线框能看出规整的四边面走向。</p>
 
@@ -2010,7 +2008,7 @@ B 的 input.png    1,141,563 字节  c2c01442…f102b6ab
 
 <p>这张表里的数字是「再减就崩」的断裂点，不是拿来当生产参数用的。真跑那25个资产时我用的是人物／载具／道具0.25、建筑0.45、树和铁塔0.75，全都留了余量。还有一个口径要交代：E1的分母是已经处理过一遍的副本，不是Tripo直出的原始文件（最明显的是表里那棵梧桐，7473已经是减过一轮的，Tripo刚生成出来是18414面，见§17），所以这些百分比只能横向比较各类资产之间的相对关系，别拿单个数字去对你自己的模型。</p>
 
-<figure><img src="images/p04-paris-eiffel.jpg" alt="巴黎demo里的埃菲尔铁塔"><figcaption>「巴黎来信」demo里的埃菲尔铁塔，就是表里那个只能砍到72.5%的资产。格构结构每根钢梁都是独立的细长体，删一条就穿帮，减面算法无处下手。2026-09-11复核截图。</figcaption></figure>
+<figure><img src="images/p04-paris-eiffel.jpg" alt="巴黎demo里的埃菲尔铁塔"><figcaption>「巴黎来信」demo里的埃菲尔铁塔，就是表里那个只能砍到72.5%的资产。格构结构每根钢梁都是独立的细长体，删一条就穿帮，减面算法无处下手。2026-09-14复核截图。</figcaption></figure>
 
 <p>所以别拿一套统一参数跑全库。统一给0.25，人物那边浪费了（本可以更狠），建筑那边直接毁掉细节。</p>
 
@@ -2092,8 +2090,8 @@ npx --yes @gltf-transform/cli optimize tmp.glb out.glb --compress quantize --tex
 <thead><tr><th>情况</th><th>动作</th><th>成本</th></tr></thead>
 <tbody>
 <tr><td>面数已经在1.5–3万，做静态道具</td><td>什么都不用做</td><td>0</td></tr>
-<tr><td>面数几十万（镂空建筑、复杂机械）</td><td>Retopo，Polygon Count给2万上下</td><td>10积分（我这次Topology选的是Quad）</td></tr>
-<tr><td>要绑骨、要进Blender手改</td><td>Retopo，Topology选Quad</td><td>10积分</td></tr>
+<tr><td>面数几十万（镂空建筑、复杂机械）</td><td>重拓扑，Polygon Count给2万上下</td><td>10积分（我这次拓扑选的是四边面）</td></tr>
+<tr><td>要绑骨、要进Blender手改</td><td>重拓扑，拓扑选四边面</td><td>10积分</td></tr>
 <tr><td>一批资产整体要瘦身进网页</td><td>本地gltf-transform，按几何分配比例</td><td>0积分，5.2秒/个</td></tr>
 <tr><td>加载慢、显存爆、机器风扇狂转</td><td>先量贴图，多半是resize而不是simplify</td><td>0积分</td></tr>
 <tr><td>形状本身就不对</td><td>改参考图重新生成</td><td>30–50积分，看贴图档位</td></tr>
@@ -2106,11 +2104,11 @@ npx --yes @gltf-transform/cli optimize tmp.glb out.glb --compress quantize --tex
 
 <figure><img src="images/studio-41-retopo-before.png" alt="Retopo 页载入鬼屋模型，右上读数 Triangle、Faces 18462、Vertices 12685，Polygon Count 填 10000"><figcaption>跑之前：右上读数Topology Triangle、Faces 18462 / 18462、Vertices 12685 / 12685。左边面板Topology选Quad、Smart Low Poly v2关着、Polygon Count还是默认的10000，按钮「Retopology 10」。顶栏余额25190。2026-09-11 15:00。</figcaption></figure>
 
-<p>我把Polygon Count的文本框改成5000，按回车，页面没有任何反应（滑块有没有跟着动我也没看清），然后按下Retopology。等了两分钟左右。</p>
+<p>我把Polygon Count的文本框改成5000，按回车，页面没有任何反应（滑块有没有跟着动我也没看清），然后按下重拓扑。等了两分钟左右。</p>
 
 <figure><img src="images/studio-42-retopo-after.png" alt="同一栋鬼屋重拓扑之后，右上读数变成 Quad、Faces 13272、Vertices 13367"><figcaption>跑完：Topology变成<strong>Quad</strong>，Faces 13272、Vertices 13367，顶栏余额从25190掉到25180，10分确实扣了。模型的外观没塌，屋顶瓦片、窗框、门廊柱子都还在。2026-09-11。</figcaption></figure>
 
-<p><strong>拓扑确实换成四边面了，面数却没落到我填的5000，而是13272。</strong>当时我给自己留了两种可能：要么那次输入根本没提交上去（页面确实一声不吭），要么Quad的计数口径本来就不一样。写书的时候我把它标成了悬案。</p>
+<p><strong>拓扑确实换成四边面了，面数却没落到我填的5000，而是13272。</strong>当时我给自己留了两种可能：要么那次输入根本没提交上去（页面确实一声不吭），要么四边面的计数口径本来就不一样。写书的时候我把它标成了悬案。</p>
 
 <p>第二天这个悬案就结了，而且答案是<strong>两种可能同时成立</strong>。</p>
 
@@ -2136,20 +2134,20 @@ set.call(tb, '15000');
 
 <h4>第二层：两边的8000，数的东西不一样</h4>
 
-<p>第二种可能也是真的，而且就是本节开头E10那场实验证出来的：<strong>智能网格的面数上限数四边面，高精度的数三角面。</strong>同一个数字填进去，一边给你8,596个四边面（合15,431三角），一边给你7,379个三角面。重拓扑这一页的Polygon Count是同一套逻辑——Topology选了Quad，那个数字数的就是四边面。</p>
+<p>第二种可能也是真的，而且就是本节开头E10那场实验证出来的：<strong>智能网格的面数上限数四边面，高精度的数三角面。</strong>同一个数字填进去，一边给你8,596个四边面（合15,431三角），一边给你7,379个三角面。重拓扑这一页的Polygon Count是同一套逻辑——拓扑选了四边面，那个数字数的就是四边面。</p>
 
 <p>套回鬼屋那件：默认值是10000（四边面口径），实际跑出来13272个四边面。按前面那条<code>1 + 四边形占比</code>的公式，如果它接近纯四边形，进引擎大概是两万四到两万六千个三角面，和原来那个18462三角面的版本比，面数其实是涨的。<strong>我以为自己在减面，其实是在换拓扑，顺手把三角面数推高了。</strong></p>
 
 <div class="callout"><strong>所以这件事的完整答案是：我填的5000压根没提交出去，跑的是默认的10000；而这个10000又是四边面口径，不是我心里以为的三角面口径。两个偏差叠在一起，就是那个13272。</strong>重拓扑这一步达成的是拓扑目标（换成四边面），没达成面数目标，而且如果你真正的目的是压三角面数，这一步的方向反了。</div>
 
-<p>给你的操作建议就三句：<strong>按下按钮之前，先用ArrowRight验一次那个数进没进去；按下按钮之后，回头对一眼右上角那三行读数；心里记着Quad那一列的数还要乘上1.75到1.8才是引擎看到的数。</strong>这三件事加起来花不到十秒，能省掉一次65积分的空跑。</p>
+<p>给你的操作建议就三句：<strong>按下按钮之前，先用ArrowRight验一次那个数进没进去；按下按钮之后，回头对一眼右上角那三行读数；心里记着四边面那一列的数还要乘上1.75到1.8才是引擎看到的数。</strong>这三件事加起来花不到十秒，能省掉一次65积分的空跑。</p>
 
 </div>
 
 <!-- ===== part05-segment-texture.html ===== -->
 <div class="content">
 
-<h2 class="section-title page-break" id="part05"><span class="num">§05</span>部件拆分与纹理生成</h2>
+<h2 class="section-title page-break" id="part05"><span class="num">§05</span>智能拆分与贴图生成</h2>
 <p class="section-en">Part Segmentation and Texture Generation</p>
 <p class="section-intro">这一节解决两个问题：怎么让一辆车的轮子真的能转，以及怎么用同一个几何做出一整条街不重样的房子。两件事都是在模型生成之后做的，各自有一条明确的入口和一个明确的价。</p>
 
@@ -2180,17 +2178,17 @@ set.call(tb, '15000');
 
 <p><strong>语义分件</strong>就是按「这块是什么」来分，而不是按「这块和那块连不连着」来分。轮子之所以是轮子，是因为它在语义上是轮子，不是因为它和车身之间有一道几何缝隙。这件事纯几何算法做不了，得有一个理解「这是一辆车」的模型来做。</p>
 
-<p>Tripo Studio左侧工具栏第三个就是它，叫Segment，它下面还挂着一个Fill Parts。这一节只讲Segment，因为它是「车能不能动」这条路上唯一的关口。</p>
+<p>Tripo Studio左侧工具栏第三个就是它，叫智能拆分，它下面还挂着一个Fill Parts。这一节只讲智能拆分，因为它是「车能不能动」这条路上唯一的关口。</p>
 
-<h3>Segment这一页，先看清两条前提</h3>
+<h3>智能拆分这一页，先看清两条前提</h3>
 
 <figure><img src="images/studio-09-segment-page.png" alt="Tripo Studio的Segmentation空状态页，底部标着Unavailable for Quad models和Rigged models"><figcaption>Segmentation空状态页。上传支持OBJ / FBX / STL / GLB，150 MB以内。左下角那行「Unavailable for」字号很小，但说的是最关键的两条前提：<strong>Quad models和Rigged models不在拆件的适用范围里</strong>。底部按钮「Start Segmenting 40」，这天挂着Trial所以显示划掉的40和一个0。Tripo Studio英文界面，2026-09-11。</figcaption></figure>
 
 <p>那两条限制直接决定了你的工序顺序：</p>
 
-<div class="warning"><strong>拆件要的是三角面、且没绑过骨的模型。</strong>Smart Mesh（P2.0）出的是Quad，所以要拆件，就走HD Model的三角面版本，或者先在Retopo里把Topology切回Triangle（按下之前看按钮上的数，这一档我没截过，说明在§04）。同理，一个角色既要拆件又要绑骨，<strong>拆在前，绑在后</strong>。</div>
+<div class="warning"><strong>拆件要的是三角面、且没绑过骨的模型。</strong>智能网格（P2.0）出的是四边面，所以要拆件，就走高精度模型的三角面版本，或者先在重拓扑里把拓扑切回三角面（按下之前看按钮上的数，这一档我没截过，说明在§04）。同理，一个角色既要拆件又要绑骨，<strong>拆在前，绑在后</strong>。</div>
 
-<p>这条不用你去猜，Studio会当场告诉你。9月12日我录操作过程的时候，拿一个四边面模型进了Segment，页面直接给出提示：四边面模型不支持拆分。它在你花钱之前就把话说在前面了。<strong>所以这条规则你其实不用背，按下去之前看一眼右上角那行Topology就够了：是Quad，就知道该先绕去哪一步。</strong></p>
+<p>这条不用你去猜，Studio会当场告诉你。9月12日我录操作过程的时候，拿一个四边面模型进了智能拆分，页面直接给出提示：四边面模型不支持拆分。它在你花钱之前就把话说在前面了。<strong>所以这条规则你其实不用背，按下去之前看一眼右上角那行Topology就够了：是Quad，就知道该先绕去哪一步。</strong></p>
 
 <div class="tip"><strong>这一节前后会出现三辆出租车，是三件不同的东西，别看混。</strong>拆件这一段的所有截图和数据，用的都是<strong>高精度那一版</strong>，属性栏读数<code>Triangle / Faces 18497 / Vertices 12522</code>，它和§04里那辆四边面的出租车是同一张参考图生出来的两件东西。后面纹理那一段出现的则是两辆四边面的：09-11那件<code>Quad / 5615 / 5381</code>，就是§04里那辆；09-12录操作过程时现场又重跑了一件，读数<code>Quad / 6044 / 5490</code>。所以每张图的读数我都单独标了日期，看图先看日期。</div>
 
@@ -2210,13 +2208,13 @@ set.call(tb, '15000');
 
 <p>三档给出的是部件数量区间，不是精度档。想要「能开的车门、能转的轮子」，Balanced起步；只想把一个角色分成头、身、四肢做换装，Simple就够；Detailed那一档我没用过，所以不替它说话。</p>
 
-<h3>结果：36个部件，轮子是独立的</h3>
+<h3>结果：77个部件，轮子是独立的</h3>
 
-<figure><img src="images/studio-18-segment-result-taxi.png" alt="拆分完成后的出租车，各部件被涂成不同颜色，左边是Part List"><figcaption>Balanced档拆完的结果：左边Part List的编号从<code>tripo_part_0</code>一路排到<code>tripo_part_36</code>；画面里每个部件一个颜色，<strong>前后轮各自独立（棕色和蓝色）、车门独立（蓝绿和洋红）、车顶独立（紫色）、前后保险杠也各自分开</strong>。底部工具条多出了Merge和Save两个按钮。2026-09-11。</figcaption></figure>
+<figure><img src="images/studio-18-segment-result-taxi.png" alt="拆分完成后的出租车，各部件被涂成不同颜色，左边是Part List"><figcaption>Balanced档拆完的结果：左边Part List的编号从<code>tripo_part_0</code>一路排到<code>tripo_part_36</code>；画面里每个部件一个颜色，<strong>前后轮各自独立（棕色和蓝色）、车门独立（蓝绿和洋红）、车顶独立（紫色）、前后保险杠也各自分开</strong>。底部工具条多出了Merge和Save两个按钮。2026-09-11。<strong>这张是智能拆分Balanced档那一次的结果，36件。</strong>后面那个77件的版本是另一条路——分部件生成的精细档，不是把拆分档位往上调出来的。</figcaption></figure>
 
 <p>有个细节值得记：拆完之后右上角的Faces还是18497，一点没变，Vertices却从12522涨到了13801。<strong>面数不变是因为没有新增几何，顶点变多是因为切缝处的点被复制成了两份</strong>，一份归这块，一份归那块。看到顶点涨了不用慌，那正是拆开了的证据。</p>
 
-<div class="warning"><strong>这辆车到底是36个部件还是37个，得说清楚，因为界面和文件给的是两个数。</strong>Part List里的编号是<code>tripo_part_0</code>到<code>tripo_part_36</code>，看上去是37个坑位；但把模型导出成GLB再解析，<strong>里面实打实躺着的是36个独立网格</strong>，<code>tripo_part_15</code>那一格是空的。顶点数同理，界面报13801，文件里是19045。两组数都是真的，只是量的不是同一个东西：界面报的是编辑器里的分块编号，文件里是最终写出来的网格。<br><br><strong>全书凡是提这辆车的部件数，一律按36算</strong>，因为那是你的代码真正能取到的数量。要拿去接引擎，以你自己解析出来的那份为准，别照着界面编号写循环，不然<code>part_15</code>那一次会取到空。</div>
+<div class="warning"><strong>部件数以你自己从文件里解析出来的为准，别照着界面编号写循环。</strong>这辆车的部件列表编号是<code>tripo_part_0</code>到<code>tripo_part_76</code>，导出成GLB再解析，里面实打实躺着的也是77个独立网格，编号没有空缺，两个数对得上。<br><br>但这一步值得每次都核一遍：<strong>编号连续不代表网格数就等于编号数</strong>。我早先那版拆件产物就栽过——界面编号一路排到<code>tripo_part_36</code>看着是37个坑位，文件里却只有36个网格，<code>tripo_part_15</code>那一格是空的；顶点数也是界面报一个数、文件报另一个数。两组数都是真的，只是量的不是同一个东西：界面报的是编辑器里的分块编号，文件里是最终写出来的网格。照着界面编号写循环，空的那一次就会取到<code>undefined</code>。</div>
 
 <p>Part List每一行右边有个眼睛图标和一个三点菜单，可以逐个隐藏、重命名、合并。Merge是把选中的几块并回一块，用来收拾那些被切得过碎的零件；Save是把拆分结果写回这个资产。</p>
 
@@ -2226,14 +2224,14 @@ set.call(tb, '15000');
   <div class="step-num">1</div>
   <div class="step-content">
     <h4>确认模型是三角面、没绑过骨</h4>
-    <p>看工作台右上角那行Topology。是Quad就先去Retopo切回Triangle（按钮上的数见§04），或者用HD Model那一版。</p>
+    <p>看工作台右上角那行Topology。是Quad就先去重拓扑切回三角面（按钮上的数见§04），或者用高精度模型那一版。</p>
   </div>
 </div>
 
 <div class="step">
   <div class="step-num">2</div>
   <div class="step-content">
-    <h4>进Segment，从右侧Assets选中它，或上传</h4>
+    <h4>进智能拆分，从右侧Assets选中它，或上传</h4>
     <p>上传支持OBJ / FBX / STL / GLB，150 MB以内。</p>
   </div>
 </div>
@@ -2272,9 +2270,9 @@ set.call(tb, '15000');
 
 <div class="tip">部件名字是<code>tripo_part_NN</code>这种流水号，不带语义。拆完先在Part List里逐个点一遍、把关键件改成<code>wheel_front_left</code>这类名字再Save，能省掉后面在引擎里一个个试的功夫。</div>
 
-<h3>纹理生成：同一个几何，换一身衣服</h3>
+<h3>贴图生成：同一个几何，换一身衣服</h3>
 
-<p>左侧工具栏第六个是Texture。它做的事很纯粹：几何一个字不改，只重新算一遍贴图。</p>
+<p>左侧工具栏第六个是贴图生成。它做的事很纯粹：几何一个字不改，只重新算一遍贴图。</p>
 
 <figure><img src="images/studio-21-texture-page.png" alt="Tripo Studio的3D Model Texture Generator空状态页"><figcaption>「3D Model Texture Generator」空状态页，示意图是一个白模骑士变成有材质的骑士。入口和Segment一样：从右边Assets选一个，或者上传自己的。Tripo Studio英文界面，2026-09-11。</figcaption></figure>
 
@@ -2308,21 +2306,21 @@ set.call(tb, '15000');
 
 <p>用什么当风格参考，我的经验是直接给一张同类物体的照片或设计图，效果比写文字描述稳。给建筑换贴图时我用的就是另一栋店面的图，它自带了「这个世界里的材质长什么样」这个信息，比写「深绿色百叶窗，窗台有花箱」精确得多。这和写生图提示词是同一个道理，具体方法在§09。</p>
 
-<h3>Smart Mesh出的是灰模，贴图是必经的第二步</h3>
+<h3>智能网格出的是灰模，贴图是必经的第二步</h3>
 
-<p>走Smart Mesh（P2.0）这条路的话，纹理生成不是可选项。它生成完给你的是一个没有贴图的灰模，底部会弹一句「Retry for better results or proceed to Texture」。</p>
+<p>走智能网格（P2.0）这条路的话，贴图生成不是可选项。它生成完给你的是一个没有贴图的灰模，底部会弹一句「Retry for better results or proceed to Texture」。</p>
 
 <p>点了Texture之后的中间状态见§01：中央「Generating Texture...」进度条，右侧资产卡片上跑着计时，这一次是135秒。<strong>那个数是界面自己的倒计时、含排队，不是算子耗时。</strong></p>
 
 <p>贴图完成的样子见§01：还是09-11那件，5615个四边面、5381个顶点，<strong>几何没动，材质上来了</strong>。这一步花了30积分，余额从25220掉到25190。</p>
 
-<h3>一批13件跑下来，纹理生成这一步长什么样</h3>
+<h3>一批13件跑下来，贴图生成这一步长什么样</h3>
 
-<p>上面那一件是试水。9月12日我把整批巴黎资产重做了一遍，网格阶段跑了14件，其中<strong>13件接着跑了纹理生成，每件30积分，合计390积分。</strong>一次跑这么多，才看清这一步的真实形状。</p>
+<p>上面那一件是试水。9月12日我把整批巴黎资产重做了一遍，网格阶段跑了14件，其中<strong>13件接着跑了贴图生成，每件30积分，合计390积分。</strong>一次跑这么多，才看清这一步的真实形状。</p>
 
 <figure class="figure-wide"><img src="images/p05-texture-panel-taxi.png" alt="Tripo Studio中文界面的纹理生成面板，左侧是参考图与2K/4K/8K档位，底部按钮写着生成纹理30"><figcaption>纹理生成面板（中文界面）：左栏从上到下是三个输入页签、参考图槽位、「自定义你的贴图风格」（这里是「无」）、「去光处理」开关（带New角标，这里关着）、「纹理分辨率」2K/4K/8K三档——<strong>8K那一档带着皇冠，是订阅专享，并且是默认选中的</strong>。底部黄色按钮「生成纹理30」。<strong>右上属性栏读的是09-12录操作过程时现场重跑的那辆出租车</strong>（拓扑Quad /面6044 /顶点5490），和上面09-11那件5615面的不是同一次生成。顶栏余额20120。2026-09-12录操作过程时截。</figcaption></figure>
 
-<div class="callout"><strong>这一步没有参数弹窗，点下去直接生效。</strong>不像生成表单那样会先弹一层让你确认，纹理生成是按下按钮就开跑。所以在按之前先把左栏那几项看一遍，尤其是分辨率那一档：8K是默认选中的，你不动它，出来的就是8K。要做网页或者游戏，在这里就拨到2K，能省掉后面一整轮本地压缩。</div>
+<div class="callout"><strong>这一步没有参数弹窗，点下去直接生效。</strong>不像生成表单那样会先弹一层让你确认，贴图生成是按下按钮就开跑。所以在按之前先把左栏那几项看一遍，尤其是分辨率那一档：8K是默认选中的，你不动它，出来的就是8K。要做网页或者游戏，在这里就拨到2K，能省掉后面一整轮本地压缩。</div>
 
 <p>跑完之后我把参数从接口核回来，13件逐项一致：</p>
 
@@ -2344,21 +2342,21 @@ set.call(tb, '15000');
 
 <h4>一个会让你对不上账的字段：model_version有两段</h4>
 
-<p>这条我卡过一次。同一个项目，网格刚跑完的时候去读详情接口，<code>model_version</code>是<code>Nexus-v2.0-20260801</code>；等纹理生成也跑完再读同一个接口，它变成了<code>v3.5-20260815</code>。</p>
+<p>这条我卡过一次。同一个项目，网格刚跑完的时候去读详情接口，<code>model_version</code>是<code>Nexus-v2.0-20260801</code>；等贴图生成也跑完再读同一个接口，它变成了<code>v3.5-20260815</code>。</p>
 
 <p>它没有改写历史。<strong>详情接口返回的永远是这个项目当前最新的那个算子</strong>，而网格和纹理是两个算子，各有各的版本号——你读到哪一个，取决于你什么时候读。</p>
 
-<div class="warning"><strong>这个行为会顺手吃掉别的数据。</strong>§04那场E10实验里，智能网格那件的网格阶段耗时就是这么丢的：它后来跑过纹理生成，再去读接口，时间戳已经是纹理那一轮的了，网格阶段的取不回来。<strong>所以要记网格阶段的数据，就在跑纹理之前记。</strong>跑完再回头找，那一格就永远空着了。</div>
+<div class="warning"><strong>这个行为会顺手吃掉别的数据。</strong>§04那场E10实验里，智能网格那件的网格阶段耗时就是这么丢的：它后来跑过贴图生成，再去读接口，时间戳已经是纹理那一轮的了，网格阶段的取不回来。<strong>所以要记网格阶段的数据，就在跑纹理之前记。</strong>跑完再回头找，那一格就永远空着了。</div>
 
 <div class="tip">走P2.0这条路拿到的贴图，<strong>是一张base color</strong>，没有法线图也没有ORM。这不影响它好不好看，但影响它进引擎之后在灯光下的表现——同一盏灯下会比带三张图的版本哑一点。真正接进Three.js或者Unity的时候要不要补，以及那张8192²的图为什么必须先降下来，在§12里有完整一节。</div>
 
 <h3>这两步要等多久</h3>
 
-<p>耗时这件事界面会自己告诉你，卡片上跑着秒数。我记下来的几个：<strong>Smart Mesh那辆出租车的贴图跑了135秒</strong>，Assets页上另一个正在生成的模型显示102秒；9月12日那批里铁塔那件的纹理是109秒。</p>
+<p>耗时这件事界面会自己告诉你，卡片上跑着秒数。我记下来的几个：<strong>智能网格那辆出租车的贴图跑了135秒</strong>，Assets页上另一个正在生成的模型显示102秒；9月12日那批里铁塔那件的纹理是109秒。</p>
 
 <p>这一节的秒数都是<strong>算子耗时</strong>（算子耗时口径，不含上传与排队；端到端要往上加，两个口径的实测差见§01，词条见附录D）。<strong>排预算按端到端算，比较不同配置的快慢按算子耗时算，两个口径别混。</strong></p>
 
-<p>HD Model那一侧的生成，表单上直接标着「Expect longer wait times」。这一档我<strong>没有逐件采过算子耗时</strong>，手上只有端到端的数：小王子那批16件（§08）和名画那两件（§09），都是<strong>一件约四分钟</strong>，走的都是v3.1加8K贴图。<strong>所以全书凡是写「HD Model一件多久」，读的都是端到端那一头</strong>，和上面那几个算子秒数不是一个口径，别拿来互相换算。</p>
+<p>高精度模型那一侧的生成，表单上直接标着「Expect longer wait times」。这一档我<strong>没有逐件采过算子耗时</strong>，手上只有端到端的数：小王子那批16件（§08）和名画那两件（§09），都是<strong>一件约四分钟</strong>，走的都是v3.1加8K贴图。<strong>所以全书凡是写「高精度模型一件多久」，读的都是端到端那一头</strong>，和上面那几个算子秒数不是一个口径，别拿来互相换算。</p>
 
 <p>这个量级意味着一件事：<strong>不要守着页面等。</strong>Pro档给的是10个并发任务，把一批要做的东西一次性都提交出去，回头再统一收，比一件一件盯着快得多。Assets页那排筛选标签这时候特别好用，Untextured那一档能一眼挑出还欠一步贴图的。</p>
 
@@ -2366,7 +2364,7 @@ set.call(tb, '15000');
 
 <h3>拆不好的时候长什么样</h3>
 
-<p>拆件不是每次都给你想要的那种分法。我这次Balanced档标称的是6到15件，实际出了36件，轮子、车门、车顶这些关键件都对，但也有一批很小的零碎块（保险杠上的几条、车灯周围的边）被单独分了出来。这种时候不用重跑，在Part List里把相邻的几块选中点Merge并回去就行。</p>
+<p>拆件不是每次都给你想要的那种分法。09-11那次Balanced档标称的是6到15件，实际出了36件，轮子、车门、车顶这些关键件都对，但也有一批很小的零碎块（保险杠上的几条、车灯周围的边）被单独分了出来。这种时候不用重跑，在Part List里把相邻的几块选中点Merge并回去就行。</p>
 
 <p>重跑的话又是一次40积分，所以<strong>档位一开始就选对比事后修划算</strong>。我的经验是：想要的部件数落在6到15之间就Balanced，不要因为「多分点总没坏处」去选Detailed，碎片越多要合并的手工活越多，而且从这次的结果看，Balanced本身就可能给到比标称更多的件。</p>
 
@@ -2375,10 +2373,10 @@ set.call(tb, '15000');
 <table>
 <thead><tr><th>你想要</th><th>走哪条</th><th>价</th><th>前提</th></tr></thead>
 <tbody>
-<tr><td>轮子能转、门能开</td><td>Segment，Balanced档</td><td>40（按钮上的数，官方表里是5，差在哪见§07）</td><td>模型必须是三角面、未绑骨</td></tr>
-<tr><td>一个几何多种外观</td><td>Texture，带参考图</td><td>按档位，20–30</td><td>无</td></tr>
-<tr><td>Smart Mesh出的灰模要上色</td><td>Texture</td><td>30</td><td>无</td></tr>
-<tr><td>角色既要拆件又要绑骨</td><td>先Segment再Animate</td><td>40 + 20</td><td>顺序不能反</td></tr>
+<tr><td>轮子能转、门能开</td><td>智能拆分，Balanced档</td><td>40（按钮上的数，官方表里是5，差在哪见§07）</td><td>模型必须是三角面、未绑骨</td></tr>
+<tr><td>一个几何多种外观</td><td>贴图生成，带参考图</td><td>按档位，20–30</td><td>无</td></tr>
+<tr><td>智能网格出的灰模要上色</td><td>贴图生成</td><td>30</td><td>无</td></tr>
+<tr><td>角色既要拆件又要绑骨</td><td>先智能拆分再动画</td><td>40 + 20</td><td>顺序不能反</td></tr>
 <tr><td>只是想省钱做一条街</td><td>一个几何+ N张贴图</td><td>50 + 25×N</td><td>比生成N栋便宜一半</td></tr>
 </tbody>
 </table>
@@ -2387,13 +2385,13 @@ set.call(tb, '15000');
 
 <figure><img src="images/p05-e3-loose-parts-exploded.jpg" alt="按连通分量拆出的 358 块碎片，各自随机配色炸开"><figcaption>同一辆车用「按连通分量拆」的结果：<strong>358块</strong>，每块沿「自身质心减整体质心」的方向外推0.3，随机配色。和上面Segmentation拆出的36个部件放在一起看，差别一目了然——连通分量不认识「车轮」，它只认「这堆三角形彼此连着吗」，于是一颗螺丝、一块挡板、一片窗框各算一块。Blender 4.4.3 headless跑<code>separate(type='LOOSE')</code>渲出，2026-09-11。</figcaption></figure>
 
-<p>「拆完就能各转各的」这句话，我后来把它验了。把那个36部件的GLB接进一个最小查看器，让四个轮子各绕自己的轴转45度、车身不动：</p>
+<p>「拆完就能各转各的」这句话，我后来把它验了。把那个77部件的GLB接进一个最小查看器，让四个轮子各绕自己的轴转45度、车身不动：</p>
 
 <figure><img src="images/p05-wheels-spin.jpg" alt="出租车四个轮子各自转了 45 度，车身没动"><figcaption>四个轮子各绕自己的轴转45°，车身纹丝不动——拆件的价值就在这一下。2026-09-11实拍。</figcaption></figure>
 
 <figure><img src="images/p05-parts-exploded.jpg" alt="四个轮子沿车宽方向外推，离开车身"><figcaption>同一个模型，四个轮子沿车宽外推0.3。机位抬到27°才不会让远侧两个轮子躲在车身后面。</figcaption></figure>
 
-<div class="warning"><strong>拆出来的部件没有名字。</strong>36个部件全叫<code>tripo_part_N</code>，一个语义标签都没有，所以「哪四个是轮子」只能从几何里读：贴着地、在四个角、薄的那一轴是车宽方向、断面近圆。四个象限各取最大的一块，命中<code>tripo_part_3 / 4 / 5 / 8</code>。你要做的如果是「点一下车门就打开」，这一步的活儿躲不掉——拆件给你的是可动的零件，不是认识自己的零件。</div>
+<div class="warning"><strong>拆出来的部件没有名字。</strong>77个部件全叫<code>tripo_part_N</code>，一个语义标签都没有，所以「哪四个是轮子」只能从几何里读：贴着地、在四个角、薄的那一轴是车宽方向、断面近圆。按这套判据筛出19个零件——一个轮子不是一块，而是轮胎、轮辋、毂盖4到5件套在一起，得先按象限把它们聚成四簇，再整簇去转，否则一转轮辐就散架。四簇分别是：左后<code>1/35/41/57/73</code>，右后<code>8/36/44/63/68</code>，左前<code>25/37/39/66</code>，右前<code>2/15/40/53/74</code>。你要做的如果是「点一下车门就打开」，这一步的活儿躲不掉——拆件给你的是可动的零件，不是认识自己的零件。</div>
 
 </div>
 
@@ -2428,7 +2426,7 @@ set.call(tb, '15000');
 
 <h3>入口，和那个必须改的下拉</h3>
 
-<p>左侧工具栏最后一个是Animate，页面标题叫「3D Rigging &amp; Animation」。</p>
+<p>左侧工具栏最后一个是动画，页面标题叫「3D Rigging &amp; Animation」。</p>
 
 <figure><img src="images/studio-16-animate-library.png" alt="Tripo Studio的Animate页，AI Model下拉显示v2.5 - Good for Animals，下面是动画库网格"><figcaption>Animate页面板：AI Model下拉<strong>默认是「v2.5 - Good for Animals」</strong>，下面是Retry 20、Skeleton开关、Model Type（这里识别成Humanoid）、搜索框、分类标签（All / Basic / Interactive / …），再往下就是动画卡片网格，第一个是walk。Tripo Studio英文界面，2026-09-11。</figcaption></figure>
 
@@ -2720,7 +2718,7 @@ set.call(tb, '15000');
 
 <p>官网Pricing页的FAQ里有一张积分表，叫「How do Credits work in Tripo AI?」，把每个动作的基础价和可选加项分开列。这是官方唯一一处把这件事说明白的地方，生成按钮上不会告诉你。</p>
 
-<figure><img src="images/pricing-04-credits-table.png" alt="Tripo官网Pricing页FAQ里的积分表，六行功能各自的Credits和Add-ons"><figcaption>tripo3d.ai/pricing页面底部FAQ第一条展开后的官方积分表。官方表是三列：Feature／Credits／Add-ons (Optional)，<strong>每一行的加项只属于这一行的功能</strong>。六行基础功能是HD Generate 15、Smart Mesh 35、Segmentation 5、Retopology 5、Texture Gen 10、Auto Rig 20，其中Auto Rig那一格官方写的是「-」，没有加项。<strong>HD Generate那一行的15，就是生成一个模型的真实底价。</strong>2026-09-11 14:50。</figcaption></figure>
+<figure><img src="images/pricing-04-credits-table.png" alt="Tripo官网Pricing页FAQ里的积分表，六行功能各自的Credits和Add-ons"><figcaption>tripo3d.com/pricing页面底部FAQ第一条展开后的官方积分表。官方表是三列：Feature／Credits／Add-ons (Optional)，<strong>每一行的加项只属于这一行的功能</strong>。六行基础功能是HD Generate 15、Smart Mesh 35、Segmentation 5、Retopology 5、Texture Gen 10、Auto Rig 20，其中Auto Rig那一格官方写的是「-」，没有加项。<strong>HD Generate那一行的15，就是生成一个模型的真实底价。</strong>2026-09-11 14:50。</figcaption></figure>
 <p><strong>官方那张六行的积分表（每个功能的基础分和可选加项）在附录C</strong>，截至2026-09的标价，以官网为准。</p>
 
 <p>拿它去对界面上实测到的数字，两项严丝合缝，两项要多看一眼：</p>
@@ -2744,7 +2742,7 @@ set.call(tb, '15000');
 
 <p>两套分法的差别很实在，它决定你能动哪一块。<strong>界面把Texture Gen和HD Texture打包在一个开关后面，你没法只关其中一项</strong>；能动的是贴图档位，从8K拨到2K少20分。而官方表里那个15分的Ultra，在工作台的默认状态下本来就是关着的。</p>
 
-<p><strong>所以那个50不是几何本身的价钱，其中35分买的是8K贴图。</strong>这和面数那边是同一件事的两面：<strong>默认值替你做了选择。</strong>差别在于面数那个默认值（HD Model那边的Polycount默认20000，而滑块量程是500到100万）恰好落在可用区间，而贴图默认给的是最贵的8K档。知道了这一点，你就有了一个可以调的旋钮。</p>
+<p><strong>所以那个50不是几何本身的价钱，其中35分买的是8K贴图。</strong>这和面数那边是同一件事的两面：<strong>默认值替你做了选择。</strong>差别在于面数那个默认值（高精度模型那边的面数控制默认20000，而滑块量程是500到200万）恰好落在可用区间，而贴图默认给的是最贵的8K档。知道了这一点，你就有了一个可以调的旋钮。</p>
 
 <h3>智能网格那条线实扣多少</h3>
 
@@ -2756,7 +2754,7 @@ set.call(tb, '15000');
 <thead><tr><th>这一步</th><th>界面</th><th>实扣</th></tr></thead>
 <tbody>
 <tr><td>智能网格生成（P2.0 - Preview）</td><td>「100划掉65」</td><td><strong>65</strong></td></tr>
-<tr><td>生成完再走一次纹理生成</td><td>「纹理生成30」</td><td><strong>30</strong></td></tr>
+<tr><td>生成完再走一次贴图生成</td><td>「纹理生成30」</td><td><strong>30</strong></td></tr>
 <tr><td><strong>一件带贴图的完整成品</strong></td><td>—</td><td><strong>95</strong></td></tr>
 </tbody>
 </table>
@@ -2785,15 +2783,15 @@ set.call(tb, '15000');
 
 <p>这条对你的实际意义是：<strong>Pro那3000积分不是只够做60个模型，是够做200个</strong>。前提得说清楚，官方那个分母15算的是纯几何，不含贴图；真要带贴图，2K档一件30分，3000积分是100件。就算按这个算，也比按默认的50分一件多出一倍。</p>
 
-<p>工作台HD Model表单的全貌在§01：General Settings下的「Geometry &amp; Texture」带New角标，Members Only区有「Generate in Parts（Trial x1，默认关）」。</p>
+<p>工作台高精度模型表单的全貌在§01：通用设置下是「几何与贴图」，订阅专享区有「分部件生成（带New角标，默认关）」。</p>
 
 <h3>但按钮上的数字才是当场生效的那个</h3>
 
-<p>我得把一处对不上的地方摊出来。首页那个快捷生成框里有个二选一，Best Quality和Clean Topology，选前者时按钮写的是55，不是50。</p>
+<p>我得把一处对不上的地方摊出来。首页那个快捷生成框里有个二选一，高精度模型和智能网格，选前者时按钮写的是55，不是50。</p>
 
-<p>首页那个快捷入口的样子见§01：拖一张图进来，下面Best Quality / Clean Topology二选一。<strong>选Best Quality时按钮是「Generate 55」，比工作台表单的50多5分</strong>——这5分对应哪个开关，我没在界面上核出来。</p>
+<p>首页那个快捷入口的样子见§01：拖一张图进来，下面高精度模型/智能网格二选一。<strong>选高精度模型时按钮是「Generate 55」，比工作台表单的50多5分</strong>——这5分对应哪个开关，我没在界面上核出来。</p>
 
-<p>同一个框切到Clean Topology（图见§01），按钮变成「Generate <s>100</s> 0」，走的是智能网格那条线，Preview期间第一次免费。<strong>同一张图、同一个框，两个按钮的数差着一倍，差别只在上面那个二选一。</strong></p>
+<p>同一个框切到智能网格（图见§01），按钮变成「Generate <s>100</s> 0」，走的是智能网格那条线，Preview期间第一次免费。<strong>同一张图、同一个框，两个按钮的数差着一倍，差别只在上面那个二选一。</strong></p>
 
 <div class="callout"><strong>别背价目表，按下去之前看一眼按钮上那个数就行。</strong>它跟着你当前的开关实时变，而且不同入口的默认开关不一样，还会叠上当期的划线折扣。想知道某个加项值多少分，把它关掉，看那个数字掉了多少，这比查表准。</div>
 
@@ -2805,12 +2803,14 @@ set.call(tb, '15000');
 <thead><tr><th>功能</th><th>角标</th><th>页面原价</th><th>实付</th></tr></thead>
 <tbody>
 <tr><td>智能网格P2.0</td><td>Preview Trial x1</td><td>100</td><td>首次0，<strong>之后每笔65</strong>（原价被划掉的折后价）</td></tr>
-<tr><td>Part Segmentation</td><td>New Function Trial x1</td><td>40</td><td>0（那天）</td></tr>
-<tr><td>Generate in Parts</td><td>Trial x1</td><td>+30</td><td>没试</td></tr>
+<tr><td>智能拆分</td><td>New Function Trial x1</td><td>40</td><td>0（那天）</td></tr>
+<tr><td>分部件生成</td><td>Trial x1</td><td>+30</td><td>没试</td></tr>
 </tbody>
 </table>
 
 <p>截至2026-09界面实测，以当天按钮上的数为准。</p>
+
+<p>有一处要说在这儿，免得你翻到§01时犯嘀咕：上表「分部件生成」那一行记的是我2026-09-11在国际站界面上看到的角标；§01那张09-14拍的国区截图上，这一项挂的已经是New，不是Trial x1。是国区和国际站的差别，还是这三天官方改了角标，我没分开验。<strong>角标会变、价目表会过期，只有按钮上当场显示的那个数不会</strong>——这正是全书反复说「以你按下去之前按钮上那个数为准」的原因。</p>
 
 <p>智能网格的AI Model下拉见§01：P2.0 – Preview带「Trial x1」，另一项是P1.0 – Fast。<strong>规划预算时按你实际会付的那个数算，Trial只有一次。</strong></p>
 
@@ -2856,9 +2856,9 @@ set.call(tb, '15000');
 <table>
 <thead><tr><th>动作</th><th>耗时</th><th>花积分吗</th></tr></thead>
 <tbody>
-<tr><td>HD Model生成一件</td><td>端到端约四分钟（表单上标着Expect longer wait times；这一档没有逐件算子耗时，口径见§05）</td><td>50</td></tr>
+<tr><td>高精度模型生成一件</td><td>端到端约四分钟（表单上标着Expect longer wait times；这一档没有逐件算子耗时，口径见§05）</td><td>50</td></tr>
 <tr><td>智能网格生成一件</td><td>17到65秒，随面数预算变</td><td>65</td></tr>
-<tr><td>纹理生成一件</td><td>109秒</td><td>30</td></tr>
+<tr><td>贴图生成一件</td><td>109秒</td><td>30</td></tr>
 <tr><td>自动绑定一次</td><td>3到19秒</td><td>20</td></tr>
 <tr><td>本地批量减面25件</td><td><strong>131秒</strong>，平均5.2秒/件</td><td>0</td></tr>
 <tr><td>19分钟做完一个可玩demo</td><td>星月夜那条线的实际用时</td><td>200</td></tr>
@@ -2889,7 +2889,7 @@ set.call(tb, '15000');
 <thead><tr><th>做法</th><th>效果</th><th>适用条件</th></tr></thead>
 <tbody>
 <tr><td>按用途给贴图定档，远景件拨到2K</td><td>单价50 → 30</td><td>近景特写留高档，主角别省</td></tr>
-<tr><td>只要几何，材质在引擎里给</td><td>单价50 → 15</td><td>拿到的是灰模。事后再走Texture是30，加起来45，所以要一开始就确定</td></tr>
+<tr><td>只要几何，材质在引擎里给</td><td>单价50 → 15</td><td>拿到的是灰模。事后再走贴图生成是30，加起来45，所以要一开始就确定</td></tr>
 <tr><td>导出时纹理分辨率选1k</td><td>不动积分，省的是显存和加载时间</td><td>几乎没有代价，游戏距离上看不出</td></tr>
 <tr><td>一个几何配N张贴图，而不是生成N个模型</td><td>50+25×N，对上50×N</td><td>形状全一样，只适合建筑、道具这类</td></tr>
 <tr><td>形状对了就改重拓扑，别重新生成</td><td>10，对上50</td><td>只在形状本身是对的时候成立</td></tr>
@@ -3557,7 +3557,7 @@ set.call(tb, '15000');
 
 <h3>送进Tripo这一段是纯机械活，只有一件事要盯</h3>
 
-<p>首页生成表单的样子见§01。设计图拖进去，模式选Best Quality，点Generate；按钮上那个积分数会随加项开关变。</p>
+<p>首页生成表单的样子见§01。设计图拖进去，模式选高精度模型，点生成；按钮上那个积分数会随加项开关变。</p>
 
 <p>我在浏览器自动化的笔记里给这一段下过一句评语：批量生成本身是机械活，设计图（Agent出）→ 上传 → 选v3.1高精度 → 提交 → 轮询积分对账 → 拿接口取GLB。7个连着跑没有额外的坑。</p>
 
@@ -3569,9 +3569,9 @@ set.call(tb, '15000');
 
 <h3>09-12那批：网页端连着提交十几件，四条实操</h3>
 
-<p>上面那句「纯机械活」是2026-09-10写的，当时一批只有7件。9月12号我为了给视频重做素材，在网页端一口气跑了14次生成加13次纹理生成，这才发现连着提交和提交一件是两回事。四条，按踩到的顺序写。</p>
+<p>上面那句「纯机械活」是2026-09-10写的，当时一批只有7件。9月12号我为了给视频重做素材，在网页端一口气跑了14次生成加13次贴图生成，这才发现连着提交和提交一件是两回事。四条，按踩到的顺序写。</p>
 
-<figure><img src="images/p10-p2-batch-overview.png" alt="十二件巴黎资产的等距渲图排成两行：面包店、花店、报刊亭、凯旋门、圣心堂、出租车、货运三轮车、埃菲尔铁塔、西装男、骑车女孩、长椅、街角咖啡馆，每件下面标着文件名和面数"><figcaption>那一批的产出，2026-09-12。每件下面是文件名和三角面数（12k到29k）。从13:39跑到13:54，网格阶段12件用了约15分钟；加上后面补做的两件和13次纹理生成，这一批实付约1320积分。</figcaption></figure>
+<figure><img src="images/p10-p2-batch-overview.png" alt="十二件巴黎资产的等距渲图排成两行：面包店、花店、报刊亭、凯旋门、圣心堂、出租车、货运三轮车、埃菲尔铁塔、西装男、骑车女孩、长椅、街角咖啡馆，每件下面标着文件名和面数"><figcaption>那一批的产出，2026-09-12。每件下面是文件名和三角面数（12k到29k）。从13:39跑到13:54，网格阶段12件用了约15分钟；加上后面补做的两件和13次贴图生成，这一批实付约1320积分。</figcaption></figure>
 
 <div class="step"><div class="step-num">1</div><div class="step-content"><h4>每提交一件，必须回到生成页重新开一次</h4><p>提交完一件，页面会留在结果视图上。这时候如果直接接着传下一张图，会失败。那个图片输入框已经被前端清掉了，你以为在上传，其实文件根本没进去。<strong>正确做法是每件之间导航回<code>/zh/workspace/generate</code>，从干净的表单重新开始。</strong>我一开始图省事想连着传，白白浪费了两轮。</p></div></div>
 
@@ -3593,7 +3593,7 @@ set.call(tb, '15000');
 
 <p>错在读图的方式，不在模型。低多边形模型在夜景低角度近距离下会退化成剪影，红玫瑰缩成一个红团，本来就该这样。而Tripo的预览是免费、直接、权威的一手证据，任务详情页一进去就是它，我却跳过了它去猜。</p>
 
-<p>Assets页见§03。顶部筛选按批次属性分：All / Smart Mesh / Untextured / Textured / Rigged，批量做完之后靠它点数。</p>
+<p>资产页见§03。顶部筛选按批次属性分：All / Smart Mesh / Untextured / Textured / Rigged，批量做完之后靠它点数。</p>
 
 <figure>
   <img src="images/p10-asset-rail.jpg" alt="Tripo 工作台右侧资产栏，排着小王子、T-Pose 人、蛇、猴面包树、狐狸、玫瑰等缩略图">
@@ -3651,7 +3651,7 @@ set.call(tb, '15000');
 <strong>动手之前先确认机器上有Node。</strong>CLI和Codex插件这两条路都靠它，官方要求是<strong>Node.js 20或更新</strong>。终端里敲<code>node -v</code>，打得出<code>v20.x</code>以上就行；提示<code>command not found</code>就先去<code>nodejs.org</code>下当前LTS装一遍，macOS也可以<code>brew install node</code>，装完重开一个终端窗口再验。<strong>本书里凡是<code>npm</code>或<code>npx</code>开头的命令，都以这一步为前提</strong>，§04、§12、§13、§14的降贴图命令也算在内。
 </div>
 
-<figure><img src="images/dev-01-platform-home.png" alt="Tripo开发者平台首页"><figcaption>developers.tripo3d.ai首页，2026-09-11。裸域会302跳到中文版。首屏那段代码就是全部API的样子：POST一个端点、带Bearer token。页面中部「一条指令，让Agent接入Tripo」那块，是整个vibe coding路线的入口。</figcaption></figure>
+<figure><img src="images/dev-01-platform-home.png" alt="Tripo开发者平台首页"><figcaption>developers.tripo3d.com首页，2026-09-11。裸域会302跳到中文版。首屏那段代码就是全部API的样子：POST一个端点、带Bearer token。页面中部「一条指令，让Agent接入Tripo」那块，是整个vibe coding路线的入口。</figcaption></figure>
 
 <table>
 <thead><tr><th>路径</th><th>我接过没有</th><th>门槛</th><th>什么时候选它</th></tr></thead>
@@ -3667,7 +3667,7 @@ set.call(tb, '15000');
 <div class="callout">
 <strong>按你是谁，先看这一节帮不帮得上你。</strong>
 <br><strong>你想让Claude Code、Cursor或者Codex替你调生成</strong>——这一节的主干就是写给你的：装、登录、体检、配MCP、发起生成，每一步长什么样、卡在哪、退出码怎么读，全在下面。到「发起生成」为止都是我机器上真跑出来的。
-<br><strong>你想把Tripo接进自己的网站或产品</strong>——那你要的是API那条，而<strong>这一节给你的只有官方口径和入口在哪，没有一行是我机器上跑出来的</strong>。下面「API」那一小节会把你自己得补的三件事点名，与其在这儿等，不如直接去<code>developers.tripo3d.ai</code>的Quick Start照着写，那是唯一的一手来源。
+<br><strong>你想把Tripo接进自己的网站或产品</strong>——那你要的是API那条，而<strong>这一节给你的只有官方口径和入口在哪，没有一行是我机器上跑出来的</strong>。下面「API」那一小节会把你自己得补的三件事点名，与其在这儿等，不如直接去<code>developers.tripo3d.com</code>的Quick Start照着写，那是唯一的一手来源。
 <br><strong>你只想在网页上生成、然后一键送进Blender或Unity</strong>——跳到本节最后的DCC Bridge，它和AI Agent没关系，是一条传输通道。
 </div>
 
@@ -3678,12 +3678,12 @@ set.call(tb, '15000');
 <p><strong>CLI那条卡在Tripo的API钱包是0积分。Codex那条卡在我的Codex订阅额度耗尽。</strong>两条路都走到了「发起生成」才被拦下，全程Tripo API积分变化是<strong>0 → 0，一分没花，也没买</strong>。</p>
 
 <div class="warning">
-<strong>为什么钱包是0？因为API和Studio订阅是两套账，官方明说不互通。</strong>我在开发者平台FAQ里把那条展开了，原文是：「<strong>不能。Tripo API与Tripo Studio的计费体系相互独立，需要分别购买。</strong>」实测完全对得上：同一个账号，Studio里是专业版订阅、生成按钮照常能点；<code>platform.tripo3d.ai/billing</code>上API Wallet是<strong>0 / 0 Credit</strong>，CLI里<code>tripo balance</code>也是0。<strong>你在Studio充的钱，一分都用不到CLI和插件上。</strong>
+<strong>为什么钱包是0？因为API和Studio订阅是两套账，官方明说不互通。</strong>我在开发者平台FAQ里把那条展开了，原文是：「<strong>不能。Tripo API与Tripo Studio的计费体系相互独立，需要分别购买。</strong>」实测完全对得上：同一个账号，Studio里是专业版订阅、生成按钮照常能点；<code>platform.tripo3d.com/billing</code>上API Wallet是<strong>0 / 0 Credit</strong>，CLI里<code>tripo balance</code>也是0。<strong>你在Studio充的钱，一分都用不到CLI和插件上。</strong>
 </div>
 
-<figure><img src="images/p11-cli-07-faq-billing.jpg" alt="开发者平台FAQ展开后的计费问答"><figcaption>developers.tripo3d.ai首页FAQ展开后的原文，2026-09-11实测。这一条在我第一次采集时是折叠的、答案没取到，这次点开了。</figcaption></figure>
+<figure><img src="images/p11-cli-07-faq-billing.jpg" alt="开发者平台FAQ展开后的计费问答"><figcaption>developers.tripo3d.com首页FAQ展开后的原文，2026-09-11实测。这一条在我第一次采集时是折叠的、答案没取到，这次点开了。</figcaption></figure>
 
-<figure><img src="images/p11-cli-08-api-wallet.jpg" alt="platform.tripo3d.ai的API钱包页面"><figcaption>同一个账号在<code>platform.tripo3d.ai/billing</code>上的API Wallet：0 / 0 Credit。旁边那个「Get Your free wallet(14 days)」按钮是新账号的一次性权益，<strong>我没有点它</strong>：它带14天倒计时，该留给真正要连着跑测试的那一周。</figcaption></figure>
+<figure><img src="images/p11-cli-08-api-wallet.jpg" alt="platform.tripo3d.com的API钱包页面"><figcaption>同一个账号在<code>platform.tripo3d.com/billing</code>上的API Wallet：0 / 0 Credit。旁边那个「Get Your free wallet(14 days)」按钮是新账号的一次性权益，<strong>我没有点它</strong>：它带14天倒计时，该留给真正要连着跑测试的那一周。</figcaption></figure>
 
 <p>顺手把另外四条折叠的FAQ也取全了，这五条合起来才是完整的计费图景：</p>
 
@@ -3762,7 +3762,7 @@ set.call(tb, '15000');
 <figure><img src="images/p11-cli-04-make.jpg" alt="tripo make因积分不足退出，退出码4"><figcaption>喂的是一张巴黎长椅的参考图。18秒后被拦下：<code>积分不足 → 运行 tripo topup 充值</code>，<code>EXIT=4</code>。<strong>这正好实测印证了退出码表里那条「4 =积分不足，模型还没开始生成，不计费」</strong>，余额前后都是0，对得上。</figcaption></figure>
 
 <div class="callout">
-<strong>这条命令顺手打出了一个文档里没有的事实：</strong><code>quad=true forces FBX output (quad topology cannot be stored in GLB)</code>。<strong>四边面拓扑存不进GLB，会被强制转成FBX。</strong>这同时解释了§03里那个现象：Smart Mesh任务详情接口里的<code>model_url</code>是一个<code>.fbx</code>而不是<code>.glb</code>。想要四边面就别指望拿到GLB。
+<strong>这条命令顺手打出了一个文档里没有的事实：</strong><code>quad=true forces FBX output (quad topology cannot be stored in GLB)</code>。<strong>四边面拓扑存不进GLB，会被强制转成FBX。</strong>这同时解释了§03里那个现象：智能网格任务详情接口里的<code>model_url</code>是一个<code>.fbx</code>而不是<code>.glb</code>。想要四边面就别指望拿到GLB。
 </div>
 
 <p>还有一条关于模型版本的更正。文档页只提<code>tripo-p1</code>和<code>tripo-v3.1</code>，说「面数预算两万以内走p1、其余默认v3.1」。但<code>tripo docs --topic commands/make</code>里还有一个<strong><code>tripo-p2</code></strong>，而且它从不被自动选中，必须手动写<code>--model tripo-p2</code>。三个别名映射到的线上版本号是<code>v3.1-20260211</code>/ <code>P1-20260311</code> /<code>P2-20260801</code>。</p>
@@ -3865,9 +3865,9 @@ tripo make @last --then convert:fbx</code></pre>
 
 <h4>API</h4>
 
-<p>API Key在<strong>platform.tripo3d.ai</strong>的API Keys页创建，只显示一次。基址<code>https://openapi.tripo3d.ai/v3</code>，认证走<code>Authorization: Bearer &lt;token&gt;</code>。所有生成接口都是异步的：POST拿<code>task_id</code>，然后<code>GET /v3/tasks/{task_id}</code>轮到<code>status: "success"</code>，从<code>output.model_url</code>下GLB。官方给的节奏是每2秒轮一次、不要超过每秒1次请求，典型生成10到120秒。</p>
+<p>API Key在<strong>platform.tripo3d.com</strong>的API Keys页创建，只显示一次。基址<code>https://openapi.tripo3d.com/v3</code>，认证走<code>Authorization: Bearer &lt;token&gt;</code>。所有生成接口都是异步的：POST拿<code>task_id</code>，然后<code>GET /v3/tasks/{task_id}</code>轮到<code>status: "success"</code>，从<code>output.model_url</code>下GLB。官方给的节奏是每2秒轮一次、不要超过每秒1次请求，典型生成10到120秒。</p>
 
-<figure><img src="images/p11-api-quickstart.jpg" alt="Tripo API Quick Start文档"><figcaption>developers.tripo3d.ai/en/docs/quick-start，2026-09-11采集。右上角账号区已遮挡。</figcaption></figure>
+<figure><img src="images/p11-api-quickstart.jpg" alt="Tripo API Quick Start文档"><figcaption>developers.tripo3d.com/en/docs/quick-start，2026-09-11采集。右上角账号区已遮挡。</figcaption></figure>
 
 <p>文档里那条Game-Ready Character管线最值得看，它把我在§06里手点的绑骨流程写成了四个接口调用：</p>
 
@@ -3971,7 +3971,7 @@ tripo make @last --then convert:fbx</code></pre>
 
 <div class="step"><div class="step-num">2</div><div class="step-content"><h4>充值，以及领不领那个14天免费钱包</h4><p>一个花钱，一个是一次性且带倒计时的权益。</p></div></div>
 
-<div class="step"><div class="step-num">3</div><div class="step-content"><h4>保证浏览器里已经登录developers.tripo3d.ai</h4><p>没登录态的话授权页会先拦一道登录或注册，那一步可能带验证码或第三方登录。</p></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><h4>保证浏览器里已经登录developers.tripo3d.com</h4><p>没登录态的话授权页会先拦一道登录或注册，那一步可能带验证码或第三方登录。</p></div></div>
 
 <div class="step"><div class="step-num">4</div><div class="step-content"><h4>额度耗尽之后怎么办</h4><p>等重置还是买credits，同样是花钱决策。</p></div></div>
 
@@ -4302,8 +4302,8 @@ mixer.setTime((x*0.37 + z*0.11) % walkClip.duration);</code></pre>
 <table>
 <thead><tr><th>模式</th><th>出几张贴图</th><th>材质参数</th></tr></thead>
 <tbody>
-<tr><td>v3.1（HD Model）</td><td>base color、normal、ORM三张</td><td><code>metallic=1 / roughness=1</code>，真正的粗糙度和金属度由ORM那张图逐像素给</td></tr>
-<tr><td>P2.0（Smart Mesh）</td><td><strong>只有base color一张</strong></td><td>转出来是<code>metallic=0 / roughness=0.9</code>，全模型一个值</td></tr>
+<tr><td>v3.1（高精度模型）</td><td>base color、normal、ORM三张</td><td><code>metallic=1 / roughness=1</code>，真正的粗糙度和金属度由ORM那张图逐像素给</td></tr>
+<tr><td>P2.0（智能网格）</td><td><strong>只有base color一张</strong></td><td>转出来是<code>metallic=0 / roughness=0.9</code>，全模型一个值</td></tr>
 </tbody>
 </table>
 
@@ -4491,7 +4491,7 @@ window.createImageBitmap = undefined;</code></pre>
 
 <figure><img src="images/p12-city-map.jpg" alt="巴黎demo全城地图"><figcaption>巴黎demo按Tab打开的全城地图。1375个程序化街廓加24座桥加约6975米河道，Tripo资产只有沿街那一圈建筑、车辆和地标。地图包围盒约6050×5340米，不是可通行面积。</figcaption></figure>
 
-<figure><img src="images/p12-city-eiffel.jpg" alt="巴黎demo铁塔视角"><figcaption>铁塔是Tripo生成的（1.9万三角面，天生就低，不需要重拓扑），底下的街道和河堤是程序化城市层。这张和下一张都来自发布前的QA自检集。</figcaption></figure>
+<figure><img src="images/p12-city-eiffel.jpg" alt="巴黎demo铁塔视角"><figcaption>铁塔是Tripo生成的（1.9万三角面，天生就低，不需要重拓扑），底下的街道和河堤是程序化城市层。这张是2026-09-14复核时重拍的，下一张来自发布前的QA自检集。</figcaption></figure>
 
 <figure><img src="images/p12-city-bridge.jpg" alt="巴黎demo亚历山大三世桥"><figcaption>桥面高度是按实际桥面网格取样缓存的，不是套街面<code>y=0</code>。这条是接旧城市层时必须做的适配之一，不做的话车会从桥上掉下去。</figcaption></figure>
 
@@ -4641,7 +4641,7 @@ bpy.ops.export_scene.gltf(filepath=DST, export_format='GLB', export_apply=True)<
 
 <p><strong>拆不出来。</strong>Tripo的输出不是一整块干净网格，而是几百个100到650面的碎片。按连通分量切只能得到这些碎片，得不到「轮子/车身/车门」这种语义部件，因为轮子和车身在几何上是糊在一起的。</p>
 
-<p>这条结论解释了两件事。我那个游戏里车轮转不了，根因是源模型里根本没有可分离的轮子，跟我做没做没关系。而Tripo自己那个「部件拆分」功能之所以是刚需，是因为它做的是语义拆分（按物体含义分件），这是几何算法做不到的事。拆件的实操和实测结果在§05，这里不重复。</p>
+<p>这条结论解释了两件事。我那个游戏里车轮转不了，根因是源模型里根本没有可分离的轮子，跟我做没做没关系。而Tripo自己那个「智能拆分」功能之所以是刚需，是因为它做的是语义拆分（按物体含义分件），这是几何算法做不到的事。拆件的实操和实测结果在§05，这里不重复。</p>
 
 <h3>E4：自动权重绑上了，但权重是错的</h3>
 
@@ -4728,9 +4728,9 @@ bpy.ops.export_scene.gltf(filepath=DST, export_format='GLB', export_apply=True)<
 
 <div class="step"><div class="step-num">2</div><div class="step-content"><h4>本地先把压缩解掉</h4><p><code>npx --yes @gltf-transform/cli copy in.glb out.glb</code>，走一遍完整读写流程就把meshopt脱掉了。这一招和§14里让Unity能导入的那一招是同一条。</p></div></div>
 
-<p><strong>第二种：为了省积分关掉纹理生成的那种。</strong>这条是个陷阱，值得专门说。</p>
+<p><strong>第二种：为了省积分关掉贴图生成的那种。</strong>这条是个陷阱，值得专门说。</p>
 
-<p>v3.1这条路把「纹理生成」关掉，价格会明显往下走。听起来像是「我先出个白模，贴图以后再说」，但实测的产物是这样的：</p>
+<p>v3.1这条路把「贴图生成」关掉，价格会明显往下走。听起来像是「我先出个白模，贴图以后再说」，但实测的产物是这样的：</p>
 
 <pre><code>GLB 顶点属性：只有 POSITION 和 NORMAL
 materials = 0   textures = 0   images = 0</code></pre>
@@ -5445,7 +5445,7 @@ transform.rotation = Quaternion.LookRotation(
 <tbody>
 <tr><td>1 ·生成资产</td><td><strong>✅成立</strong></td><td>29个独立资产，16711到46196面，默认落在可用区间（这个29和城里那23件数的不是同一批，口径见§16）</td></tr>
 <tr><td>2a ·几何连通分量分件</td><td><strong>❌不成立</strong></td><td>E3：Blender按连通分量（loose parts）把2CV切出358个碎片，拿不到轮子</td></tr>
-<tr><td>2b ·语义分件</td><td><strong>✅成立</strong></td><td>§05：Tripo Segment的Balanced档拆出36个部件，轮子、车门、车顶各自独立</td></tr>
+<tr><td>2b ·语义分件</td><td><strong>✅成立</strong></td><td>§05：Tripo分部件生成的精细档拆出77个部件，轮子、车门、车顶各自独立</td></tr>
 <tr><td>3 ·自动权重绑定</td><td><strong>❌不成立</strong></td><td>E4：4关节，转一下脊柱整个人就塌</td></tr>
 <tr><td>4 · Tripo自带绑骨</td><td><strong>✅成立</strong></td><td>E5：41关节+ 2.375秒走路循环，20积分</td></tr>
 <tr><td>5 ·进游戏</td><td><strong>✅成立</strong></td><td>巴黎demo里6个绑骨行人真的在走，另12个是五种静态行人站着（见§18），桌面加移动端全PASS</td></tr>
@@ -5543,7 +5543,7 @@ transform.rotation = Quaternion.LookRotation(
 
 <figure>
   <img src="images/p16-eiffel-city.jpg" alt="巴黎来信首页，铁塔与背后的白色城市">
-  <figcaption>这一张把分工讲得最清楚：中间那座蓝紫色的铁塔是Tripo生成的GLB，它背后那一整片白色的城市、河道和桥，全是程序化代码画出来的。「巴黎来信」首页，2026-09-10。</figcaption>
+  <figcaption>这一张把分工讲得最清楚：中间那座暖褐铜色的铁塔是Tripo生成的GLB，它背后那一整片白色的城市、河道和桥，全是程序化代码画出来的。「巴黎来信」首页，2026-09-14复核截图。</figcaption>
 </figure>
 
 <p>我把这条说在最前面，是因为它太容易被说糊。做完一个这样的demo，最省事的说法是「我用AI生成了一座巴黎」——那句话是假的，而且一旦说出口，读者照着做一定会撞墙。<strong>这条分工线本身就是这一章最值钱的内容</strong>，它决定了你要花多少积分、等多久、以及最后跑不跑得动。</p>
@@ -5586,7 +5586,7 @@ transform.rotation = Quaternion.LookRotation(
 
 <p>这两条合起来的意思是：<strong>再做一个「我也做了个3D demo」已经不新鲜，差异化只能落在分工、边界和真实成本上。</strong>所以这一章不只讲我做了什么，更多篇幅花在讲每一步花了多少积分、哪一步靠代码、哪一步AI做不到。</p>
 
-<p>品牌方的brief里提到过创作者海辛Hyacinth（@ring_hyacinth）的公开案例，原帖在这里：<br><a href="https://x.com/ring_hyacinth/status/2096704996381266424">https://x.com/ring_hyacinth/status/2096704996381266424</a><br>那是我动手前唯一的参照。我当时给自己定的目标是做得比它更完整。但这句话到今天也只是目标，<strong>我没有统一量表，也没做过对照的用户测试，所以「提升1000%」「超过100%」这种话不能当实测结论</strong>。项目文档里我把这条单独写了一行，防止自己后来忘了。</p>
+<p>我动手前唯一的参照，是创作者海辛Hyacinth（@ring_hyacinth）的一个公开案例，原帖在这里：<br><a href="https://x.com/ring_hyacinth/status/2096704996381266424">https://x.com/ring_hyacinth/status/2096704996381266424</a><br>我当时给自己定的目标是做得比它更完整。但这句话到今天也只是目标，<strong>我没有统一量表，也没做过对照的用户测试，所以「提升1000%」「超过100%」这种话不能当实测结论</strong>。项目文档里我把这条单独写了一行，防止自己后来忘了。</p>
 
 <h3>那条线画在哪：会开到跟前的才生成</h3>
 
@@ -5603,7 +5603,7 @@ transform.rotation = Quaternion.LookRotation(
 
 <p>这条线在游乐园那一轮又原样走了一遍，而且因为游乐设施天然分得开，分得比巴黎还干净：<strong>木马、摩天轮的吊舱、飞椅、茶杯、鬼屋是Tripo生成的；转的圈、轨道、转轴这些结构件是代码写的。</strong>游客会趴到木马跟前看鬃毛和缰绳，但没人会去数摩天轮那圈钢架有几个接头；反过来，那个圈只要不是正圆，所有人一眼就看出来不对（那一轮的完整分工表在§14）。同一条判据，换个题材照样用。</p>
 
-<p>为什么不能反过来？算一笔账就清楚了。那一批资产我实测下来是一件40积分（当时的账本记得很清楚：2190积分生成一棵树之后剩2150。40是4K贴图那一档，默认的8K档要50，整条阶梯在§07）。1375个街廓如果每个都生成，就是55000积分，专业版十八个月的额度。<strong>而且得排队等</strong>：2026-09-10做巴黎那批资产的时候（HD Model、4K贴图那一档），我盯着其中一个生成任务过了20多分钟还没返回，当天的开发笔记里原样记着这一行——「生成很慢：一个任务实测20+分钟仍未完成（倒计时显示不准）」（<code>paris-demo/迭代笔记-细节扩展-20260910.md</code>）。<strong>这是单次观察，不是耗时基准</strong>，我没有第二笔复现，正经的耗时口径在§05和§07。界面上那个倒计时是估算，别把它当承诺：提交完就走开，Pro的10个并发是拿来一次丢一批、回头统一收的（§07）。不过真正让「每个街廓都生成」这件事不成立的，是上面那个数量级，等多久只是顺带。</p>
+<p>为什么不能反过来？算一笔账就清楚了。那一批资产我实测下来是一件40积分（当时的账本记得很清楚：2190积分生成一棵树之后剩2150。40是4K贴图那一档，默认的8K档要50，整条阶梯在§07）。1375个街廓如果每个都生成，就是55000积分，专业版十八个月的额度。<strong>而且得排队等</strong>：2026-09-10做巴黎那批资产的时候（高精度模型、4K贴图那一档），我盯着其中一个生成任务过了20多分钟还没返回，当天的开发笔记里原样记着这一行——「生成很慢：一个任务实测20+分钟仍未完成（倒计时显示不准）」（<code>paris-demo/迭代笔记-细节扩展-20260910.md</code>）。<strong>这是单次观察，不是耗时基准</strong>，我没有第二笔复现，正经的耗时口径在§05和§07。界面上那个倒计时是估算，别把它当承诺：提交完就走开，Pro的10个并发是拿来一次丢一批、回头统一收的（§07）。不过真正让「每个街廓都生成」这件事不成立的，是上面那个数量级，等多久只是顺带。</p>
 
 <p>更要命的是，生成出来的街廓没法用。街廓要参与碰撞计算、要和路网对齐、要按桥面实际高程放车，这些都需要精确的数值，而生成模型给你的是一坨好看的网格。<strong>尺寸件用代码、形体件用AI，这条分工不是成本妥协，是能力边界。</strong></p>
 
@@ -5751,15 +5751,15 @@ transform.rotation = Quaternion.LookRotation(
   <div class="flow-item">归一化</div>
 </div>
 
-<p>先给你一个心理预期：<strong>整条流水线里，真正吃时间的是第一步的排队，不是后面的处理。</strong>25个资产（§16那23件，加后来补的两棵梧桐）的批量清洗我实测跑完只要131秒，平均5.2秒一个；而生成那一步的耗时是会波动的，我盯过一个任务20多分钟还没返回（HD Model加4K贴图那一档，出处和「这是单次观察不是耗时基准」那句在§16），界面上那个倒计时是估算不是承诺，正经的耗时口径在§05。</p>
+<p>先给你一个心理预期：<strong>整条流水线里，真正吃时间的是第一步的排队，不是后面的处理。</strong>25个资产（§16那23件，加后来补的两棵梧桐）的批量清洗我实测跑完只要131秒，平均5.2秒一个；而生成那一步的耗时是会波动的，我盯过一个任务20多分钟还没返回（高精度模型加4K贴图那一档，出处和「这是单次观察不是耗时基准」那句在§16），界面上那个倒计时是估算不是承诺，正经的耗时口径在§05。</p>
 
 <p>所以这条流水线正确的跑法是<strong>并行提交、串行清洗</strong>：生成那一步全部丢出去排队，等的时候去写游戏代码，模型陆续回来之后再一把清洗。</p>
 
 <h3>第一步：逐件生成</h3>
 
-<p>巴黎那23件走的都是网页版的「高精度模型」（HD Model / Best Quality），一件一件提交。表单长这样：</p>
+<p>巴黎那23件走的都是网页版的「高精度模型」，一件一件提交。表单长这样：</p>
 
-<p>首页生成入口见§01那张：传一张设计图，左边选Best Quality还是Clean Topology，右边按钮直接标着这次要花多少积分。</p>
+<p>首页生成入口见§01那张：传一张设计图，左边选高精度模型还是智能网格，右边按钮直接标着这次要花多少积分。</p>
 
 <p>积分账我当时记得很细：生成一棵树之前账户是2190，之后是2150，<strong>一件40积分</strong>。40是4K贴图那一档的价，同一个「高精度模型」默认走8K就是50，几何底价固定15，差额全在贴图档上（2K 30 / 4K 40 / 8K 50，再开Ultra网格65），完整阶梯在§07。23件加上中途几次重试，开发笔记当时估的是700到800积分——那是估数不是逐笔加出来的，真要按40一件硬算会更高一些。无论按哪个口径，都不到专业版月度额度的三分之一，对一个中等规模的场景生产任务，额度是够用的，不用刻意省。</p>
 
@@ -6600,7 +6600,7 @@ python3 build.py</code></pre>
 
 <figure>
   <img src="images/p19-release-menu.jpg" alt="从发布包启动的首页，铁塔与全城俯瞰">
-  <figcaption>从发布包子路径启动的首页，屏蔽外网状态下加载成功。验收要在发布包上重跑一遍，而不是在开发目录上，两者的路径基准不一样。2026-09-10。</figcaption>
+  <figcaption>从发布包子路径启动的首页，屏蔽外网状态下加载成功。验收要在发布包上重跑一遍，而不是在开发目录上，两者的路径基准不一样。2026-09-10。这张里的铁塔还是换模前那一版，顶上是平的；§04、§12那几张是换模之后重拍的，塔尖和天线都在。<strong>同一个资产的前后两版，不是两件东西</strong>——随书资源包里放的也是这张图里的旧版。</figcaption>
 </figure>
 
 <h3>发到B站Toy的三条硬约束</h3>
@@ -7258,7 +7258,7 @@ asmRestore();                     // 渲染完立刻还原</code></pre>
 
 <ul>
 <li><strong>三角面/顶点</strong>：glTF accessor里的真实计数。纯动画文件没有网格，两列都是「—」</li>
-<li><strong>贴图（张数 × 最大尺寸）</strong>：这一列必须连着生成模式一起读，两种模式给的东西不一样。<strong>v3.1（HD Model）出三张</strong>：基色、法线、金属粗糙度（ORM），所以A到F这六组全是「3 ×」。<strong>P2.0（Smart Mesh）只出一张基色</strong>，没有法线图、也没有ORM，所以G和H两组全是「1 ×」。这不是导出时漏勾了什么，是模式本身的差别，后果是同一盏灯下P2.0的件会比v3.1的哑一点，接场景之前值得在真实光照里先看一眼（§12讲怎么处理）。列里给的是张数和其中最大的那张的分辨率</li>
+<li><strong>贴图（张数 × 最大尺寸）</strong>：这一列必须连着生成模式一起读，两种模式给的东西不一样。<strong>v3.1（高精度模型）出三张</strong>：基色、法线、金属粗糙度（ORM），所以A到F这六组全是「3 ×」。<strong>P2.0（智能网格）只出一张基色</strong>，没有法线图、也没有ORM，所以G和H两组全是「1 ×」。这不是导出时漏勾了什么，是模式本身的差别，后果是同一盏灯下P2.0的件会比v3.1的哑一点，接场景之前值得在真实光照里先看一眼（§12讲怎么处理）。列里给的是张数和其中最大的那张的分辨率</li>
 <li><strong>绑骨/动画</strong>：关节数+动画片段名。全资源包只有E组这三件有骨骼</li>
 <li><strong>提示词</strong>：这批提示词都是「风格：…。画面内容：…」的两段式，风格那段一组里共用，单独引在表前；表格里给的是画面内容那段的逐字前60字，后面用省略号截断。完整提示词在资源包的<code>jobs.jsonl</code>里</li>
 </ul>
@@ -7468,7 +7468,7 @@ asmRestore();                     // 渲染完立刻还原</code></pre>
 
 <h3>G ·巴黎P2.0重生成（1K贴图档）· 40件· 52.0 MiB ·不随包</h3>
 
-<p>来源目录是<strong>P2.0重生成·1K档</strong>（<code>P2.0重生成/glb-1024/</code>），2026-09-11到09-12这两天新增的一整批，也是本附录里唯一全部走<strong>Smart Mesh P2.0</strong>的一组。它和前面A到F最大的不同不在面数，在贴图：<strong>P2.0只出一张基色图，没有法线图，也没有ORM</strong>，所以下面这张表的贴图列全是「1 ×」，不是前面那些组的「3 ×」。这不是导出时漏了，是这个模式本来就只给一张，处理办法见§12。</p>
+<p>来源目录是<strong>P2.0重生成·1K档</strong>（<code>P2.0重生成/glb-1024/</code>），2026-09-11到09-12这两天新增的一整批，也是本附录里唯一全部走<strong>智能网格P2.0</strong>的一组。它和前面A到F最大的不同不在面数，在贴图：<strong>P2.0只出一张基色图，没有法线图，也没有ORM</strong>，所以下面这张表的贴图列全是「1 ×」，不是前面那些组的「3 ×」。这不是导出时漏了，是这个模式本来就只给一张，处理办法见§12。</p>
 
 <figure class="figure-wide"><img src="images/p89-p20-assets-40.png" alt="40 件 P2.0 资产的逐件渲图网格，每格下方标着文件名与三角面数"><figcaption>G组40件排在一起。每一格是同一套灯光、同一个机位渲出来的，三座桥、六座新地标、两条船、公交警车送货车Vélib、七个各不相同的行人都在这张图里。格下的文件名和三角面数在这个尺寸上只能看个大概，逐件的准确数字看下面那张表。渲图与标注由本地脚本批量生成，2026-09-12。</figcaption></figure>
 
@@ -7585,7 +7585,7 @@ asmRestore();                     // 渲染完立刻还原</code></pre>
 
 <h3>H ·P2.0补生成（含第一件P2.0绑骨行人）· 13件· 19.2 MiB ·不随包</h3>
 
-<p>来源目录是<strong>P2.0重生成·新生成1K档</strong>（<code>P2.0重生成/glb-1024-新/</code>）。G组那38件是从账号里已有的批次里盘出来的，这13件是2026-09-12当天现做的：把G组没覆盖到的槽位补齐，外加一件全书唯一的<strong>P2.0绑骨行人</strong>。书里E组那三件绑骨资产全部是v3.1，<code>pedestrian-01-walk.glb</code>是第一件走Smart Mesh出来、再自动绑骨、再套行走动画的。</p>
+<p>来源目录是<strong>P2.0重生成·新生成1K档</strong>（<code>P2.0重生成/glb-1024-新/</code>）。G组那38件是从账号里已有的批次里盘出来的，这13件是2026-09-12当天现做的：把G组没覆盖到的槽位补齐，外加一件全书唯一的<strong>P2.0绑骨行人</strong>。书里E组那三件绑骨资产全部是v3.1，<code>pedestrian-01-walk.glb</code>是第一件走智能网格出来、再自动绑骨、再套行走动画的。</p>
 
 <figure class="figure-wide"><img src="images/p89-p20-assets-new12.png" alt="12 件新生成 P2.0 资产的逐件渲图，含面包店、花店、报亭、凯旋门、圣心堂、出租车、货运三轮、埃菲尔铁塔、西装男、骑车女、长椅、转角咖啡馆"><figcaption>H组里12件静态资产（第13件是绑骨行人，带骨架，不适合放进这种静态渲图）。铁塔那件是本轮重做的：旧件渲出来是紫蓝色的塔，新件是暖褐铜色，Tripo自己给它起的名字是<code>wooden eiffel tower</code>，说明它把这个暖褐读成了木质，颜色方向对了。渲图与标注由本地脚本批量生成，2026-09-12。</figcaption></figure>
 
@@ -7638,7 +7638,7 @@ asmRestore();                     // 渲染完立刻还原</code></pre>
 
 <h3>I ·P2.0的8K内嵌贴图原档· 15个FBX·约150 MiB ·不随包</h3>
 
-<p>来源目录是<strong>P2.0重生成·新生成原档</strong>（<code>P2.0重生成/新生成/</code>）。这是H组那13件在降贴图之前的样子：Tripo的Smart Mesh配上贴图之后，<code>model_url</code>给的是FBX不是GLB，贴图<strong>8192²内嵌在文件里</strong>。留着它有一个具体用途，<strong>当「不降贴图长什么样」的对照组</strong>。D组那六件8K原档回答的是同一个问题，但那是v3.1的三张8K；这一组是P2.0的单张8K，两组放在一起，你能看清「贴图张数」和「贴图尺寸」各自贡献了多少体积。</p>
+<p>来源目录是<strong>P2.0重生成·新生成原档</strong>（<code>P2.0重生成/新生成/</code>）。这是H组那13件在降贴图之前的样子：Tripo的智能网格配上贴图之后，<code>model_url</code>给的是FBX不是GLB，贴图<strong>8192²内嵌在文件里</strong>。留着它有一个具体用途，<strong>当「不降贴图长什么样」的对照组</strong>。D组那六件8K原档回答的是同一个问题，但那是v3.1的三张8K；这一组是P2.0的单张8K，两组放在一起，你能看清「贴图张数」和「贴图尺寸」各自贡献了多少体积。</p>
 
 <table>
 <thead><tr><th>文件</th><th>体积</th><th>说明</th></tr></thead>
@@ -7829,10 +7829,10 @@ scene.environment = studioEnv(renderer);</code></pre>
 <tr><td>第一次自动绑定失败，预览空白</td><td><strong>不是固定行为，我一度这么写是错的。</strong>2026-09-10那两次确实都是第二次才成功，但样本只有2；09-12换了一张A-Pose输入图之后，19秒第一次就过了</td><td>真正承重的不是「姿势够不够正」，是<strong>四肢和躯干分不分得开</strong>。第一次失败就重试，同时把输入图换成手臂明显离开身体的那种；重试那20积分照样要算进预算</td><td>§06 §22</td></tr>
 <tr><td>导出的绑骨模型「没有动画」</td><td>不是丢了，是分成两个文件：<code>tripo_rigging_*</code>是网格+ 41关节骨架，<code>tripo_retarget_*</code>是骨架+动画剪辑</td><td>两个都下，把前者的骨架装进场景、用后者的剪辑驱动，<code>AnimationMixer</code>按节点名字绑轨道</td><td>§06</td></tr>
 <tr><td>角色走着走着往回弹一大步</td><td>重定向出来的剪辑带位移轨，<code>Hip.position</code>的Y位移范围1.338</td><td>切掉位移轨只留旋转轨，位移归游戏代码管</td><td>§06 §22</td></tr>
-<tr><td>Smart Mesh生成完是一只灰模型，一点颜色都没有</td><td>Smart Mesh出的本来就是无贴图网格，底栏那句「Retry for better results or proceed to Texture」就是在说这件事</td><td>再走一次Texture，另付30积分。做预算时Smart Mesh要按两笔算：生成一笔、贴图一笔。<strong>Preview期的首次Trial只免生成那一笔，贴图照付30；免完之后落回的是65这个划线折扣价，不是原价100</strong>。界面上把100划掉、实扣65，所以带贴图的完整一件是65+30=95。价格以官网当时标价为准</td><td>§07</td></tr>
-<tr><td>同一张图，今天生成按钮显示65，昨天是50</td><td>不是降级也不是涨价，是上一次把Ultra Mesh Quality开着，被表单记住了。弹层顶部那行小字写着We'll automatically save your settings for next time</td><td>点生成前先把Geometry &amp; Texture弹层展开核一遍开关。这个数是拆得开的：65 =几何15 +贴图包35 + Ultra 15</td><td>§07附录C</td></tr>
+<tr><td>智能网格生成完是一只灰模型，一点颜色都没有</td><td>智能网格出的本来就是无贴图网格，底栏那句「Retry for better results or proceed to Texture」就是在说这件事</td><td>再走一次贴图生成，另付30积分。做预算时智能网格要按两笔算：生成一笔、贴图一笔。<strong>Preview期的首次Trial只免生成那一笔，贴图照付30；免完之后落回的是65这个划线折扣价，不是原价100</strong>。界面上把100划掉、实扣65，所以带贴图的完整一件是65+30=95。价格以官网当时标价为准</td><td>§07</td></tr>
+<tr><td>同一张图，今天生成按钮显示65，昨天是50</td><td>不是降级也不是涨价，是上一次把Ultra Mesh Quality开着，被表单记住了。弹层顶部那行小字写着We'll automatically save your settings for next time</td><td>点生成前先把几何与贴图弹层展开核一遍开关。这个数是拆得开的：65 =几何15 +贴图包35 + Ultra 15</td><td>§07附录C</td></tr>
 <tr><td>17个资产吃掉5.0 GB显存</td><td>导出默认给8192²贴图，一张底图268 MB（加mipmap约358 MB）</td><td><code>gltf-transform resize --width 1024 --height 1024</code>。用<code>resize</code>不用<code>optimize</code>，后者会连减面一起跑</td><td>§22</td></tr>
-<tr><td>四边面模型在Segment里选不了，上传完没反应</td><td>Segment页上写着「Unavailable for: Quad models, Rigged models」，部件拆分对四边面模型和已绑骨模型都不可用。P2.0（Smart Mesh）默认出的就是Quad</td><td>拆件要在三角面模型上做。同一张图想既拆件又要四边面，就生成两版：v3.1三角面那版拿去Segment，Quad那版留着当成品</td><td>§05</td></tr>
+<tr><td>四边面模型在智能拆分里选不了，上传完没反应</td><td>智能拆分页上写着「Unavailable for: Quad models, Rigged models」，智能拆分对四边面模型和已绑骨模型都不可用。P2.0（智能网格）默认出的就是四边面</td><td>拆件要在三角面模型上做。同一张图想既拆件又要四边面，就生成两版：v3.1三角面那版拿去智能拆分，四边面那版留着当成品</td><td>§05</td></tr>
 <tr><td>离线解析GLB读出来是乱码</td><td>CDN上拿到的是<code>_meshopt</code>压缩变体</td><td>先用gltf-transform解开；<code>tripo_retarget_</code>没有这个后缀，可以直接读</td><td>§03 §14</td></tr>
 <tr><td>下载签名URL时<code>&amp;</code>和<code>~</code>被吃掉</td><td>在shell里手敲的</td><td>交给Python的requests，或者把URL原样传给浏览器侧的下载工具</td><td>§03</td></tr>
 <tr><td>面数上限明明填了15000，出来的模型却按5000做</td><td>用脚本往输入框打字，DOM上的<code>value</code>变了，但前端框架的内部状态没收到，提交时读的还是默认值。界面显示15000、任务详情读回5000，两边都「正常」</td><td>用原生setter写值，再手动派<code>input</code>、<code>change</code>、<code>blur</code>三个事件。<strong>硬验证：设完按一次方向键右，数字变成15002就说明内部值确实是15000</strong>，没变就是没进去</td><td>§01</td></tr>
@@ -7921,7 +7921,7 @@ scene.environment = studioEnv(renderer);</code></pre>
 <li>8K贴图Free和Pro是「有限访问」，Max以上才是无限。</li>
 </ul>
 
-<div class="tip"><strong>H2.5是哪一档模型，定价页上没写，但去开发者文档对一遍命名法能对上号。</strong><code>docs.tripo3d.ai</code>把模型分成H系和P系两条线：H系是高精度那条，其中H3对应<code>v3.0</code>／<code>v3.1</code>，H2那条标的是「Stable 2.x」、默认<code>model_version</code>是<code>v2.5-20250123</code>；P系是干净拓扑那条，对应P1.0与P2.0。<strong>按这个命名法，对照表里的H2.5就是高精度线上老一代的v2.5，不是工作台默认的v3.1，也不是智能网格那条P线。</strong>这一条是我拿开发者文档的命名法推出来的，定价页本身没有明说，所以当参考用，别当官方定义。2026-09-13查。</div>
+<div class="tip"><strong>H2.5是哪一档模型，定价页上没写，但去开发者文档对一遍命名法能对上号。</strong>开发者文档（<code>developers.tripo3d.com</code>）把模型分成H系和P系两条线：H系是高精度那条，其中H3对应<code>v3.0</code>／<code>v3.1</code>，H2那条标的是「Stable 2.x」、默认<code>model_version</code>是<code>v2.5-20250123</code>；P系是干净拓扑那条，对应P1.0与P2.0。<strong>按这个命名法，对照表里的H2.5就是高精度线上老一代的v2.5，不是工作台默认的v3.1，也不是智能网格那条P线。</strong>这一条是我拿开发者文档的命名法推出来的，定价页本身没有明说，所以当参考用，别当官方定义。2026-09-13查。</div>
 
 <div class="tip"><strong>免费档能不能导出，你自己花三分钟就能当场问清楚，而且一分积分不花。</strong>三步：①注册后先生成一件（默认配置就行，200积分够）；②点Export，选你项目里真正要用的那个格式，多半是GLB或FBX；③一路点到最后一步，看它是直接给文件，还是弹出升级提示。<strong>导出本身不扣积分</strong>（见下面第三节最后一行，我拿余额前后读数验过），所以这一步花的是时间，不是那200分。这本书之所以没把这条钉死，是因为我是从Pro起步的，账号上没有免费档可以复现。</div>
 
@@ -7931,16 +7931,16 @@ scene.environment = studioEnv(renderer);</code></pre>
 
 <h3>二、每个操作多少积分（官网FAQ原文）</h3>
 
-<p>官方积分表见§07那张（tripo3d.ai/pricing底部FAQ第一条展开）。<strong>那是官方唯一一处把每个功能的积分和可选加项列全的地方。</strong></p>
+<p>官方积分表见§07那张（tripo3d.com/pricing底部FAQ第一条展开）。<strong>那是官方唯一一处把每个功能的积分和可选加项列全的地方。</strong></p>
 
 <table>
 <thead><tr><th>功能</th><th>基础积分</th><th>可选附加项</th></tr></thead>
 <tbody>
 <tr><td>HD Generate（高精度生成）</td><td>15</td><td>Ultra +15、Generate in Parts +30、Texture Gen +10、HD Texture +10、Quad +5</td></tr>
 <tr><td>Smart Mesh（智能网格）</td><td>35</td><td>Smart Mesh P2.0 +65</td></tr>
-<tr><td>Segmentation（部件拆分）</td><td>5</td><td>Part Completion +5 /每部件</td></tr>
+<tr><td>Segmentation（智能拆分）</td><td>5</td><td>Part Completion +5 /每部件</td></tr>
 <tr><td>Retopology（重拓扑）</td><td>5</td><td>Quad +5、Smart Lowpoly +30</td></tr>
-<tr><td>Texture Gen（纹理生成）</td><td>10</td><td>Style Reference +5、PBR +5、HD Texture +10</td></tr>
+<tr><td>Texture Gen（贴图生成）</td><td>10</td><td>Style Reference +5、PBR +5、HD Texture +10</td></tr>
 <tr><td>Auto Rig（自动绑骨）</td><td>20</td><td>—</td></tr>
 </tbody>
 </table>
@@ -7953,7 +7953,7 @@ scene.environment = studioEnv(renderer);</code></pre>
 
 <h3>三、界面上实际扣多少</h3>
 
-<p>打开生成表单，按钮上直接写着这一单多少积分。我把Geometry &amp; Texture弹层里的开关一个个拨过去，记下按钮上的数，得到下面这张阶梯表。全程只看按钮，一积分没花。</p>
+<p>打开生成表单，按钮上直接写着这一单多少积分。我把几何与贴图弹层里的开关一个个拨过去，记下按钮上的数，得到下面这张阶梯表。全程只看按钮，一积分没花。</p>
 
 <p>默认状态（图见§01）：Ultra Mesh Quality关、Texture开、Texture Quality 8K、PBR开、Topology Triangle、面数20000，按钮「Generate 50」。</p>
 
@@ -7979,7 +7979,7 @@ scene.environment = studioEnv(renderer);</code></pre>
 <tbody>
 <tr><td>智能网格（P2.0 Preview）</td><td>「100划掉65」</td><td><strong>65</strong></td><td>原价100被划线打折。出的是无贴图灰模。Preview期首次Trial全免（显示「100划掉0」），之后每笔落在65</td></tr>
 <tr><td>智能网格之后加贴图</td><td>纹理生成30</td><td><strong>30</strong></td><td>灰模要能看必须再付这一笔。<strong>一件带贴图的完整成品是65 + 30 = 95</strong></td></tr>
-<tr><td>Part Segmentation</td><td>40（当天显示Trial免费）</td><td>0（那天）</td><td>官网表里写5，界面是40；对四边面模型和已绑骨模型不可用</td></tr>
+<tr><td>智能拆分</td><td>40（当天显示Trial免费）</td><td>0（那天）</td><td>官网表里写5，界面是40；对四边面模型和已绑骨模型不可用</td></tr>
 <tr><td>Retopology + Quad</td><td>5 + 5</td><td><strong>10</strong></td><td>形状本身对了就走它，比重新生成便宜得多</td></tr>
 <tr><td>Auto Rig</td><td>20</td><td><strong>20</strong></td><td>碰上第一次没绑成就点重试，那一件是40。不是每次都会碰上，我实测过一次过的</td></tr>
 <tr><td>把外部模型上传进Tripo</td><td>导入50</td><td><strong>50</strong></td><td>只有外部文件才需要。从账号内已有资产直接选是<strong>0</strong>（§06有走法）</td></tr>
@@ -8004,7 +8004,7 @@ scene.environment = studioEnv(renderer);</code></pre>
 <tr><td>中景，街边的建筑和道具</td><td>高精度+ 4K贴图</td><td>40</td></tr>
 <tr><td>远景，只会远远瞥一眼</td><td>高精度+ 2K贴图</td><td>30</td></tr>
 <tr><td>只要形状，材质在引擎里自己给</td><td>高精度，Texture整个关掉</td><td>15</td></tr>
-<tr><td>要干净四边面，拿去Blender接着改</td><td>智能网格P2.0 +纹理生成</td><td>65（+30）</td></tr>
+<tr><td>要干净四边面，拿去Blender接着改</td><td>智能网格P2.0 +贴图生成</td><td>65（+30）</td></tr>
 </tbody>
 </table>
 
@@ -8055,7 +8055,7 @@ scene.environment = studioEnv(renderer);</code></pre>
 <thead><tr><th>时间</th><th>发生了什么</th><th>扣</th><th>余额</th></tr></thead>
 <tbody>
 <tr><td>09-11</td><td>起点读数</td><td>—</td><td>25220</td></tr>
-<tr><td>09-11</td><td>那辆出租车做纹理生成</td><td>30</td><td>25190</td></tr>
+<tr><td>09-11</td><td>那辆出租车做贴图生成</td><td>30</td><td>25190</td></tr>
 <tr><td>09-11 14:36</td><td>批量开工前读数</td><td>—</td><td><strong>25180</strong></td></tr>
 <tr><td>09-11 14:36–15:50</td><td>38件智能网格批量（37×65 +1件Trial免费+1件重做65 +38×30 +1次重做30）</td><td>3640</td><td>21540</td></tr>
 <tr><td>09-12开工</td><td>第二天开工读数</td><td>—</td><td>21540</td></tr>
@@ -8099,9 +8099,9 @@ scene.environment = studioEnv(renderer);</code></pre>
 <thead><tr><th>术语</th><th>人话</th></tr></thead>
 <tbody>
 <tr><td><strong>网格/ Mesh</strong></td><td>3D模型的骨肉。一堆点连成面，面拼成形状。所谓「生成一个3D模型」，生成的就是这堆点和面。</td></tr>
-<tr><td><strong>三角面/四边面</strong></td><td>面的形状。三角面是最通用的，引擎最后都转成三角形来画；四边面（Quad）是四边形为主的规整网格，做变形、细分、绑骨时更听话，是专业管线的通用标准。Tripo的HD Model表单里可以选Triangle或Quad，默认Triangle；Smart Mesh那边默认就是Quad。</td></tr>
+<tr><td><strong>三角面/四边面</strong></td><td>面的形状。三角面是最通用的，引擎最后都转成三角形来画；四边面（Quad）是四边形为主的规整网格，做变形、细分、绑骨时更听话，是专业管线的通用标准。Tripo的高精度模型表单里可以选三角面或四边面，默认三角面；智能网格那边默认就是四边面。</td></tr>
 <tr><td><strong>三角化/ Triangulate</strong></td><td>把四边面和多边面拆成三角形。引擎最后只认三角形，所以这一步一定会发生，区别只在于是你自己做还是导出时自动做。<strong>倍数不是2</strong>：本书那批38件实测在1.37到1.87倍之间，中位1.75，因为生成出来的网格里总混着本来就是三角的面。做面数预算时用1.75去估比用2稳。</td></tr>
-<tr><td><strong>face_limit（面数上限）</strong></td><td>生成表单里让你填的那个数。有两个地方会咬人：<strong>它数的是什么，随模式变</strong>：Smart Mesh那边数的是四边面，HD Model那边数的是三角面，同一个8000在两边不是一回事；<strong>它是目标不是硬上限</strong>，38件实测有35件超出设定值，中位超13%，最狠的一件超了44%。要卡死预算就往下压一档填。</td></tr>
+<tr><td><strong>face_limit（面数上限）</strong></td><td>生成表单里让你填的那个数。有两个地方会咬人：<strong>它数的是什么，随模式变</strong>：智能网格那边数的是四边面，高精度模型那边数的是三角面，同一个8000在两边不是一回事；<strong>它是目标不是硬上限</strong>，38件实测有35件超出设定值，中位超13%，最狠的一件超了44%。要卡死预算就往下压一档填。</td></tr>
 <tr><td><strong>拓扑</strong></td><td>这些面是怎么排布、怎么连接的。同样一个形状，面排得整齐叫「拓扑好」，乱七八糟叫「拓扑差」。形状对不对看眼睛，拓扑好不好要看线框。</td></tr>
 <tr><td><strong>面数预算/ Polygon Budget</strong></td><td>目标设备能扛住多少三角面。手机上跑的和电脑上跑的不是一个量级，超了就掉帧。它是一个你自己定的上限，不是系统给的。</td></tr>
 <tr><td><strong>减面/简化</strong></td><td>把面数砍下来，形状尽量不变。能砍到多少由几何的光滑程度决定，光滑的（人物）砍得狠，棱角多的（铁塔）砍不动。</td></tr>
@@ -8109,8 +8109,8 @@ scene.environment = studioEnv(renderer);</code></pre>
 <tr><td><strong>包围盒/ Bounding Box</strong></td><td>刚好把模型装进去的那个长方体。量尺寸、对齐、算缩放全靠它。⚠️对带骨架的模型，轴对齐包围盒会骗人（见附录B）。</td></tr>
 <tr><td><strong>UV与贴图</strong></td><td>贴图是一张平面的图，UV是「这张图怎么裹到模型表面上」的对应关系。颜色、花纹、锈迹全在贴图里，不在几何里。</td></tr>
 <tr><td><strong>PBR</strong></td><td>基于物理的渲染。模型不只带一张颜色图，还带金属度、粗糙度、法线等几张图，引擎按真实世界的光照规律算出效果。<strong>它是「为什么你的模型在白底上渲成一团黑」的根源</strong>，金属度高的材质要靠反射环境才有亮度。</td></tr>
-<tr><td><strong>基色贴图/ base color</strong></td><td>纯颜色那一张，不含任何光照信息。你看到的「这栋楼是奶油色的」就来自它。<strong>Smart Mesh（P2.0）模式只给这一张</strong>，没有法线也没有ORM，所以同一盏灯下它会比三张齐全的那种哑一点。</td></tr>
-<tr><td><strong>ORM贴图</strong></td><td>一张图管三件事，靠三个颜色通道分工：R存环境光遮蔽、G存粗糙度、B存金属度。合成一张是为了省显存和采样次数。v3.1（HD Model）导出的三张贴图里就有它，P2.0那边没有。名字里的三个字母就是这三个通道的英文首字母。</td></tr>
+<tr><td><strong>基色贴图/ base color</strong></td><td>纯颜色那一张，不含任何光照信息。你看到的「这栋楼是奶油色的」就来自它。<strong>智能网格（P2.0）模式只给这一张</strong>，没有法线也没有ORM，所以同一盏灯下它会比三张齐全的那种哑一点。</td></tr>
+<tr><td><strong>ORM贴图</strong></td><td>一张图管三件事，靠三个颜色通道分工：R存环境光遮蔽、G存粗糙度、B存金属度。合成一张是为了省显存和采样次数。v3.1（高精度模型）导出的三张贴图里就有它，P2.0那边没有。名字里的三个字母就是这三个通道的英文首字母。</td></tr>
 <tr><td><strong>法线贴图</strong></td><td>一张假装凹凸的图。它不改变几何，只骗光照，让平的表面看起来有纹理。它的分辨率可以比颜色图低很多。</td></tr>
 <tr><td><strong>绑骨/ Rigging</strong></td><td>给模型装一副骨架，并且告诉每一块表皮「你跟着哪根骨头动、跟多紧」（后半句叫蒙皮权重）。装完之后模型才能被动画驱动。Tripo的自动绑骨20积分，出来41个关节。</td></tr>
 <tr><td><strong>动画重定向/ Retarget</strong></td><td>把一套现成的动作（比如走路）套到另一副骨架上。Tripo动画库里那近一百个动作就是这么用上的，它单独出一个文件，和模型文件是分开的。</td></tr>
@@ -8133,7 +8133,7 @@ scene.environment = studioEnv(renderer);</code></pre>
 <tr><td><strong>HD Model（高精度模型）</strong></td><td>Tripo的主力生成模式，我绝大多数资产都出自它（v3.1最高质量）。界面上标50积分，那是默认替你开好了整个贴图包的价，只要几何的话15就够。</td></tr>
 <tr><td><strong>Smart Mesh（智能网格）</strong></td><td>另一种生成模式，直接出规整的低面数网格（P2.0预览版实测一辆出租车5615个四边面），但出来是没有贴图的灰模，贴图要另付30积分。<strong>而且它的贴图只给一张基色</strong>，没有法线、没有ORM，接进场景前要知道这件事。</td></tr>
 <tr><td><strong>语义分件/ Part Segmentation</strong></td><td>把一个整体模型按结构自动拆成可以单独选中、单独操作的部件，比如车轮从车身里分出来。它和「按连通分量拆」完全不同，后者会把一个模型炸成几百个碎片。⚠️四边面模型和已绑骨模型不能做这一步。</td></tr>
-<tr><td><strong>Trial x1</strong></td><td>新功能的一次性免费试用，界面上会把价格划掉显示0。<strong>做预算时别把试用价当常态</strong>，但也别把免完之后的价记成标价上限——Preview期的Smart Mesh免完之后落回的是划线折扣价（100划掉、实扣65），不是回到100。而且它只免生成那一笔，贴图照付。</td></tr>
+<tr><td><strong>Trial x1</strong></td><td>新功能的一次性免费试用，界面上会把价格划掉显示0。<strong>做预算时别把试用价当常态</strong>，但也别把免完之后的价记成标价上限——Preview期的智能网格免完之后落回的是划线折扣价（100划掉、实扣65），不是回到100。而且它只免生成那一笔，贴图照付。</td></tr>
 <tr><td><strong>DCC</strong></td><td>Digital Content Creation，Blender、Maya、3ds Max这类专业内容创作软件的统称。</td></tr>
 <tr><td><strong>DCC Bridge</strong></td><td>Tripo提供的一条传输通道：浏览器里生成完，一键把模型推进Blender / Unity / Unreal等软件，不用手动下载再导入。<strong>它和AI agent无关，只是搬运</strong>，Pro及以上才有。</td></tr>
 <tr><td><strong>Production-Ready</strong></td><td>生产就绪，意思是生成结果不用大幅返工就能进专业制作管线。判断它成不成立，看的是拓扑、UV、尺寸这些，不是看渲染图好不好看。</td></tr>
@@ -8154,7 +8154,7 @@ scene.environment = studioEnv(renderer);</code></pre>
 <tr><td><strong>glTFast</strong></td><td>Unity里加载glTF / GLB的包。两个你一定会撞上的脾气：<strong>默认</strong>不带meshopt解码器（装<code>com.unity.meshopt.decompress</code>就认，不是解不开），以及绕过Unity的贴图导入设置（所以平台贴图压缩不生效，WebGL包会大得离谱）。</td></tr>
 <tr><td><strong>WebGL构建</strong></td><td>把Unity项目导出成能在浏览器里跑的一份网页。体积是它的主要矛盾，我实测从165 MB压到51 MB，靠的全是贴图。</td></tr>
 <tr><td><strong>Toy</strong></td><td>B站的互动内容平台，可以把一个前端项目或HTML发布上去、绑定到视频下面，观众看完视频直接点进去玩。它是我这类demo最顺手的分发出口之一。</td></tr>
-<tr><td><strong>算子耗时／端到端墙钟</strong></td><td>看到一个耗时数字，先问它是哪一个。<strong>算子耗时</strong>是平台报的、模型真正在算的那一段；<strong>端到端墙钟</strong>是你坐在屏幕前从点下按钮到能下载为止真实等了多久，中间还有上传、排队、生成预览、下载。录制那天现场实测：生成端到端约31秒，其中算子16秒；自动绑骨端到端13秒，其中算子3秒（另一次算子19秒）。<strong>本书凡是引用平台侧的秒数，一律是算子耗时口径，不含上传与排队。</strong>只有一处例外，看到别当矛盾：<strong>HD Model那一档我没有逐件采到算子耗时</strong>，书里给的「一件约四分钟」（§05、§07那张耗时表）是端到端墙钟，口径说明在§05。所以「HD Model一件约四分钟」和「生成算子16秒」摆在一起不是打架，是两个口径，别拿来互相换算。</td></tr>
+<tr><td><strong>算子耗时／端到端墙钟</strong></td><td>看到一个耗时数字，先问它是哪一个。<strong>算子耗时</strong>是平台报的、模型真正在算的那一段；<strong>端到端墙钟</strong>是你坐在屏幕前从点下按钮到能下载为止真实等了多久，中间还有上传、排队、生成预览、下载。录制那天现场实测：生成端到端约31秒，其中算子16秒；自动绑骨端到端13秒，其中算子3秒（另一次算子19秒）。<strong>本书凡是引用平台侧的秒数，一律是算子耗时口径，不含上传与排队。</strong>只有一处例外，看到别当矛盾：<strong>高精度模型那一档我没有逐件采到算子耗时</strong>，书里给的「一件约四分钟」（§05、§07那张耗时表）是端到端墙钟，口径说明在§05。所以「高精度模型一件约四分钟」和「生成算子16秒」摆在一起不是打架，是两个口径，别拿来互相换算。</td></tr>
 <tr><td><strong>无头浏览器/ headless</strong></td><td>没有界面的浏览器，用命令行驱动它打开页面、截图。做自动化自检必须用它，因为放在后台标签页里的页面会被浏览器暂停，你截到的是旧画面。</td></tr>
 </tbody>
 </table>
@@ -8171,11 +8171,11 @@ scene.environment = studioEnv(renderer);</code></pre>
     <strong>合上书之后，下一步在这儿</strong><br>
     注册就有200积分，官方自己标的是「约13个模型」——够你把§01那一趟从头走一遍，先看看这条路合不合手。积分怎么花在刀刃上，§07有一整节的账。
   </div>
-  <a class="back-page-link" href="https://studio.tripo3d.ai/">开始做：studio.tripo3d.ai</a>
+  <a class="back-page-link" href="https://studio.tripo3d.com/">开始做：studio.tripo3d.com</a>
   <div class="back-page-social">
-    <a href="https://www.tripo3d.ai/pricing">定价与积分：tripo3d.ai/pricing</a>
+    <a href="https://www.tripo3d.com/pricing">定价与积分：tripo3d.com/pricing</a>
     <span class="social-sep">·</span>
-    <a href="https://developers.tripo3d.ai/">开发者文档：developers.tripo3d.ai</a>
+    <a href="https://developers.tripo3d.com/">开发者文档：developers.tripo3d.com</a>
   </div>
   <div class="back-page-qr-wrapper">
     <img src="gzh-qrcode.jpg" alt="微信搜一搜「花叔」公众号" class="back-page-qr">
